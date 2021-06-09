@@ -5,11 +5,13 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Cliente implements Serializable {
@@ -18,7 +20,8 @@ public class Cliente implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	@Column(name = "cliente_id")
+	private Long clienteId;
 	
 	private String nome;
 	
@@ -28,23 +31,31 @@ public class Cliente implements Serializable {
 	@Column(unique = true)
 	private String cnpj;
 	
-	@ManyToOne
+	@OneToMany(fetch = FetchType.EAGER)
 	private List<Contato> contatos;
 	
 	private String email;
 	
-	@ManyToOne
-	private List<Endereco> enderecos;
+	@OneToOne
+	private Endereco endereco;
 	
 	@ManyToMany(mappedBy = "clientes")
 	private List<Processo> processos;
 
-	public Long getId() {
-		return id;
+	public Long getClienteId() {
+		return clienteId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setClienteId(Long clienteId) {
+		this.clienteId = clienteId;
+	}
+
+	public List<Processo> getProcessos() {
+		return processos;
+	}
+
+	public void setProcessos(List<Processo> processos) {
+		this.processos = processos;
 	}
 
 	public String getNome() {
@@ -87,11 +98,11 @@ public class Cliente implements Serializable {
 		this.email = email;
 	}
 
-	public List<Endereco> getEnderecos() {
-		return enderecos;
+	public Endereco getEndereco() {
+		return endereco;
 	}
 
-	public void setEnderecos(List<Endereco> enderecos) {
-		this.enderecos = enderecos;
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 }
