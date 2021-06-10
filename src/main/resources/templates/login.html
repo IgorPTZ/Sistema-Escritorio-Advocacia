@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Acesso ao sistema</title>
+	
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	
+	<style type="text/css">
+		form {
+			margin-top: 15%;
+			margin-left: 35%;
+		}
+		
+		form input[type=submit] {
+			color: white;
+		}
+	</style>
+
+</head>
+<body>
+	
+	<form th:action="@{/login}" method="post" class="col s12">
+		<h5>Área de Login</h5>
+		<div class="row">
+			<div class="input-field col s6">
+				<label>Login</label>
+				<input type="text" id="username" name="username">
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="input-field col s6">
+				<label>Senha</label>
+				<input type="password" id="password" name="password">
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="input-field col s6">
+				<input id="btnEntrar" name="Entrar" type="submit" value="Entrar" class="waves-effect waves-light btn">
+			</div>
+		</div>
+	</form>
+	
+	<script type="text/javascript">
+		$('#btnEntrar').on('click',function() {
+			
+			let login = $('#username').val();
+			
+			console.log('Login -> ' + login);
+			
+			localStorage.setItem("login", login);
+		});
+	</script>
+</body>
+</html>
