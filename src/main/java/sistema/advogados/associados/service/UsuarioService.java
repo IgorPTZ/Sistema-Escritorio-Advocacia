@@ -29,4 +29,14 @@ public class UsuarioService {
 		
 		return usuarioRepository.obterUsuarioPeloLogin(login);
 	}
+	
+	public Usuario inserirUsuario(Usuario usuario) {
+		
+		return usuarioRepository.save(usuario);
+	}
+	
+	public Usuario editarUsuario(Usuario usuario) {
+		
+		return usuarioRepository.save(usuario);
+	}
 }

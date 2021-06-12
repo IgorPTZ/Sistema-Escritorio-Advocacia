@@ -3,6 +3,7 @@ package sistema.advogados.associados.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,7 +22,7 @@ public class Cliente implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "cliente_id")
-	private Long clienteId;
+	private Long id;
 	
 	private String nome;
 	
@@ -31,23 +32,23 @@ public class Cliente implements Serializable {
 	@Column(unique = true)
 	private String cnpj;
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER, cascade= CascadeType.ALL)
 	private List<Contato> contatos;
 	
 	private String email;
 	
-	@OneToOne
+	@OneToOne(cascade= CascadeType.ALL)
 	private Endereco endereco;
 	
 	@ManyToMany(mappedBy = "clientes")
 	private List<Processo> processos;
 
-	public Long getClienteId() {
-		return clienteId;
+	public Long getId() {
+		return id;
 	}
 
-	public void setClienteId(Long clienteId) {
-		this.clienteId = clienteId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public List<Processo> getProcessos() {

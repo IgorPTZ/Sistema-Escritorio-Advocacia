@@ -5,12 +5,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import sistema.advogados.associados.model.Usuario;
 import sistema.advogados.associados.service.UsuarioService;
 
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -55,7 +57,7 @@ public class UsuarioController {
 			
 			model.addObject("usuario", usuario);
 			
-			model.setViewName("edicao-usuario");
+			model.setViewName("editar-usuario");
 			
 			return model;
 		}
@@ -76,9 +78,62 @@ public class UsuarioController {
 			
 			model.addObject("usuario", usuario);
 			
-			model.setViewName("edicao-usuario");
+			model.setViewName("editar-usuario");
 			
 			return model;
+		}
+		catch(Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	@RequestMapping(value="/carregar-novo-usuario", method=RequestMethod.GET)
+	public ModelAndView carregarNovoUsuario(ModelAndView model) {
+		
+		try {
+			
+			model.addObject("usuario", new Usuario());
+			
+			model.setViewName("editar-usuario");
+			
+			return model;
+		}
+		catch(Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	@RequestMapping(value="/inserir-usuario", method=RequestMethod.POST)
+	public String inserirUsuario(Model model, @ModelAttribute Usuario usuario) {
+		
+		try {
+			
+			usuarioService.inserirUsuario(usuario);
+			
+			return "index";
+		}
+		catch(Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	@RequestMapping(value="/editar-usuario", method=RequestMethod.POST)
+	public String editarUsuario(ModelAndView model, @ModelAttribute Usuario usuario) {
+		
+		try {
+			
+			usuarioService.editarUsuario(usuario);
+			
+			return "index";
 		}
 		catch(Exception e) {
 			

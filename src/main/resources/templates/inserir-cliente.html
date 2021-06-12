@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Adicionar cliente</title>
+		
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+		
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	</head>
+	
+	<body>
+		<form action="inserir-cliente" id="adicaoCliente" method="post" th:object="${cliente}">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="id">Id</label>
+					<input id="id" placeholder="Id" th:field="*{id}" class="form-control" readonly="readonly">
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="nome" class="active">Nome</label>
+					<input id="nome" th:field="*{nome}" class="form-control">
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="cpf" class="active">Cpf</label>
+					<input id="cpf" th:field="*{cpf}" class="form-control">
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="cnpj" class="active">Cnpj</label>
+					<input id="cnpj" th:field="*{cnpj}" class="form-control">
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="cnpj" class="active">email</label>
+					<input type="email" id="cnpj" th:field="*{email}" class="form-control">
+				</div>
+			</div>
+			
+			<input type="submit" id="btnFormEdicao" class="btn" style="color:#fff; background-color:#17a2b8; margin-bottom: 10px;" value="Salvar" />
+		</form>
+	</body>
+</html>
