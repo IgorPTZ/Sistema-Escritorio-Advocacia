@@ -1,6 +1,9 @@
 package sistema.advogados.associados.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,25 +20,42 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService usuarioService;
 	
-	/*
-	 * @RequestMapping(value="/obtertextosdeajuda", method=RequestMethod.GET)
-	public ModelAndView obterTextosDeAjuda(ModelAndView model,
-			                    @PageableDefault(size = 20) Pageable pageable,
-			                    @RequestParam(value="nome", required=false) String nome) {
+	
+	@RequestMapping(value="/obter-usuarios", method=RequestMethod.GET)
+	public ModelAndView obterUsuarios(ModelAndView model, @PageableDefault(size = 20) Pageable pageable) {
 		
 		try {
 			
-			Page<Ajuda> textosDeAjuda = ajudaService.obterTextosDeAjuda(pageable, nome);
-			
-			model.addObject("nome", nome);
+			Page<Usuario> usuarios = usuarioService.obterUsuariosPaginados(pageable);
 			
 			model.addObject("page", pageable.getPageNumber());
 			
 			model.addObject("size", pageable.getPageSize());
 			
-			model.addObject("textosDeAjudaPaginados", textosDeAjuda);
+			model.addObject("usuariosPaginados", usuarios);
 			
-			model.setViewName("fragments/listagem-texto-ajuda :: listar-texto-ajuda");
+			model.setViewName("listar-usuario");
+			
+			return model;
+		}
+		catch(Exception e) {
+			
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+	
+	@RequestMapping(value="/obter-usuario-por-id", method=RequestMethod.GET)
+	public ModelAndView obterUsuarioPorId(ModelAndView model, @RequestParam(value="id") Long id) {
+		
+		try {
+			
+			Usuario usuario = usuarioService.obterUsuario(id);
+			
+			model.addObject("usuario", usuario);
+			
+			model.setViewName("edicao-usuario");
 			
 			return model;
 		}
@@ -46,18 +66,17 @@ public class UsuarioController {
 		
 		return null;
 	}
-	 */
 	
-	@RequestMapping(value="/obterusuario", method=RequestMethod.GET)
-	public ModelAndView obterUsuario(ModelAndView model, @RequestParam(value="id") Long id) {
+	@RequestMapping(value="/obter-usuario-por-login", method=RequestMethod.GET)
+	public ModelAndView obterUsuarioPorLogin(ModelAndView model, @RequestParam(value="login") String login) {
 		
 		try {
 			
-			Usuario usuario = usuarioService.obterUsuario(id);
+			Usuario usuario = usuarioService.obterUsuarioPorLogin(login);
 			
 			model.addObject("usuario", usuario);
 			
-			model.setViewName("edicao-usuario :: editar-usuario");
+			model.setViewName("edicao-usuario");
 			
 			return model;
 		}

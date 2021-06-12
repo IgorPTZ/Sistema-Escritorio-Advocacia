@@ -15,12 +15,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
-	Hello World!!!
-	
 	<input type="hidden" id="loginDoUsuario" name="loginDoUsuario"/>
 	
 	<div class="row">
-		<button class="btn btn-primary" id="btnEditarUsuario">Editar usuario</button>
+		<a class="btn btn-primary" id="btnEditarUsuario">Editar usuario</a>
 	</div>
 	
 	<script type="text/javascript">
@@ -29,6 +27,8 @@
 			login = localStorage.getItem("login");
 			
 			$('#loginDoUsuario').val(login);
+			
+			$("#btnEditarUsuario").attr("href", "/obter-usuario-por-login?login=" + login);
 		   
 		    console.log('Login apos acesso -> ' + login);
 		});	
