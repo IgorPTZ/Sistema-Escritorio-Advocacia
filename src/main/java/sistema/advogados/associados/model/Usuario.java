@@ -25,9 +25,10 @@ public class Usuario implements UserDetails {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(unique = true)
+	@Column(unique = true, nullable = false)
 	private String login;
 	
+	@Column(nullable = false)
 	private String senha;
 	
 	@OneToMany(fetch = FetchType.EAGER)

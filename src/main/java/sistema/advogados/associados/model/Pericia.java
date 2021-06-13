@@ -3,6 +3,7 @@ package sistema.advogados.associados.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,14 +22,19 @@ public class Pericia implements Serializable {
 	@ManyToOne
 	private Processo processo;
 	
+	@Column(nullable = false)
 	private LocalDate data;
 	
+	@Column(nullable = false)
 	private String horario;
 	
+	@Column(nullable = false)
 	private String local;
 	
+	@Column(nullable = false)
 	private String telefone;
 	
+	@Column(nullable = false)
 	private String nomePerito;
 
 	public Long getId() {

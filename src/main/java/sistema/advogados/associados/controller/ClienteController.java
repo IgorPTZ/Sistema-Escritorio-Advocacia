@@ -1,5 +1,7 @@
 package sistema.advogados.associados.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import sistema.advogados.associados.model.Cliente;
+import sistema.advogados.associados.model.Contato;
 import sistema.advogados.associados.service.ClienteService;
 
 @Controller
@@ -46,7 +49,7 @@ public class ClienteController {
 		return null;
 	}
 	
-	@RequestMapping(value="/obter-cliente-por-id", method=RequestMethod.GET)
+	@RequestMapping(value="/obter-cliente-por-id", method=RequestMethod.GET) // ok
 	public ModelAndView obterClientePorId(ModelAndView model, @RequestParam(value="id") Long id) {
 		
 		try {
@@ -55,7 +58,7 @@ public class ClienteController {
 			
 			model.addObject("cliente", cliente);
 			
-			model.setViewName("edicao-cliente");
+			model.setViewName("editar-cliente");
 			
 			return model;
 		}
@@ -67,12 +70,21 @@ public class ClienteController {
 		return null;
 	}
 	
-	@RequestMapping(value="/carregar-novo-cliente", method=RequestMethod.GET)
-	public ModelAndView carregarNovoCliente(ModelAndView model) {
+	@RequestMapping(value="/carregar-novo-cliente", method=RequestMethod.GET) // ok
+	public ModelAndView carregarNovoCliente(ModelAndView model) { 
 		
 		try {
 			
-			model.addObject("cliente", new Cliente());
+			Cliente cliente = new Cliente();
+			
+			cliente.setContatos(new ArrayList<Contato>());
+			
+			for(int i = 0 ; i < 4 ; i++) {
+				
+				cliente.getContatos().add(new Contato());
+			}
+			
+			model.addObject("cliente", cliente);
 			
 			model.setViewName("inserir-cliente");
 			
@@ -86,7 +98,7 @@ public class ClienteController {
 		return null;
 	}
 	
-	@RequestMapping(value="/inserir-cliente", method=RequestMethod.POST)
+	@RequestMapping(value="/inserir-cliente", method=RequestMethod.POST) // ok
 	public String inserirCliente(Model model, @ModelAttribute Cliente cliente) {
 		
 		try {
@@ -103,7 +115,7 @@ public class ClienteController {
 		return null;
 	}
 	
-	@RequestMapping(value="/editar-cliente", method=RequestMethod.POST)
+	@RequestMapping(value="/editar-cliente", method=RequestMethod.POST) // ok
 	public String editarCliente(ModelAndView model, @ModelAttribute Cliente cliente) {
 		
 		try {

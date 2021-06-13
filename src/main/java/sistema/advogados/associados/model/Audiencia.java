@@ -22,17 +22,22 @@ public class Audiencia implements Serializable{
 	@ManyToOne
 	private Processo processo;
 	
+	@Column(nullable = false)
 	private LocalDate data;
 	
+	@Column(nullable = false)
 	private String horario;
 	
+	@Column(nullable = false)
 	private String vara;
 	
+	@Column(nullable = false)
 	private String local;
 	
-	@Column(name = "flag_precatoria")
+	@Column(name = "flag_precatoria", nullable = false)
 	private Boolean flagPrecatoria;
 	
+	@Column(nullable = false)
 	private String observacao;
 
 	public Long getId() {

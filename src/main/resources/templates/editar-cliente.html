@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8">
-		<title>Adicionar cliente</title>
+		<title>Editar cliente</title>
 		
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 		
@@ -16,7 +16,7 @@
 	</head>
 	
 	<body>
-		<form action="inserir-cliente" id="adicaoCliente" method="post" th:object="${cliente}">
+		<form action="editar-cliente" id="edicaoCliente" method="post" th:object="${cliente}">
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="id">Id</label>
@@ -49,6 +49,8 @@
 				<labeL>Contato</labeL>
 				<div  th:each ="contato, itemStat : *{contatos}"  class="form-group col-md-3">	
 						<div class="row">
+							<input type="hidden" th:field="*{contatos[__${itemStat.index}__].id}" class="form-control">
+						
 							<input th:field="*{contatos[__${itemStat.index}__].numero}" class="form-control">
 					
 							<select th:field="*{contatos[__${itemStat.index}__].tipo}" size="1" class="form-control">
@@ -78,25 +80,14 @@
 				</div>
 			</div>
 			
-			<!--  	<tr  th:each = "item, itemStat : *{itensAssociadosAoServico}">
-								<td style="display:none;"><input type="hidden" th:field ="*{itensAssociadosAoServico[__${itemStat.index}__].tipoProduto.id}"/></td>
-								<td><input readonly="readonly" th:field="*{itensAssociadosAoServico[__${itemStat.index}__].tipoProduto.descricao}" /></td>
-								<td style="display:none;"><input type="hidden" th:field ="*{itensAssociadosAoServico[__${itemStat.index}__].tipoEquipamento.id}" /></td>
-								<td><input readonly="readonly" th:field="*{itensAssociadosAoServico[__${itemStat.index}__].tipoEquipamento.descricao}"/></td>
-								<td ><input th:field ="*{itensAssociadosAoServico[__${itemStat.index}__].horarioInicio}" /></td>
-								<td ><input th:field ="*{itensAssociadosAoServico[__${itemStat.index}__].horarioFim}" /></td>
-								<td ><input th:field ="*{itensAssociadosAoServico[__${itemStat.index}__].quantidade}" /></td>
-								
-								<th:block th:if="${perimetroLoteado} == true">	
-																		
-									<td><button th:id="${itemStat.index}" class="btn btnLote btn-outline-info btn-font-responsive" th:value="@{/carregarlote(indice=${itemStat.index})}">Lotes</button></td>
-					
-								</th:block>
-			</tr> -->
+			<table class="striped">
+				<tr th:each = "processo : ${cliente.processos}" onclick="alert('Clicou no processo!!!')">
+					<td th:each="reu: ${processo.reus}" th:text = "${reu.nome}"></td>
+					<td th:text = "${processo.numero}"></td>
+				</tr>
+			</table>
 			
-
-			
-			<input type="submit" id="btnFormAdicao" class="btn" style="color:#fff; background-color:#17a2b8; margin-bottom: 10px;" value="Salvar" />
+			<input type="submit" id="btnFormEdicao" class="btn" style="color:#fff; background-color:#17a2b8; margin-bottom: 10px;" value="Salvar" />
 		</form>
 	</body>
 </html>

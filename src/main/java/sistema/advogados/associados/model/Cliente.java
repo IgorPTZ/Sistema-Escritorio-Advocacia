@@ -24,6 +24,7 @@ public class Cliente implements Serializable {
 	@Column(name = "cliente_id")
 	private Long id;
 	
+	@Column(nullable = false)
 	private String nome;
 	
 	@Column(unique = true)
@@ -35,6 +36,7 @@ public class Cliente implements Serializable {
 	@OneToMany(fetch = FetchType.EAGER, cascade= CascadeType.ALL)
 	private List<Contato> contatos;
 	
+	@Column(nullable = false)
 	private String email;
 	
 	@OneToOne(cascade= CascadeType.ALL)

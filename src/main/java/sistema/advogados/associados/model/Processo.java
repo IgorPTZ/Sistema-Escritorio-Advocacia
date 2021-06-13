@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,6 +23,7 @@ public class Processo implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	@Column(nullable = false)
 	private String numero;
 
 	@ManyToOne
@@ -39,6 +41,7 @@ public class Processo implements Serializable {
 	           inverseJoinColumns = @JoinColumn(name = "cliente_id"))
 	private List<Cliente> clientes;
 
+	@Column(nullable = false)
 	private String observacao;
 
 	public Long getId() {
