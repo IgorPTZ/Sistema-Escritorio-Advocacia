@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8">
-		<title>Editar cliente</title>
+		<title>Detalhar cliente</title>
 		
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 		
@@ -20,49 +20,44 @@
 		
 		<input type="hidden" id="size" name="size" th:value="${size}"/>
 	
-		<form action="editar-cliente" id="edicaoCliente" method="post" th:object="${cliente}">
+		<form>
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="id">Id</label>
-					<input id="id" placeholder="Id" th:field="*{id}" class="form-control" readonly="readonly">
+					<input id="id" placeholder="Id" th:value="${cliente.id}" class="form-control" readonly="readonly">
 				</div>
 			</div>
 			
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="nome" class="active">Nome</label>
-					<input id="nome" th:field="*{nome}" class="form-control">
+					<input id="nome" th:field="${cliente.nome}" class="form-control" readonly="readonly">
 				</div>
 			</div>
 			
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="cpf" class="active">Cpf</label>
-					<input id="cpf" th:field="*{cpf}" class="form-control">
+					<input id="cpf" th:field="${cliente.cpf}" class="form-control" readonly="readonly">
 				</div>
 			</div>
 			
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="cnpj" class="active">Cnpj</label>
-					<input id="cnpj" th:field="*{cnpj}" class="form-control">
+					<input id="cnpj" th:field="${cliente.cnpj}" class="form-control" readonly="readonly">
 				</div>
 			</div>
 			
 			<div class="form-row">
 				<labeL>Contato</labeL>
-				<div  th:each ="contato, itemStat : *{contatos}"  class="form-group col-md-3">	
+				<div  th:each ="contato, itemStat : ${cliente.contatos}"  class="form-group col-md-3">	
 						<div class="row">
-							<input type="hidden" th:field="*{contatos[__${itemStat.index}__].id}" class="form-control">
+							<input type="hidden" th:value="${cliente.contatos[__${itemStat.index}__].id}" class="form-control"  readonly="readonly">
 						
-							<input th:field="*{contatos[__${itemStat.index}__].numero}" class="form-control">
-					
-							<select th:field="*{contatos[__${itemStat.index}__].tipo}" size="1" class="form-control">
-								<option  value="">Selecione</option>
-						 		<option  value="Celular">Celular</option>
-						 		<option  value="Residencial">Residencial</option>
-						 		<option  value="Comercial">Comercial</option>
-							</select>
+							<input th:value="${cliente.contatos[__${itemStat.index}__].numero}" class="form-control"  readonly="readonly">
+							
+							<input th:value="${cliente.contatos[__${itemStat.index}__].tipo}" class="form-control"  readonly="readonly">
 						</div>
 				</div>
 			</div>
@@ -70,7 +65,7 @@
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="email" class="active">Email</label>
-					<input type="email" id="email" th:field="*{email}" class="form-control">
+					<input type="email" id="email" th:field="${cliente.email}" class="form-control"  readonly="readonly">
 				</div>
 			</div>
 			
@@ -78,7 +73,7 @@
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="endereco" class="active">Endereco</label>
-					<textarea rows="3" id="endereco" th:field="*{endereco.descricao}" class="form-control">
+					<textarea rows="3" id="endereco" th:field="${cliente.endereco.descricao}" class="form-control"  readonly="readonly">
 					
 					</textarea>
 				</div>
@@ -86,12 +81,10 @@
 			
 			<table class="striped">
 				<tr th:each = "processo : ${cliente.processos}" onclick="alert('Clicou no processo!!!')">
-					<td th:each="reu: ${processo.reus}" th:text = "${reu.nome}"></td>
+					<td th:each="reu: ${processo.reus}" th:text="${reu.nome}"></td>
 					<td th:text = "${processo.numero}"></td>
 				</tr>
 			</table>
-			
-			<input type="submit" id="btnFormEdicao" class="btn" style="color:#fff; background-color:#17a2b8; margin-bottom: 10px;" value="Salvar" />
 		</form>
 		
 		<div class="row">

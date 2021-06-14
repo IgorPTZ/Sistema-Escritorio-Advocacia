@@ -16,6 +16,10 @@
 	</head>
 	
 	<body>
+		<input type="hidden" id="size" name="size" th:value="${page}"/>
+		
+		<input type="hidden" id="size" name="size" th:value="${size}"/>
+	
 		<form action="inserir-cliente" id="adicaoCliente" method="post" th:object="${cliente}">
 			<div class="form-row">
 				<div class="form-group col-md-6">
@@ -78,25 +82,11 @@
 				</div>
 			</div>
 			
-			<!--  	<tr  th:each = "item, itemStat : *{itensAssociadosAoServico}">
-								<td style="display:none;"><input type="hidden" th:field ="*{itensAssociadosAoServico[__${itemStat.index}__].tipoProduto.id}"/></td>
-								<td><input readonly="readonly" th:field="*{itensAssociadosAoServico[__${itemStat.index}__].tipoProduto.descricao}" /></td>
-								<td style="display:none;"><input type="hidden" th:field ="*{itensAssociadosAoServico[__${itemStat.index}__].tipoEquipamento.id}" /></td>
-								<td><input readonly="readonly" th:field="*{itensAssociadosAoServico[__${itemStat.index}__].tipoEquipamento.descricao}"/></td>
-								<td ><input th:field ="*{itensAssociadosAoServico[__${itemStat.index}__].horarioInicio}" /></td>
-								<td ><input th:field ="*{itensAssociadosAoServico[__${itemStat.index}__].horarioFim}" /></td>
-								<td ><input th:field ="*{itensAssociadosAoServico[__${itemStat.index}__].quantidade}" /></td>
-								
-								<th:block th:if="${perimetroLoteado} == true">	
-																		
-									<td><button th:id="${itemStat.index}" class="btn btnLote btn-outline-info btn-font-responsive" th:value="@{/carregarlote(indice=${itemStat.index})}">Lotes</button></td>
-					
-								</th:block>
-			</tr> -->
-			
-
-			
 			<input type="submit" id="btnFormAdicao" class="btn" style="color:#fff; background-color:#17a2b8; margin-bottom: 10px;" value="Salvar" />
 		</form>
+		
+		<div class="row">
+			<a class="btn btn-primary" id="retornar" th:href="@{/obter-clientes(page=${page}, size=${size})}">Voltar</a>
+		</div>
 	</body>
 </html>

@@ -20,6 +20,11 @@ public class ClienteService {
 		return clienteRepository.obterClientesPaginados(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()));
 	}
 	
+	public Page<Cliente> obterClientesPaginados(Long numeroDaPagina, Long quantidadeDeElementos) {
+
+		return clienteRepository.obterClientesPaginados(PageRequest.of(numeroDaPagina.intValue(), quantidadeDeElementos.intValue()));
+	}
+	
 	public Cliente obterClientePorId(Long id) {
 		
 		return clienteRepository.findById(id).get();

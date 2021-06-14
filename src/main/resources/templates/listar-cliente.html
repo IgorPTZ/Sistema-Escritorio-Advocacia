@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Meus clientes</title>
+		
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+		
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	</head>
+	
+	<body>
+		<input type="hidden" id="page" name="page" th:value="${page}"/>
+		
+		<input type="hidden" id="page" name="page" th:value="${size}"/>
+		
+		<div class="row">
+			<a class="btn btn-primary" id="btnAdicionarCliente" th:href="@{/carregar-novo-cliente(page=${page}, size=${clientesPaginados.size})}">Adicionar Cliente</a>
+		</div>
+	
+		<div th:switch="${clientesPaginados.totalElements > 0}">
+				<div th:case="true"> <!-- case true -->
+					<table id="tabelaDeClientes" class="display" style="width:100%">				        
+				        <tbody>
+				        	<tr th:each="cliente: ${clientesPaginados.content}">
+							    <td th:text="${cliente.nome}" />
+							     <td th:text="${cliente.cpf} != null ? ${cliente.cpf} : ${cliente.cnpj}" />
+							     <td><a th:id="${'detalharCliente' + cliente.id}" class="btn btn-outline-info btn-font-responsive" th:href="@{/detalhar-cliente-por-id(id=${cliente.id}, page=${page}, size=${clientesPaginados.size})}">Detalhar</a></td>
+							    <td><a th:id="${'editarCliente' + cliente.id}" class="btn btn-outline-info btn-font-responsive" th:href="@{/obter-cliente-por-id(id=${cliente.id}, page=${page}, size=${clientesPaginados.size})}">Editar</a></td>
+							</tr>
+				        </tbody>
+				    </table> 
+				    
+				    <div>
+					  	<th:block th:each="i : ${#numbers.sequence(0, clientesPaginados.totalPages - 1)}">
+							<button  th:id="${'pagina' + i}" class="btn btn-primary" th:href="@{/obter-clientes(page=${i}, size=${clientesPaginados.size})}">[[ ${i} + 1 ]]</button>
+						</th:block>
+					</div>
+				</div> <!-- case true -->
+				
+				<div th:case="false">
+					<h5 style="text-align:center;">Nenhum cliente foi encontrado</h5>
+				</div>
+		</div>
+	</body>
+</html>

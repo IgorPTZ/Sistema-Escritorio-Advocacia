@@ -5,7 +5,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,13 +27,13 @@ public class UsuarioController {
 		
 		try {
 			
-			Page<Usuario> usuarios = usuarioService.obterUsuariosPaginados(pageable);
+			Page<Usuario> clientes = usuarioService.obterUsuariosPaginados(pageable);
 			
 			model.addObject("page", pageable.getPageNumber());
 			
 			model.addObject("size", pageable.getPageSize());
 			
-			model.addObject("usuariosPaginados", usuarios);
+			model.addObject("usuariosPaginados", clientes);
 			
 			model.setViewName("listar-usuario");
 			
@@ -110,7 +109,8 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping(value="/inserir-usuario", method=RequestMethod.POST)
-	public String inserirUsuario(Model model, @ModelAttribute Usuario usuario) {
+	public String inserirUsuario(ModelAndView model, 
+			                     @ModelAttribute Usuario usuario) {
 		
 		try {
 			
