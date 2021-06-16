@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Usuários</title>
+		
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+		
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	</head>
+	
+	<body>
+		<input type="hidden" id="loginDoUsuarioLogado" name="loginDoUsuarioLogado" th:value="${login}"/>
+	
+		<input type="hidden" id="page" name="page" th:value="${page}"/>
+		
+		<input type="hidden" id="page" name="page" th:value="${size}"/>
+		
+		<div class="row">
+			<a class="btn btn-primary" id="btnAdicionarUsuario" th:href="@{/carregar-novo-usuario(page=${page}, size=${usuariosPaginados.size}, login=${login})}">Adicionar Usuário</a>
+		</div>
+	
+		<div th:switch="${usuariosPaginados.totalElements > 0}">
+				<div th:case="true"> <!-- case true -->
+					<table id="tabelaDeUsuarios" class="display" style="width:100%">	
+						<thead>
+							<tr>
+								<th>Nome</th>
+								<th>Login</th>
+								<th>Perfil</th>
+								<th colspan="2"></th>
+							</tr>	
+						</thead>			        
+				        <tbody>				        
+				        	<tr th:each="usuario: ${usuariosPaginados.content}">
+							     <td th:text="${usuario.nome}" />
+							     <td th:text="${usuario.login}" />
+							     <td th:text="${usuario.roles[0]} != null ? ${usuario.roles[0].descricao} : ' '" />
+							     <td><a th:id="${usuario.id}" class="btn btn-outline-info btn-font-responsive" th:href="@{/obter-usuario-por-id(id=${usuario.id}, page=${page}, size=${usuariosPaginados.size}, login=${login})}">Editar</a></td>
+							    <td><a th:id="${usuario.login}" class="btn btn-outline-info btn-font-responsive" th:value="${usuario.login}" th:href="@{/excluir-usuario(id=${usuario.id}, page=${page}, size=${usuariosPaginados.size}, login=${login})}" onclick="return verificarUsuario(this.id)">Excluir</a></td>
+							</tr>
+				        </tbody>
+				    </table> 
+				    
+				    <div>
+					  	<th:block th:each="i : ${#numbers.sequence(0, usuariosPaginados.totalPages - 1)}">
+							<button  th:id="${'pagina' + i}" class="btn btn-primary" th:href="@{/obter-usuarios(page=${i}, size=${usuariosPaginados.size}, login=${login})}">[[ ${i} + 1 ]]</button>
+						</th:block>
+					</div>
+				</div> <!-- case true -->
+				
+				<div th:case="false">
+					<h5 style="text-align:center;">Nenhum usuário foi encontrado</h5>
+				</div>
+		</div>
+		
+		<script type="text/javascript">
+			
+			function verificarUsuario(id) {
+								
+				if(id == $('#loginDoUsuarioLogado').val()) {
+					
+					alert('Não é possivel excluir um usuario que esta logado no sistema!');
+					
+					return false;
+				}
+				else {
+					
+					let confirmacao = confirm('Voce realmente deseja excluir este usuário ?');
+					
+					return confirmacao;
+				}	
+			}
+		</script>
+	</body>
+</html>

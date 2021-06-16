@@ -1,5 +1,6 @@
 package sistema.advogados.associados.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +17,11 @@ public class Role implements GrantedAuthority {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@Column(nullable = false)
 	private String nome;
+	
+	@Column(nullable = false)
+	private String descricao;
 
 	@Override
 	public String getAuthority() {
@@ -38,5 +43,13 @@ public class Role implements GrantedAuthority {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 }

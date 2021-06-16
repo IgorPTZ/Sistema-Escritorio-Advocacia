@@ -18,8 +18,9 @@
 	<input type="hidden" id="loginDoUsuario" name="loginDoUsuario"/>
 	
 	<div class="row">
-		<a class="btn btn-primary" id="btnEditarUsuario">Editar usuario</a>
+		<a class="btn btn-primary" id="btnEditarUsuario">Alterar senha</a>
 		<a class="btn btn-primary" id="btnListarClientes" href="/obter-clientes">Meus clientes</a>
+		<a class="btn btn-primary" id="btnListarUsuarios" href="/obter-usuarios">Usuários</a>
 	</div>
 	
 	<script type="text/javascript">
@@ -30,6 +31,8 @@
 			$('#loginDoUsuario').val(login);
 			
 			$("#btnEditarUsuario").attr("href", "/obter-usuario-por-login?login=" + login);
+			
+			$("#btnListarUsuarios").attr("href", "/obter-usuarios?login=" + login);
 		   
 		    console.log('Login apos acesso -> ' + login);
 		});	

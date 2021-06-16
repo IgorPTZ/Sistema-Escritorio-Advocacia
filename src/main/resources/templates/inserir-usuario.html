@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8">
-		<title>Editar usuário</title>
+		<title>Adicionar cliente</title>
 		
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 		
@@ -16,7 +16,13 @@
 	</head>
 	
 	<body>
-		<form action="editar-usuario" id="edicaoUsuario" method="post" th:object="${usuario}">
+		<input type="hidden" id="loginDoUsuarioLogado" name="loginDoUsuarioLogado" th:value="${login}"/>
+	
+		<input type="hidden" id="size" name="size" th:value="${page}"/>
+		
+		<input type="hidden" id="size" name="size" th:value="${size}"/>
+	
+		<form action="inserir-usuario" id="adicaoUsuario" method="post" th:object="${usuario}">
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="id">Id</label>
@@ -40,14 +46,21 @@
 			
 			<div class="form-row">
 				<div class="form-group col-md-6">
+					<label for="senha" class="active">Senha</label>
+					<input type="password" id="senha" th:field="*{senha}" class="form-control">
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="form-group col-md-6">
 					<label for="perfil" class="active">Perfil</label>
 					<select id="perfil" th:field="*{roles}" class="btn btn-outline-info btn-font-responsive">
-						 <option th:each="perfil : ${perfis}" th:value="${perfil.id}" th:text="${perfil.descricao}" th:selected="${perfil.id == usuario.roles[0].id}"></option>
+						 <option th:each="perfil : ${perfis}" th:value="${perfil.id}" th:text="${perfil.descricao}"></option>
 					</select>
 				</div>
 			</div>
 			
-			<input type="submit" id="btnFormEdicao" class="btn" style="color:#fff; background-color:#17a2b8; margin-bottom: 10px;" value="Salvar" />
+			<input type="submit" id="btnFormAdicao" class="btn" style="color:#fff; background-color:#17a2b8; margin-bottom: 10px;" value="Salvar" />
 		</form>
 		
 		<div class="row">

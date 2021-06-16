@@ -21,4 +21,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	@Transactional(readOnly=true)
 	@Query(value =  "SELECT * FROM usuario ORDER BY nome", nativeQuery = true)
 	Page<Usuario> obterUsuariosPaginados(Pageable pageable);
+	
+	@Query(nativeQuery = true, value = "SELECT constraint_name FROM information_schema.constraint_column_usage " + 
+	" WHERE table_name = 'usuario_role' AND column_name = 'role_id' AND constraint_name <> 'unique_usuario_role';")
+	String obterNomeDaConstraint();
 }
