@@ -22,9 +22,8 @@
 		
 		<input type="hidden" id="page" name="page" th:value="${size}"/>
 		
-		<div class="row">
-			<a class="btn btn-primary" id="btnAdicionarUsuario" th:href="@{/carregar-novo-usuario(page=${page}, size=${usuariosPaginados.size}, login=${login})}">Adicionar Usuário</a>
-		</div>
+
+		<a class="btn btn-primary" id="btnAdicionarUsuario" th:href="@{/carregar-novo-usuario(page=${page}, size=${usuariosPaginados.size}, login=${login})}">Adicionar Usuário</a>
 	
 		<div th:switch="${usuariosPaginados.totalElements > 0}">
 				<div th:case="true"> <!-- case true -->
@@ -59,6 +58,10 @@
 					<h5 style="text-align:center;">Nenhum usuário foi encontrado</h5>
 				</div>
 		</div>
+		
+		<br/>
+		
+		<a class="btn btn-primary" id="btnVoltarIndex" href="/index">Menu principal</a>
 		
 		<script type="text/javascript">
 			

@@ -15,10 +15,10 @@ import sistema.advogados.associados.repository.UsuarioRepository;
 public class UsuarioService {
 	
 	@Autowired
-	private UsuarioRepository usuarioRepository;
+	private JdbcTemplate jdbcTemplate;
 	
 	@Autowired
-	private JdbcTemplate jdbcTemplate;
+	private UsuarioRepository usuarioRepository;
 	
 	public Page<Usuario> obterUsuariosPaginados(Pageable pageable) {
 
@@ -30,7 +30,7 @@ public class UsuarioService {
 		return usuarioRepository.obterUsuariosPaginados(PageRequest.of(numeroDaPagina.intValue(), quantidadeDeElementos.intValue()));
 	}
 	
-	public Usuario obterUsuario(Long id) {
+	public Usuario obterUsuarioPorId(Long id) {
 		
 		return usuarioRepository.findById(id).get();
 	}
@@ -71,6 +71,26 @@ public class UsuarioService {
 		Usuario usuario = usuarioRepository.findById(id).get();
 		
 		usuarioRepository.delete(usuario);
+	}
+	
+	public Boolean alterarSenha(Usuario parametros) {
+		
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		
+		Usuario usuario = usuarioRepository.findById(parametros.getId()).get();
+		
+		if(encoder.matches(parametros.getSenha(), usuario.getSenha())) {
+			
+			usuario.setSenha(encoder.encode(parametros.getNovaSenha()));
+			
+			usuarioRepository.save(usuario);
+			
+			return true;
+		}
+		else {
+			
+			return false;
+		}	
 	}
 	
 	private void removerConstraint() {

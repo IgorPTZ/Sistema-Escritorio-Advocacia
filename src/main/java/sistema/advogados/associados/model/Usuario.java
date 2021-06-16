@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,6 +26,7 @@ public class Usuario implements UserDetails {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@Column(nullable = false)
 	private String nome;
 	
 	@Column(unique = true, nullable = false)
@@ -38,6 +40,9 @@ public class Usuario implements UserDetails {
 			  joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id", table = "usuario"),
 			  inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id", table = "role"))			  
 	private List<Role> roles;
+	
+	@Transient
+	private String novaSenha;
 
 	public Long getId() {
 		return id;
@@ -77,6 +82,14 @@ public class Usuario implements UserDetails {
 
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
+	}
+	
+	public String getNovaSenha() {
+		return novaSenha;
+	}
+
+	public void setNovaSenha(String novaSenha) {
+		this.novaSenha = novaSenha;
 	}
 
 	@Override

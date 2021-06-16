@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8">
-		<title>Editar usuário</title>
+		<title>Alterar senha</title>
 		
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 		
@@ -18,30 +18,28 @@
 	<body>
 		<h5 style="color: red;" th:text="${mensagem}"></h5>
 	
-		<form action="editar-usuario" id="edicaoUsuario" method="post" th:object="${usuario}">
+		<form action="alterar-senha" id="edicaoUsuario" method="post" th:object="${usuario}" onsubmit="return validarSenha()">
 
 			<input type="hidden" id="id" placeholder="Id" th:field="*{id}" class="form-control" readonly="readonly">
 			
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="nome" class="active">Nome</label>
-					<input id="nome" th:field="*{nome}" class="form-control" required="required">
+					<label for="senhaAtual" class="active">Senha atual</label>
+					<input type="password" id="senhaAtual" th:field="*{senha}" class="form-control" required="required">
 				</div>
 			</div>
 			
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="login" class="active">Login</label>
-					<input id="login" th:field="*{login}" class="form-control" required="required">
+					<label for="senhaNova" class="active">Senha nova</label>
+					<input type="password" id="senhaNova" th:field="*{novaSenha}" class="form-control" required="required">
 				</div>
 			</div>
 			
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="perfil" class="active">Perfil</label>
-					<select id="perfil" th:field="*{roles}" class="btn btn-outline-info btn-font-responsive" required="required">
-						 <option th:each="perfil : ${perfis}" th:value="${perfil.id}" th:text="${perfil.descricao}" th:selected="${perfil.id == usuario.roles[0].id}"></option>
-					</select>
+					<label for="confirmacaoSenhaNova" class="active">Confirmar senha nova</label>
+					<input type="password" id="confirmacaoSenhaNova" class="form-control" required="required">
 				</div>
 			</div>
 			
@@ -49,7 +47,24 @@
 		</form>
 		
 		<div class="row">
-			<a class="btn btn-primary" id="retornar" th:href="@{/obter-usuarios(page=${page}, size=${size}, login=${login})}">Voltar</a>
+			<a class="btn btn-primary" id="retornar" href="/index">Voltar</a>
 		</div>
+		
+		<script type="text/javascript">
+			function validarSenha() {
+				
+				console.log($('#senhaNova').val());
+				
+				console.log($('#confirmacaoSenhaNova').val());
+				
+				if($('#senhaNova').val() != $('#confirmacaoSenhaNova').val()) {
+					alert('As senhas não conferem!');
+					
+					return false;
+				}
+				
+				return true;
+			}
+		</script>
 	</body>
 </html>

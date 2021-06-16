@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -64,7 +65,7 @@ public class UsuarioController {
 			
 			this.loginDoUsuarioLogado = loginDoUsuarioLogado;
 			
-			Usuario usuario = usuarioService.obterUsuario(id);
+			Usuario usuario = usuarioService.obterUsuarioPorId(id);
 			
 			model.addObject("login", this.loginDoUsuarioLogado);
 			
@@ -97,7 +98,7 @@ public class UsuarioController {
 			
 			model.addObject("usuario", usuario);
 			
-			model.setViewName("editar-usuario");
+			model.setViewName("alterar-senha-usuario");
 			
 			return model;
 		}
@@ -134,25 +135,35 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping(value="/inserir-usuario", method=RequestMethod.POST) 
-	public ModelAndView inserirUsuario(ModelAndView model, @ModelAttribute Usuario usuario) {
+	public ModelAndView inserirUsuario(ModelMap model, @ModelAttribute Usuario usuario) {
 		
 		try {
+			
+			if(usuarioService.obterUsuarioPorLogin(usuario.getLogin()) != null) {
 				
-			usuarioService.inserirUsuario(usuario);
+				model.addAttribute("login", this.loginDoUsuarioLogado);
+				
+				model.addAttribute("usuario", usuario);
+				
+				model.addAttribute("perfis", roleService.obterPerfis());
+				
+				model.addAttribute("mensagem","O login inserido ja foi cadastro no sistema. Por favor, escolha outro login.");
+			}
+			else {
+				usuarioService.inserirUsuario(usuario);
+				
+				Page<Usuario> usuarios = usuarioService.obterUsuariosPaginados(0L, 20L);
+				
+				model.addAttribute("login", this.loginDoUsuarioLogado);
+				
+				model.addAttribute("page", 0L);
+				
+				model.addAttribute("size", 20L);
+				
+				model.addAttribute("usuariosPaginados", usuarios);
+			}
 			
-			Page<Usuario> usuarios = usuarioService.obterUsuariosPaginados(0L, 20L);
-			
-			model.addObject("login", this.loginDoUsuarioLogado);
-			
-			model.addObject("page", 0L);
-			
-			model.addObject("size", 20L);
-			
-			model.addObject("usuariosPaginados", usuarios);
-			
-			model.setViewName("listar-usuario");
-			
-			return model;
+			return new ModelAndView("redirect:/obter-usuarios", model);
 		}
 		catch(Exception e) {
 			
@@ -163,25 +174,47 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping(value="/editar-usuario", method=RequestMethod.POST) 
-	public ModelAndView editarUsuario(ModelAndView model, @ModelAttribute Usuario usuario) {
+	public ModelAndView editarUsuario(ModelMap model, @ModelAttribute Usuario parametros) {
 		
 		try {
+			
+			Usuario usuario = usuarioService.obterUsuarioPorId(parametros.getId());
+			
+			if(usuario != null && (parametros.getLogin().equals(usuario.getLogin()))){
 				
-			usuarioService.editarUsuario(usuario);
+				usuarioService.editarUsuario(parametros);
+				
+				Page<Usuario> usuarios = usuarioService.obterUsuariosPaginados(0L, 20L);
+				
+				model.addAttribute("usuariosPaginados", usuarios);
+			}
+			else if(usuario != null && (parametros.getLogin().equals(usuario.getLogin()) == false)) {
+				
+				if(usuarioService.obterUsuarioPorLogin(parametros.getLogin()) != null) {
+					
+					model.addAttribute("usuario", parametros);
+					
+					model.addAttribute("perfis", roleService.obterPerfis());
+					
+					model.addAttribute("mensagem","O login inserido ja foi cadastro no sistema. Por favor, escolha outro login.");
+				}
+				else {
+					
+					usuarioService.editarUsuario(parametros);
+					
+					Page<Usuario> usuarios = usuarioService.obterUsuariosPaginados(0L, 20L);
+					
+					model.addAttribute("usuariosPaginados", usuarios);
+				}
+			}
 			
-			Page<Usuario> usuarios = usuarioService.obterUsuariosPaginados(0L, 20L);
+			model.addAttribute("login", this.loginDoUsuarioLogado);
+
+			model.addAttribute("page", 0L);
 			
-			model.addObject("login", this.loginDoUsuarioLogado);
+			model.addAttribute("size", 20L);
 			
-			model.addObject("page", 0L);
-			
-			model.addObject("size", 20L);
-			
-			model.addObject("usuariosPaginados", usuarios);
-			
-			model.setViewName("listar-usuario");
-			
-			return model;
+			return new ModelAndView("redirect:/obter-usuarios", model);
 		}
 		catch(Exception e) {
 			
@@ -192,7 +225,7 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping(value="/excluir-usuario", method=RequestMethod.GET) 
-	public ModelAndView desativarUsuario(ModelAndView model, @RequestParam(value="id") Long id, @RequestParam(value="login") String loginDoUsuarioLogado) {
+	public ModelAndView desativarUsuario(ModelMap model, @RequestParam(value="id") Long id, @RequestParam(value="login") String loginDoUsuarioLogado) {
 		
 		try {
 				
@@ -200,17 +233,42 @@ public class UsuarioController {
 			
 			Page<Usuario> usuarios = usuarioService.obterUsuariosPaginados(0L, 20L);
 			
-			model.addObject("login", this.loginDoUsuarioLogado);
+			model.addAttribute("login", this.loginDoUsuarioLogado);
 			
-			model.addObject("page", 0L);
+			model.addAttribute("page", 0L);
 			
-			model.addObject("size", 20L);
+			model.addAttribute("size", 20L);
 			
-			model.addObject("usuariosPaginados", usuarios);
+			model.addAttribute("usuariosPaginados", usuarios);
 			
-			model.setViewName("listar-usuario");
+			return new ModelAndView("redirect:/obter-usuarios", model);
+		}
+		catch(Exception e) {
 			
-			return model;
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	@RequestMapping(value="/alterar-senha", method=RequestMethod.POST) 
+	public ModelAndView alterarSenha(ModelMap model, @ModelAttribute Usuario parametros) {
+		
+		try {
+				
+			if(usuarioService.alterarSenha(parametros)) {
+				
+				return new ModelAndView("redirect:/index", model);
+			}
+			else {
+				model.addAttribute("login", this.loginDoUsuarioLogado);
+				
+				model.addAttribute("usuario", parametros);
+				
+				model.addAttribute("mensagem","Senha atual está incorreta!");
+				
+				return new ModelAndView("alterar-senha-usuario", model);
+			}
 		}
 		catch(Exception e) {
 			

@@ -16,6 +16,8 @@
 	</head>
 	
 	<body>
+		<h5 style="color: red;" th:text="${mensagem}"></h5>
+		
 		<input type="hidden" id="loginDoUsuarioLogado" name="loginDoUsuarioLogado" th:value="${login}"/>
 	
 		<input type="hidden" id="size" name="size" th:value="${page}"/>
@@ -23,38 +25,34 @@
 		<input type="hidden" id="size" name="size" th:value="${size}"/>
 	
 		<form action="inserir-usuario" id="adicaoUsuario" method="post" th:object="${usuario}">
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="id">Id</label>
-					<input id="id" placeholder="Id" th:field="*{id}" class="form-control" readonly="readonly">
-				</div>
-			</div>
+
+			<input type="hidden" id="id" placeholder="Id" th:field="*{id}" class="form-control" readonly="readonly">
 			
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="nome" class="active">Nome</label>
-					<input id="nome" th:field="*{nome}" class="form-control">
+					<input id="nome" th:field="*{nome}" class="form-control" required="required">
 				</div>
 			</div>
 			
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="login" class="active">Login</label>
-					<input id="login" th:field="*{login}" class="form-control">
+					<input id="login" th:field="*{login}" class="form-control" required="required">
 				</div>
 			</div>
 			
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="senha" class="active">Senha</label>
-					<input type="password" id="senha" th:field="*{senha}" class="form-control">
+					<input type="password" id="senha" th:field="*{senha}" class="form-control" required="required">
 				</div>
 			</div>
 			
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="perfil" class="active">Perfil</label>
-					<select id="perfil" th:field="*{roles}" class="btn btn-outline-info btn-font-responsive">
+					<select id="perfil" th:field="*{roles}" class="btn btn-outline-info btn-font-responsive" required="required">
 						 <option th:each="perfil : ${perfis}" th:value="${perfil.id}" th:text="${perfil.descricao}"></option>
 					</select>
 				</div>
@@ -64,7 +62,7 @@
 		</form>
 		
 		<div class="row">
-			<a class="btn btn-primary" id="retornar" th:href="@{/obter-usuarios(page=${page}, size=${size}, login=${login})}">Voltar</a>
+			<a class="btn btn-primary" id="retornar" th:href="@{/obter-usuarios(login=${login})}">Voltar</a>
 		</div>
 	</body>
 </html>
