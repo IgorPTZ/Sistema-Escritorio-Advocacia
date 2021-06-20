@@ -23,6 +23,14 @@
 		<div class="row">
 			<a class="btn btn-primary" id="btnAdicionarCliente" th:href="@{/carregar-novo-cliente(page=${page}, size=${clientesPaginados.size})}">Adicionar Cliente</a>
 		</div>
+		
+		<form action="obter-clientes-filtrados" id="pesquisaDeClientes" method="post" th:object="${pesquisaDeClientes}">
+			<input type="text" id="pesquisaDeClientes"  name="pesquisaDeClientes" th:field="*{textoDePesquisa}">
+		
+			<input type="submit" id="pesquisarClientes" class="btn" style="color:#fff; background-color:#17a2b8" value="Pesquisar">
+		</form>
+
+		
 	
 		<div th:switch="${clientesPaginados.totalElements > 0}">
 				<div th:case="true"> <!-- case true -->

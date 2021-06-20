@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import sistema.advogados.associados.model.Cliente;
 import sistema.advogados.associados.model.Contato;
 import sistema.advogados.associados.service.ClienteService;
+import sistema.advogados.associados.util.PesquisaDeClientes;
 
 @Controller
 public class ClienteController {
@@ -24,7 +26,8 @@ public class ClienteController {
 	private ClienteService clienteService;
 	
 	@RequestMapping(value="/obter-clientes", method=RequestMethod.GET) // ok
-	public ModelAndView obterClientes(ModelAndView model, @PageableDefault(size = 20) Pageable pageable) { 
+	public ModelAndView obterClientes(ModelAndView model, 
+			                          @PageableDefault(size = 20) Pageable pageable) { 
 		
 		try {
 			
@@ -34,9 +37,40 @@ public class ClienteController {
 			
 			model.addObject("size", pageable.getPageSize());
 			
+			model.addObject("pesquisaDeClientes", new PesquisaDeClientes()); 
+			
 			model.addObject("clientesPaginados", clientes);
 			
-			model.setViewName("listar-cliente");
+			model.setViewName("cliente/listar-cliente");
+			
+			return model;
+		}
+		catch(Exception e) {
+			
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+	
+	@RequestMapping(value="/obter-clientes-filtrados", method=RequestMethod.POST) 
+	public ModelAndView obterClientesFiltrados(ModelAndView model, 
+			                                   @PageableDefault(size = 20) Pageable pageable,
+			                                   @ModelAttribute PesquisaDeClientes pesquisaDeClientes) { 
+		
+		try {
+			
+			Page<Cliente> clientes = clienteService.obterClientesPaginados(pageable, pesquisaDeClientes);
+			
+			model.addObject("page", pageable.getPageNumber());
+			
+			model.addObject("size", pageable.getPageSize());
+			
+			model.addObject("pesquisaDeClientes", pesquisaDeClientes); 
+			
+			model.addObject("clientesPaginados", clientes);
+			
+			model.setViewName("cliente/listar-cliente");
 			
 			return model;
 		}
@@ -64,7 +98,7 @@ public class ClienteController {
 			
 			model.addObject("cliente", cliente);
 			
-			model.setViewName("editar-cliente");
+			model.setViewName("cliente/editar-cliente");
 			
 			return model;
 		}
@@ -92,7 +126,7 @@ public class ClienteController {
 			
 			model.addObject("cliente", cliente);
 			
-			model.setViewName("detalhar-cliente");
+			model.setViewName("cliente/detalhar-cliente");
 			
 			return model;
 		}
@@ -126,7 +160,7 @@ public class ClienteController {
 			
 			model.addObject("cliente", cliente);
 			
-			model.setViewName("inserir-cliente");
+			model.setViewName("cliente/inserir-cliente");
 			
 			return model;
 		}
@@ -139,7 +173,7 @@ public class ClienteController {
 	}
 	
 	@RequestMapping(value="/inserir-cliente", method=RequestMethod.POST) // ok
-	public ModelAndView inserirCliente(ModelAndView model, @ModelAttribute Cliente cliente) {
+	public ModelAndView inserirCliente(ModelMap model, @ModelAttribute Cliente cliente) {
 		
 		try {
 			
@@ -157,15 +191,15 @@ public class ClienteController {
 			
 			Page<Cliente> clientes = clienteService.obterClientesPaginados(0L, 20L);
 			
-			model.addObject("page", 0L);
+			model.addAttribute("page", 0L);
 			
-			model.addObject("size", 20L);
+			model.addAttribute("size", 20L);
 			
-			model.addObject("clientesPaginados", clientes);
+			model.addAttribute("clientesPaginados", clientes);
 			
-			model.setViewName("listar-cliente");
+			model.addAttribute("cliente/listar-cliente");
 			
-			return model;
+			return new ModelAndView("redirect:/obter-clientes", model);
 		}
 		catch(Exception e) {
 			
@@ -176,7 +210,7 @@ public class ClienteController {
 	}
 	
 	@RequestMapping(value="/editar-cliente", method=RequestMethod.POST) // ok
-	public ModelAndView editarCliente(ModelAndView model, @ModelAttribute Cliente cliente) {
+	public ModelAndView editarCliente(ModelMap model, @ModelAttribute Cliente cliente) {
 		
 		try {
 			
@@ -194,15 +228,15 @@ public class ClienteController {
 			
 			Page<Cliente> clientes = clienteService.obterClientesPaginados(0L, 20L);
 			
-			model.addObject("page", 0L);
+			model.addAttribute("page", 0L);
 			
-			model.addObject("size", 20L);
+			model.addAttribute("size", 20L);
 			
-			model.addObject("clientesPaginados", clientes);
+			model.addAttribute("clientesPaginados", clientes);
 			
-			model.setViewName("listar-cliente");
+			model.addAttribute("cliente/listar-cliente");
 			
-			return model;
+			return new ModelAndView("redirect:/obter-clientes", model);
 		}
 		catch(Exception e) {
 			
