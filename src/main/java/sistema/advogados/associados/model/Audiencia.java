@@ -32,7 +32,7 @@ public class Audiencia implements Serializable{
 	private String vara;
 	
 	@Column(nullable = false)
-	private String local;
+	private String endereco;
 	
 	@Column(name = "flag_precatoria", nullable = false)
 	private Boolean flagPrecatoria;
@@ -80,12 +80,12 @@ public class Audiencia implements Serializable{
 		this.vara = vara;
 	}
 
-	public String getLocal() {
-		return local;
+	public String getEndereco() {
+		return endereco;
 	}
 
-	public void setLocal(String local) {
-		this.local = local;
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
 	}
 
 	public Boolean getFlagPrecatoria() {

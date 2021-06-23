@@ -29,7 +29,7 @@ public class Pericia implements Serializable {
 	private String horario;
 	
 	@Column(nullable = false)
-	private String local;
+	private String endereco;
 	
 	@Column(nullable = false)
 	private String telefone;
@@ -69,12 +69,12 @@ public class Pericia implements Serializable {
 		this.horario = horario;
 	}
 
-	public String getLocal() {
-		return local;
+	public String getEndereco() {
+		return endereco;
 	}
 
-	public void setLocal(String local) {
-		this.local = local;
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
 	}
 
 	public String getTelefone() {

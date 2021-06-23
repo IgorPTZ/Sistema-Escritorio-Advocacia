@@ -46,7 +46,7 @@ public class UsuarioController {
 			
 			model.addObject("usuariosPaginados", clientes);
 			
-			model.setViewName("listar-usuario");
+			model.setViewName("usuario/listar-usuario");
 			
 			return model;
 		}
@@ -73,7 +73,7 @@ public class UsuarioController {
 			
 			model.addObject("perfis", roleService.obterPerfis());
 			
-			model.setViewName("editar-usuario");
+			model.setViewName("usuario/editar-usuario");
 			
 			return model;
 		}
@@ -98,7 +98,7 @@ public class UsuarioController {
 			
 			model.addObject("usuario", usuario);
 			
-			model.setViewName("alterar-senha-usuario");
+			model.setViewName("usuario/alterar-senha-usuario");
 			
 			return model;
 		}
@@ -122,7 +122,7 @@ public class UsuarioController {
 			
 			model.addObject("perfis", roleService.obterPerfis());
 			
-			model.setViewName("inserir-usuario");
+			model.setViewName("usuario/inserir-usuario");
 			
 			return model;
 		}
@@ -267,7 +267,7 @@ public class UsuarioController {
 				
 				model.addAttribute("mensagem","Senha atual está incorreta!");
 				
-				return new ModelAndView("alterar-senha-usuario", model);
+				return new ModelAndView("usuario/alterar-senha-usuario", model);
 			}
 		}
 		catch(Exception e) {

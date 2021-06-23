@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Adicionar processo</title>
+		
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+		
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	</head>
+	
+	<body>
+		<input type="hidden" id="clienteId" name="clienteId" th:value="${clienteId}"/>
+		
+		<input type="hidden" id="size" name="size" th:value="${page}"/>
+		
+		<input type="hidden" id="size" name="size" th:value="${size}"/>
+		
+		<h5 style="color: red;" th:text="${mensagem}"></h5>
+		
+		<form>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="id">Id</label>
+					<input id="id" placeholder="Id" th:value="${processo.id}" class="form-control" readonly="readonly">
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="reus" class="active">Réus</label>
+					<input id="reus" th:value="${nomesDosReus}" class="form-control" readonly="readonly">
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="numero" class="active">Número</label>
+					<input id="numero" th:value="${processo.numero}" class="form-control" readonly="readonly">
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="numero" class="active">Situação</label>
+					<input id="numero" th:value="${processo.situacao.situacao}" class="form-control" readonly="readonly">
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="observacao" class="active">Observação</label>
+					<input id="observacao" th:value="${processo.observacao}" class="form-control" readonly="readonly">
+				</div>
+			</div>
+		</form>
+		
+		<a th:href="@{/obter-processo-por-id(id=${processo.id}, clienteId=${clienteId}, page=${page}, size=${size})}">Editar processo</a>
+		
+		<a th:href="@{/excluir-processo-por-id(id=${processo.id}, clienteId=${clienteId}, page=${page}, size=${size})}">Excluir processo</a>
+		
+		<a>Adicionar audiência</a>
+		
+		<div th:switch="${audiencias.size > 0}">
+				<div th:case="true"> <!-- case true -->
+					<table id="tabelaDeClientes" class="display" style="width:100%">				        
+				        <tbody>
+				        	<tr th:each="cliente: ${clientesPaginados.content}">
+							    <td th:text="${cliente.nome}" />
+							     <td th:text="${cliente.cpf} != null ? ${cliente.cpf} : ${cliente.cnpj}" />
+							     <td><a th:id="${'detalharCliente' + cliente.id}" class="btn btn-outline-info btn-font-responsive" th:href="@{/detalhar-cliente-por-id(id=${cliente.id}, page=${page}, size=${clientesPaginados.size})}">Detalhar</a></td>
+							    <td><a th:id="${'editarCliente' + cliente.id}" class="btn btn-outline-info btn-font-responsive" th:href="@{/obter-cliente-por-id(id=${cliente.id}, page=${page}, size=${clientesPaginados.size})}">Editar</a></td>
+							</tr>
+				        </tbody>
+				    </table> 
+				</div> <!-- case true -->
+				
+				<div th:case="false">
+					
+				</div>
+		</div>
+		
+		<a>Adicionar perícia</a>
+		
+		<table>
+		
+		</table>
+		
+		<div class="row">
+			<a class="btn btn-primary" id="retornar" th:href="@{/detalhar-cliente-por-id(id=${clienteId}, page=${page}, size=${size})}">Voltar</a>
+		</div>
+	</body>
+</html>
