@@ -23,7 +23,7 @@ public class Audiencia implements Serializable{
 	private Processo processo;
 	
 	@Column(nullable = false)
-	private LocalDate data;
+	private LocalDate dataDaAudiencia;
 	
 	@Column(nullable = false)
 	private String horario;
@@ -56,12 +56,12 @@ public class Audiencia implements Serializable{
 		this.processo = processo;
 	}
 
-	public LocalDate getData() {
-		return data;
+	public LocalDate getDataDaAudiencia() {
+		return dataDaAudiencia;
 	}
 
-	public void setData(LocalDate data) {
-		this.data = data;
+	public void setDataDaAudiencia(LocalDate dataDaAudiencia) {
+		this.dataDaAudiencia = dataDaAudiencia;
 	}
 
 	public String getHorario() {

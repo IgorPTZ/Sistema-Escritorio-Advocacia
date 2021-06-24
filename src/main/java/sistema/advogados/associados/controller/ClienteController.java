@@ -25,7 +25,7 @@ public class ClienteController {
 	@Autowired
 	private ClienteService clienteService;
 	
-	@RequestMapping(value="/obter-clientes", method=RequestMethod.GET) // ok
+	@RequestMapping(value="/obter-clientes", method=RequestMethod.GET)
 	public ModelAndView obterClientes(ModelAndView model, 
 			                          @PageableDefault(size = 20) Pageable pageable) { 
 		
@@ -82,7 +82,7 @@ public class ClienteController {
 		return null;
 	}
 	
-	@RequestMapping(value="/obter-cliente-por-id", method=RequestMethod.GET) // ok
+	@RequestMapping(value="/obter-cliente-por-id", method=RequestMethod.GET) 
 	public ModelAndView obterClientePorId(ModelAndView model, 
 			                              @RequestParam(value="id") Long id,
 			                              @RequestParam("page") Long page,
@@ -110,7 +110,7 @@ public class ClienteController {
 		return null;
 	}
 	
-	@RequestMapping(value="/detalhar-cliente-por-id", method=RequestMethod.GET) // ok
+	@RequestMapping(value="/detalhar-cliente-por-id", method=RequestMethod.GET)
 	public ModelAndView detalharClientePorId(ModelAndView model, 
 			                              @RequestParam(value="id") Long id,
 			                              @RequestParam("page") Long page,
@@ -138,7 +138,7 @@ public class ClienteController {
 		return null;
 	}
 	
-	@RequestMapping(value="/carregar-novo-cliente", method=RequestMethod.GET) // ok
+	@RequestMapping(value="/carregar-novo-cliente", method=RequestMethod.GET)
 	public ModelAndView carregarNovoCliente(ModelAndView model,
 											@RequestParam("page") Long page,
 								            @RequestParam("size") Long size) { 
@@ -172,7 +172,7 @@ public class ClienteController {
 		return null;
 	}
 	
-	@RequestMapping(value="/inserir-cliente", method=RequestMethod.POST) // ok
+	@RequestMapping(value="/inserir-cliente", method=RequestMethod.POST)
 	public ModelAndView inserirCliente(ModelMap model, @ModelAttribute Cliente cliente) {
 		
 		try {
@@ -209,7 +209,7 @@ public class ClienteController {
 		return null;
 	}
 	
-	@RequestMapping(value="/editar-cliente", method=RequestMethod.POST) // ok
+	@RequestMapping(value="/editar-cliente", method=RequestMethod.POST)
 	public ModelAndView editarCliente(ModelMap model, @ModelAttribute Cliente cliente) {
 		
 		try {

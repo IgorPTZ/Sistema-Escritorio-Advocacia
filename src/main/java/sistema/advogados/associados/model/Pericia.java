@@ -23,7 +23,7 @@ public class Pericia implements Serializable {
 	private Processo processo;
 	
 	@Column(nullable = false)
-	private LocalDate data;
+	private LocalDate dataDaPericia;
 	
 	@Column(nullable = false)
 	private String horario;
@@ -53,12 +53,12 @@ public class Pericia implements Serializable {
 		this.processo = processo;
 	}
 
-	public LocalDate getData() {
-		return data;
+	public LocalDate getDataDaPericia() {
+		return dataDaPericia;
 	}
 
-	public void setData(LocalDate data) {
-		this.data = data;
+	public void setDataDaPericia(LocalDate dataDaPericia) {
+		this.dataDaPericia = dataDaPericia;
 	}
 
 	public String getHorario() {

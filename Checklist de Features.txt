@@ -1,0 +1,14 @@
+									Checklist de Features
+
+
+Cliente - OK
+
+Usuario - OK
+
+Processo - OK
+
+Audiencia -
+
+Pericia - 
+
+Envio de email -

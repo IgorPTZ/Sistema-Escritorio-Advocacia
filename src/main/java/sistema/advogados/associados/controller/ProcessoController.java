@@ -13,7 +13,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import sistema.advogados.associados.model.Cliente;
 import sistema.advogados.associados.model.Processo;
+import sistema.advogados.associados.service.AudienciaService;
 import sistema.advogados.associados.service.ClienteService;
+import sistema.advogados.associados.service.PericiaService;
 import sistema.advogados.associados.service.ProcessoService;
 import sistema.advogados.associados.service.ReuService;
 import sistema.advogados.associados.service.SituacaoDoProcessoService;
@@ -30,10 +32,16 @@ public class ProcessoController {
 	private ReuService reuService;
 	
 	@Autowired
-	private SituacaoDoProcessoService situacaoDoProcessoService;
+	private AudienciaService audienciaService;
 	
 	@Autowired
+	private PericiaService periciaService;
+		
+	@Autowired
 	private ClienteService clienteService;
+	
+	@Autowired
+	private SituacaoDoProcessoService situacaoDoProcessoService;
 	
 	@RequestMapping(value="/carregar-novo-processo", method=RequestMethod.GET) 
 	public ModelAndView carregarNovoCliente(ModelAndView model,
@@ -136,6 +144,10 @@ public class ProcessoController {
 			model.addObject("clienteId", clienteId);
 			
 			model.addObject("processo", processo);
+			
+			model.addObject("audiencias", audienciaService.obterAudienciasPorProcessoId(processo.getId()));
+			
+			model.addObject("pericias", periciaService.obterPericiasPorProcessoId(processo.getId()));
 			
 			model.setViewName("processo/detalhar-processo");
 			
