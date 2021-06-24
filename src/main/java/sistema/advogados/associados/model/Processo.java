@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class Processo implements Serializable {
@@ -43,6 +44,9 @@ public class Processo implements Serializable {
 
 	@Column(nullable = false)
 	private String observacao;
+	
+	@Transient
+	private String nomeDosReus;
 
 	public Long getId() {
 		return id;
@@ -90,5 +94,13 @@ public class Processo implements Serializable {
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
+	}
+
+	public String getNomeDosReus() {
+		return nomeDosReus;
+	}
+
+	public void setNomeDosReus(String nomeDosReus) {
+		this.nomeDosReus = nomeDosReus;
 	}
 }

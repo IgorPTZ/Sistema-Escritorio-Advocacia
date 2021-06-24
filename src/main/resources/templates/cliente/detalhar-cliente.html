@@ -80,19 +80,17 @@
 			</div>
 		</form>
 		
-		<table class="striped">
-				<tr th:each = "processo : ${cliente.processos}" onclick="alert('Clicou no processo!!!')">
-					<td th:each="reu: ${processo.reus}" th:text="${reu.nome}"></td>
-					<td th:text = "${processo.numero}"></td>
-				</tr>
-		</table>
-		
-		<div class="row">
-			<a class="btn btn-primary" id="adicionarProcesso" th:href="@{/carregar-novo-processo(clienteId=${cliente.id}, page=${page}, size=${size})}">Adicionar processo</a>
+		<div th:each = "processo : ${cliente.processos}">
+			<a th:href="@{/detalhar-processo-por-id(id=${processo.id}, clienteId=${cliente.id}, page=${page}, size=${size})}">
+				<span>
+					<p th:text="${processo.nomeDosReus}"></p>
+					<p th:text="${processo.numero}"></p>
+				</span>
+			</a>
 		</div>
 		
 		<div class="row">
-			<a class="btn btn-primary" id="retornar" th:href="@{/obter-clientes(page=${page}, size=${size})}">Voltar</a>
+			<a class="btn btn-primary" id="adicionarProcesso" th:href="@{/carregar-novo-processo(clienteId=${cliente.id}, page=${page}, size=${size})}">Adicionar processo</a>
 		</div>
 	</body>
 </html>

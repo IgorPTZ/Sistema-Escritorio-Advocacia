@@ -35,7 +35,7 @@
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="reus" class="active">Réus</label>
-					<input id="reus" th:value="${nomesDosReus}" class="form-control" readonly="readonly">
+					<input id="reus" th:value="${processo.nomeDosReus}" class="form-control" readonly="readonly">
 				</div>
 			</div>
 			
@@ -61,14 +61,14 @@
 			</div>
 		</form>
 		
-		<a th:href="@{/obter-processo-por-id(id=${processo.id}, clienteId=${clienteId}, page=${page}, size=${size})}">Editar processo</a>
+		<a class="btn btn-primary" th:href="@{/editar-processo-por-id(id=${processo.id}, clienteId=${clienteId}, page=${page}, size=${size})}">Editar processo</a>
 		
-		<a th:href="@{/excluir-processo-por-id(id=${processo.id}, clienteId=${clienteId}, page=${page}, size=${size})}">Excluir processo</a>
+		<a class="btn btn-primary" th:href="@{/excluir-processo-por-id(id=${processo.id}, clienteId=${clienteId}, page=${page}, size=${size})}" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir processo</a>
 		
-		<a>Adicionar audiência</a>
+		<a class="btn btn-primary">Adicionar audiência</a>
 		
-		<div th:switch="${audiencias.size > 0}">
-				<div th:case="true"> <!-- case true -->
+		<!-- <div th:switch="${audiencias.size > 0}"> 
+				<div th:case="true"> 
 					<table id="tabelaDeClientes" class="display" style="width:100%">				        
 				        <tbody>
 				        	<tr th:each="cliente: ${clientesPaginados.content}">
@@ -79,21 +79,32 @@
 							</tr>
 				        </tbody>
 				    </table> 
-				</div> <!-- case true -->
+				</div> 
 				
 				<div th:case="false">
 					
 				</div>
-		</div>
+		</div> -->
 		
-		<a>Adicionar perícia</a>
+		<a class="btn btn-primary">Adicionar perícia</a>
 		
-		<table>
-		
-		</table>
-		
-		<div class="row">
-			<a class="btn btn-primary" id="retornar" th:href="@{/detalhar-cliente-por-id(id=${clienteId}, page=${page}, size=${size})}">Voltar</a>
-		</div>
+		<!-- <div th:switch="${audiencias.size > 0}"> 
+				<div th:case="true"> 
+					<table id="tabelaDeClientes" class="display" style="width:100%">				        
+				        <tbody>
+				        	<tr th:each="cliente: ${clientesPaginados.content}">
+							    <td th:text="${cliente.nome}" />
+							     <td th:text="${cliente.cpf} != null ? ${cliente.cpf} : ${cliente.cnpj}" />
+							     <td><a th:id="${'detalharCliente' + cliente.id}" class="btn btn-outline-info btn-font-responsive" th:href="@{/detalhar-cliente-por-id(id=${cliente.id}, page=${page}, size=${clientesPaginados.size})}">Detalhar</a></td>
+							    <td><a th:id="${'editarCliente' + cliente.id}" class="btn btn-outline-info btn-font-responsive" th:href="@{/obter-cliente-por-id(id=${cliente.id}, page=${page}, size=${clientesPaginados.size})}">Editar</a></td>
+							</tr>
+				        </tbody>
+				    </table> 
+				</div> 
+				
+				<div th:case="false">
+					
+				</div>
+		</div> -->
 	</body>
 </html>

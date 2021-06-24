@@ -14,10 +14,36 @@ public class ProcessoService {
 	
 	public Processo obterProcessoPorId(Long id) {
 		
-		return processoRepository.findById(id).get();
+		Processo processo = processoRepository.findById(id).get();
+		
+		String nomeDosReus = "";
+		
+		for(int i = 0; i < processo.getReus().size() ; i++) {
+			
+			nomeDosReus += processo.getReus().get(i).getNome();
+			
+			if(i != (processo.getReus().size() - 1)) {
+				
+				nomeDosReus += ",";
+			}
+		}
+		
+		processo.setNomeDosReus(nomeDosReus);
+		
+		return processo;
+	}
+	
+	public void excluirProcessoPorId(Long id) {
+		
+		processoRepository.deleteById(id);
 	}
 	
 	public Processo inserirProcesso(Processo processo) {
+		
+		return processoRepository.save(processo);
+	}
+	
+	public Processo editarProcesso(Processo processo) {
 		
 		return processoRepository.save(processo);
 	}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Editar processo</title>
+		
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+		
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	</head>
+	
+	<body>
+		<input type="hidden" id="clienteId" name="clienteId" th:value="${clienteId}"/>
+		
+		<input type="hidden" id="size" name="size" th:value="${page}"/>
+		
+		<input type="hidden" id="size" name="size" th:value="${size}"/>
+		
+		<h5 style="color: red;" th:text="${mensagem}"></h5>
+		
+		<form action="editar-processo" id="editarProcesso" method="post" th:object="${processo}">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="id">Id</label>
+					<input id="id" placeholder="Id" th:field="*{id}" class="form-control" readonly="readonly">
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label class="active">Outra parte</label>
+					<select th:field="*{reus}" size="10" class="btn btn-outline-info btn-font-responsive" multiple="multiple" required="required">
+						 <option th:each="reu : ${listaDeReus}" th:value="${reu.id}" th:text="${reu.nome}"></option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="numero" class="active">Número</label>
+					<input id="numero" th:field="*{numero}" class="form-control" required="required">
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label class="active">Situação</label>
+					<select th:field="*{situacao}" class="btn btn-outline-info btn-font-responsive" required="required">
+						 <option th:each="status : ${listaDeSituacoesDoProcesso}" th:value="${status.id}" th:text="${status.situacao}" th:selected="${status.id == processo.situacao.id}"></option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label class="active">Clientes</label>
+					<select th:field="*{clientes}" size="10" class="btn btn-outline-info btn-font-responsive" multiple="multiple" required="required">
+						 <option th:each="cliente : ${listaDeClientes}" th:value="${cliente.id}" th:text="${cliente.nome}"></option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="observacao" class="active">Observação</label>
+					<input id="observacao" th:field="*{observacao}" class="form-control">
+				</div>
+			</div>
+			
+			<input type="submit" id="btnFormEdicao" class="btn" style="color:#fff; background-color:#17a2b8; margin-bottom: 10px;" value="Salvar" />
+		</form>
+	</body>
+</html>

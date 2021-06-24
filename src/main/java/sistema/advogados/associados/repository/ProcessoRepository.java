@@ -9,5 +9,5 @@ import sistema.advogados.associados.model.Processo;
 @Repository
 @Transactional
 public interface ProcessoRepository extends JpaRepository<Processo, Long>{
-
+	
 }

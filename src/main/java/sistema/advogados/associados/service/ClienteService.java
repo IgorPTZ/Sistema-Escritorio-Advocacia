@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import sistema.advogados.associados.model.Cliente;
+import sistema.advogados.associados.model.Processo;
 import sistema.advogados.associados.repository.ClienteRepository;
 import sistema.advogados.associados.util.PesquisaDeClientes;
 import sistema.advogados.associados.util.Utilitarios;
@@ -66,7 +67,28 @@ public class ClienteService {
 	
 	public Cliente obterClientePorId(Long id) {
 		
-		return clienteRepository.findById(id).get();
+		Cliente cliente = clienteRepository.findById(id).get();
+		
+		String nomeDosReus = "";
+		
+		for(Processo processo : cliente.getProcessos()) {
+			
+			for(int i = 0; i < processo.getReus().size() ; i++) {
+				
+				nomeDosReus += processo.getReus().get(i).getNome();
+				
+				if(i != (processo.getReus().size() - 1)) {
+					
+					nomeDosReus += ",";
+				}
+			}
+			
+			processo.setNomeDosReus(nomeDosReus);
+			
+			nomeDosReus = "";
+		}
+		
+		return cliente;
 	}
 	
 	public Cliente inserirCliente(Cliente cliente) {
