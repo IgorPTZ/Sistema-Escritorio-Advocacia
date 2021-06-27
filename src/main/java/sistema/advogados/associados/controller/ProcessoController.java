@@ -137,11 +137,13 @@ public class ProcessoController {
 			
 			Processo processo = processoService.obterProcessoPorId(id); 
 			
+			Cliente cliente = clienteService.obterClientePorId(clienteId);
+			
 			model.addObject("page", 0L);
 			
 			model.addObject("size", 20L);
 			
-			model.addObject("clienteId", clienteId);
+			model.addObject("cliente", cliente);
 			
 			model.addObject("processo", processo);
 			
