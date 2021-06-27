@@ -126,10 +126,10 @@ public class ProcessoController {
 		
 	@RequestMapping(value="/detalhar-processo-por-id", method=RequestMethod.GET) 
 	public ModelAndView detalharProcessoPorId(ModelAndView model,
-											@RequestParam("id") Long id,
-											@RequestParam("clienteId") Long clienteId,
-										    @RequestParam("page") Long page,
-							                @RequestParam("size") Long size) { 
+											  @RequestParam("id") Long id,
+											  @RequestParam("clienteId") Long clienteId,
+										      @RequestParam("page") Long page,
+							                  @RequestParam("size") Long size) { 
 		
 		try {
 			

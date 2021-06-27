@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Pericia implements Serializable {
 
@@ -23,6 +25,7 @@ public class Pericia implements Serializable {
 	private Processo processo;
 	
 	@Column(nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataDaPericia;
 	
 	@Column(nullable = false)

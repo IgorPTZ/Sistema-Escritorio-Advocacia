@@ -18,4 +18,24 @@ public class PericiaService {
 		
 		return periciaRepository.obterPericiasPorProcessoId(id);
 	}
+	
+	public Pericia obterPericiaPorId(Long id) {
+		
+		return periciaRepository.findById(id).get();
+	}
+	
+	public Pericia inserirPericia(Pericia pericia) {
+		
+		return periciaRepository.save(pericia);
+	}
+	
+	public Pericia editarPericia(Pericia pericia) {
+		
+		return periciaRepository.save(pericia);
+	}
+	
+	public void excluirPericia(Long id) {
+		
+		periciaRepository.deleteById(id);
+	}
 }

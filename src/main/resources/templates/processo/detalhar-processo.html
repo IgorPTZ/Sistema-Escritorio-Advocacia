@@ -112,7 +112,7 @@
 		<br />
 		<br />
 		
-		<a class="btn btn-primary">Adicionar perícia</a>
+		<a class="btn btn-primary" th:href="@{/carregar-nova-pericia(clienteId=${clienteId}, processoId=${processo.id}, page=${page}, size=${size})}">Adicionar perícia</a>
 		
 		<div th:switch="${pericias != null && pericias.size > 0}"> 
 				<div th:case="true"> 			        
@@ -122,19 +122,19 @@
 		        			&nbsp;&nbsp;&nbsp;
 		        			<p th:text="${pericia.horario}"></p>
 		        			
-		        			<a class="btn btn-primary" th:href="@{/editar-processo-por-id(id=${processo.id}, clienteId=${clienteId}, page=${page}, size=${size})}">Editar</a>
+		        			<a class="btn btn-primary" th:href="@{/editar-pericia-por-id(id=${pericia.id}, clienteId=${clienteId}, processoId=${processo.id}, page=${page}, size=${size})}">Editar</a>
 		        		</div>
 					    
 					    <div class="form-row">
 					    	<p th:text="${'Médico:' + pericia.nomePerito}"></p>
 					    	
-					    	<a class="btn btn-primary" th:href="@{/editar-processo-por-id(id=${processo.id}, clienteId=${clienteId}, page=${page}, size=${size})}">Avisar cliente por email</a>
+					    	<a class="btn btn-primary" th:href="@{/enviar-email(id=${processo.id}, clienteId=${clienteId}, page=${page}, size=${size})}">Avisar cliente por email</a>
 					    </div>
 					    
 					    <div class="form-row">
 					    	<p th:text="${'Endereço:' + pericia.endereco}"></p>
 					    	
-					    	<a class="btn btn-primary" th:href="@{/editar-processo-por-id(id=${processo.id}, clienteId=${clienteId}, page=${page}, size=${size})}">Excluir</a>
+					    	<a class="btn btn-primary" th:href="@{/excluir-pericia-por-id(id=${pericia.id}, clienteId=${clienteId}, processoId=${processo.id}, page=${page}, size=${size})}">Excluir</a>
 					    </div>
 					</div>
 				</div> 

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Adicionar processo</title>
+		
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+		
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	</head>
+	
+
+	
+	<body>
+		<input type="hidden" id="page" name="page" th:value="${page}"/>
+		
+		<input type="hidden" id="size" name="size" th:value="${size}"/>
+		
+		<input type="hidden" id="clienteId" name="clienteId" th:value="${clienteId}"/>
+		
+		<input type="hidden" id="processoId" name="processoId" th:value="${processoId}"/>
+		
+		<form action="inserir-pericia" id="adicaoPericia" method="post" th:object="${pericia}">
+
+			<input type="hidden" id="id" placeholder="Id" th:field="*{id}" class="form-control" readonly="readonly">
+			
+			<input type="hidden" id="processo" th:field="*{processo}" class="form-control" readonly="readonly">
+			
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label class="active">Processo</label>
+					<span id="numeroDoProcesso" th:text="${pericia.processo.numero}" class="form-control" onclick="detalharProcesso()"></span>
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label class="active">Data</label>
+					<input type="date" th:field="*{dataDaPericia}" class="form-control" required="required">
+				</div>
+				
+				<div class="form-group col-md-6">
+					<label class="active">Hora</label>
+					<input th:field="*{horario}" class="form-control" required="required">
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label class="active">Local</label>
+					<input th:field="*{endereco}" class="form-control" required="required">
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label class="active">Telefone</label>
+					<input th:field="*{telefone}" class="form-control" required="required">
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label class="active">Perito</label>
+					<input th:field="*{nomePerito}" class="form-control" required="required">
+				</div>
+			</div>
+			
+			<input type="submit" id="btnFormAdicao" class="btn" style="color:#fff; background-color:#17a2b8; margin-bottom: 10px;" value="Salvar" />
+		</form>
+		
+		<script type="text/javascript">
+			
+			function detalharProcesso() {
+				
+				let clienteId = $("#clienteId").val();
+				
+				let processoId = $("#processoId").val();
+				
+				let page = $("#page").val();
+				
+				let size = $("#size").val();
+				
+				let url = location.protocol + "//" + location.host + "/detalhar-processo-por-id?id=" + processoId + "&clienteId=" + clienteId + "&page=" + page + "&size=" + size;
+				
+				console.log(url);
+				
+				window.open(url, "_self");
+			}
+		</script>
+	</body>
+</html>

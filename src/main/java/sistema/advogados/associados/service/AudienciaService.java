@@ -18,4 +18,14 @@ public class AudienciaService {
 		
 		return audienciaRepository.obterAudienciasPorProcessoId(id);
 	}
+	
+	public Audiencia inserirAudiencia(Audiencia audiencia) {
+		
+		return audienciaRepository.save(audiencia);
+	}
+	
+	public Audiencia editarAudiencia(Audiencia audiencia) {
+		
+		return audienciaRepository.save(audiencia);
+	}
 }
