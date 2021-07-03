@@ -14,6 +14,11 @@ public class AudienciaService {
 	@Autowired
 	private AudienciaRepository audienciaRepository;
 	
+	public Audiencia obterAudienciaPorId(Long id) {
+		
+		return audienciaRepository.findById(id).get();
+	}
+	
 	public List<Audiencia> obterAudienciasPorProcessoId(Long id) {
 		
 		return audienciaRepository.obterAudienciasPorProcessoId(id);

@@ -79,11 +79,14 @@
 		<br />
 		<br />
 		
-		<a class="btn btn-primary">Adicionar audiência</a>
+		<a class="btn btn-primary" th:href="@{/carregar-nova-audiencia(clienteId=${cliente.id}, processoId=${processo.id}, page=${page}, size=${size})}">Adicionar audiência</a>
 		
 		<div th:switch="${audiencias != null && audiencias.size > 0}"> 
 				<div th:case="true"> 			        
 		        	<div th:each="audiencia: ${audiencias}" style="background-color:green;margin-top:10px;margin-left:10px;">
+		        	
+		        		<input type="hidden" th:id="'audiencia' + ${audiencia.id}" th:value="${audiencia.id}"/>
+		        	
 		        		<div class="form-row">
 		        			<p th:text="${#temporals.format(audiencia.dataDaAudiencia, 'dd-MM-yyyy')}"></p>
 		        			&nbsp;&nbsp;&nbsp;
@@ -91,20 +94,92 @@
 		        			&nbsp;&nbsp;&nbsp;
 		        			<p th:text="${audiencia.vara + 'ª VT'}"></p>
 		        			
-		        			<a class="btn btn-primary" th:href="@{/editar-processo-por-id(id=${processo.id}, clienteId=${cliente.id}, page=${page}, size=${size})}">Editar</a>
+		        			<a class="btn btn-primary" th:href="@{/editar-audiencia-por-id(id=${audiencia.id}, clienteId=${cliente.id}, processoId=${processo.id}, page=${page}, size=${size})}">Editar</a>
 		        		</div>
 					    
 					    <div class="form-row">
 					    	<p th:text="${'Local:' + audiencia.endereco}"></p>
 					    	
-					    	<a class="btn btn-primary" th:href="@{/editar-processo-por-id(id=${processo.id}, clienteId=${cliente.id}, page=${page}, size=${size})}">Avisar cliente por email</a>
+					    	<button onclick="formarNotificacaoDaAudiencia(this.id)" th:id="'notificacaoDaAudiencia' + ${audiencia.id}" type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#notificacaoDeAudiencia' + ${audiencia.id}">Avisar cliente por email</button>
 					    </div>
 					    
 					    <div class="form-row">
-					    	<p th:text="${'OBS:' + audiencia.observacao}"></p>
+					    	<p th:text="${'Obs:' + audiencia.observacao}"></p>
 					    	
-					    	<a class="btn btn-primary" th:href="@{/editar-processo-por-id(id=${processo.id}, clienteId=${cliente.id}, page=${page}, size=${size})}">Excluir</a>
+					    	<a class="btn btn-primary" th:href="@{/excluir-audiencia-por-id(id=${audiencia.id}, clienteId=${cliente.id}, processoId=${processo.id}, page=${page}, size=${size})}">Excluir</a>
 					    </div>
+					   	
+					   	<!-- INICIO DO MODAL -->
+				    	<div class="modal fade" th:id="'notificacaoDeAudiencia' + ${audiencia.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							     
+							        <h5 class="modal-title" id="exampleModalLabel">Aviso de Audiência</h5>
+							        
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          <span aria-hidden="true">&times;</span>
+							        </button>
+							      </div>
+							      
+							     <form action="enviar-notificacao-de-audiencia" method="post" th:object="${notificacaoDeAudiencia}">
+								      <div class="modal-body">
+								    
+								      		<input type="hidden" th:id="'clienteId' + ${audiencia.id}" th:field="*{clienteId}"/>
+								      		
+								      		<input type="hidden" th:id="'audienciaId' + ${audiencia.id}" th:field="*{audienciaId}"/>
+								      		
+								      		<input type="hidden" th:id="'processoId' + ${audiencia.id}" th:field="*{processoId}"/>
+								      	
+								      		<div class="form-row">
+												<div class="form-group col-md-6">
+													<label for="flagInicial" >Inicial</label> 
+													<input type="radio" th:id="'flagInicial' + ${audiencia.id}" value="1" th:field="*{flagTipoDeNotificacao}" onclick="desativarFlagDeInstrucao(this.id)">
+													
+													<label for="flagInstrucao">Instrução/UNA</label>
+													<input type="radio" th:id="'flagInstrucao' + ${audiencia.id}" value="2" th:field="*{flagTipoDeNotificacao}" onclick="ativarFlagDeInstrucao(this.id)">	
+												</div>
+											</div>
+											
+											<p th:text="'Prezado(a), ' + ${cliente.nome} + ','"></p>
+								      	
+									      	<p>segue os dados para a sua perícia:</p>
+									      	
+									      	<p th:text="'Processo:' + ${processo.numero}"></p>
+									      	
+									      	<p th:text="'Data:' + ${#temporals.format(audiencia.dataDaAudiencia, 'dd-MM-yyyy')}"></p>
+									      	
+									      	<p th:text="'Horário:' + ${audiencia.horario}"></p>
+									      	
+									      	<p th:text="'Local:' + ${audiencia.endereco}"></p>
+									      	
+									      	<div th:id="'observacaoDeTestemunhas' + ${audiencia.id}">
+									      		<p>Favor comparecer acompanhado de 3 testemunhas</p>
+									      	</div>
+									      	
+									      	<p>Qualquer dúvida entrar em contato no número: 7199999999</p>
+									        	
+									      	<p>Atenciosamente,</p>
+									      	
+									      	<p>Costa Pinto & Martinelli - Advogados Associados.</p>
+									      	
+									      	<div class="form-row">
+									      		<label>Observação</label><br/>
+												<textarea rows="5" cols="10" th:id="'observacaoId' + ${audiencia.id}" th:field="*{observacao}"></textarea>
+											</div>
+											
+											<p th:text="'Email cadastrado:' + ${cliente.email}"></p>
+									    </div>
+									    
+									    <div class="modal-footer">
+									    	<input type="submit" id="adicaoNotificacaoAudiencia" class="btn" style="color:#fff; background-color:#17a2b8; margin-bottom: 10px;" value="Enviar" />
+									    </div>
+							      	</form>
+							    </div>
+							  </div>
+						</div>
+						
+						<!-- FIM DO MODAL -->
 					</div>
 				</div> 
 				
@@ -117,23 +192,6 @@
 		<br />
 		
 		<a class="btn btn-primary" th:href="@{/carregar-nova-pericia(clienteId=${cliente.id}, processoId=${processo.id}, page=${page}, size=${size})}">Adicionar perícia</a>
-		
-			<!-- 
-		
-		Prezado(a), Sander Dias,
-		segue os dados para a sua audiência:
-		
-		Processo:1234567-12-1234-1-12-1234
-		Data: 11/12/2019
-		Horário: 20:10
-		Local: asdasd
-		
-		Qualquer dúvida entrar em contato conosco 71 3500-6167/68
-		
-		Atenciosamente,
-		Costa Pinto & Martinelli - Advogados Associados. 
-				
-		 -->
 		
 		<div th:switch="${pericias != null && pericias.size > 0}"> 
 				<div th:case="true"> 			        
@@ -152,7 +210,7 @@
 					    <div class="form-row">
 					    	<p th:text="${'Médico:' + pericia.nomePerito}"></p>
 					    	
-					    	<button th:id="'notificacaoDaPericia' + ${pericia.id}" type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#notificacaoDePericia' + ${pericia.id}">Avisar cliente por email</button>
+					    	<button onclick="formarNotificacaoDaPericia(this.id)" th:id="'notificacaoDaPericia' + ${pericia.id}" type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#notificacaoDePericia' + ${pericia.id}">Avisar cliente por email</button>
 					    </div>
 					    
 					    <div class="form-row">
@@ -174,44 +232,47 @@
 							          <span aria-hidden="true">&times;</span>
 							        </button>
 							      </div>
-							     
-							      <div class="modal-body">
-							      	<form>
-							      		<div class="form-row">
-											<div class="form-group col-md-6">
-												<label for="flagInicial" >Inicial</label> 
-												<input type="radio" th:id="'flagInicial' + ${pericia.id}" value="1" onclick="formarUrlDeNotificacaoDaPericia(this.id)" checked="checked">
-												
-												<label for="flagInstrucao">Instrução/UNA</label>
-												<input type="radio" th:id="'flagInstrucao' + ${pericia.id}" value="2" onclick="formarUrlDeNotificacaoDaPericia(this.id)">	
+							     <form action="enviar-notificacao-de-pericia" method="post" th:object="${notificacaoDePericia}">
+								      <div class="modal-body">
+								    
+								      		<input type="hidden" th:id="'clienteId' + ${pericia.id}" th:field="*{clienteId}"/>
+								      		
+								      		<input type="hidden" th:id="'periciaId' + ${pericia.id}" th:field="*{periciaId}"/>
+								      		
+								      		<input type="hidden" th:id="'processoId' + ${pericia.id}" th:field="*{processoId}"/>
+											
+											<p th:text="'Prezado(a), ' + ${cliente.nome} + ','"></p>
+								      	
+									      	<p>segue os dados para a sua perícia:</p>
+									      	
+									      	<p th:text="'Processo:' + ${processo.numero}"></p>
+									      	
+									      	<p th:text="'Data:' + ${#temporals.format(pericia.dataDaPericia, 'dd-MM-yyyy')}"></p>
+									      	
+									      	<p th:text="'Horário:' + ${pericia.horario}"></p>
+									      	
+									      	<p th:text="'Períto:' + ${pericia.nomePerito}"></p>
+									      	
+									      	<p th:text="'Endereço:' + ${pericia.endereco}"></p>
+									      	
+									      	<p th:text="'Qualquer dúvida entrar em contato no número:' + ${pericia.telefone}"></p>
+									        	
+									      	<p>Atenciosamente,</p>
+									      	
+									      	<p>Costa Pinto & Martinelli - Advogados Associados.</p>
+									      	
+									      	<div class="form-row">
+									      		<label>Observação</label><br/>
+												<textarea rows="5" cols="10" th:id="'observacaoId' + ${pericia.id}" th:field="*{observacao}"></textarea>
 											</div>
-										</div>
+											
+											<p th:text="'Email cadastrado:' + ${cliente.email}"></p>
+									    </div>
+									    
+									    <div class="modal-footer">
+									    	<input type="submit" id="adicaoNotificacaoPericia" class="btn" style="color:#fff; background-color:#17a2b8; margin-bottom: 10px;" value="Enviar" />
+									    </div>
 							      	</form>
-							      	
-							      	<p th:text="'Prezado(a), ' + ${cliente.nome} + ','"></p>
-							      	
-							      	<p>segue os dados para a sua perícia:</p>
-							      	
-							      	<p th:text="'Processo:' + ${processo.numero}"></p>
-							      	
-							      	<p th:text="'Data:' + ${#temporals.format(pericia.dataDaPericia, 'dd-MM-yyyy')}"></p>
-							      	
-							      	<p th:text="'Horário:' + ${pericia.horario}"></p>
-							      	
-							      	<p th:text="'Períto':' + ${pericia.nomePerito}"></p>
-							      	
-							      	<p th:text="'Endereço:' + ${pericia.endereco}"></p>
-							      	
-							      	<p th:text="'Qualquer dúvida entrar em contato no número:' + ${pericia.telefone}"></p>
-							        	
-							      	<p>Atenciosamente,</p>
-							      	
-							      	<p>Costa Pinto & Martinelli - Advogados Associados.</p>
-							      </div>
-							      
-							      <div class="modal-footer">
-							        	<a th:id="'enviarNotificacao' + ${pericia.id}" th:href="@{/enviar-email-de-notificacao(clienteId=${cliente.id}, processoId=${processo.id}, periciaId=${pericia.id}, tipoDeNotificacao=${1})}" type="button" class="btn btn-primary">Enviar notificação</a>
-							      </div>
 							    </div>
 							  </div>
 						</div>
@@ -227,17 +288,70 @@
 			
 		<script type="text/javascript">
 		
-			function formarUrlDeNotificacaoDaPericia(id) {
+			function desativarFlagDeInstrucao(id) {
 				
-				let periciaId;
+				let periciaId = id.substring(11);
 				
-				let tipoDeNotificacao;
+				document.getElementById("observacaoDeTestemunhas" + periciaId).style.display = "none";
+			}
+		
+			function ativarFlagDeInstrucao(id) {
+				
+				let periciaId = id.substring(13);
+				
+				document.getElementById("observacaoDeTestemunhas" + periciaId).style.display = "block";
+			}
+			
+			function formarNotificacaoDaAudiencia(id) {
+				
+				console.log(id);
+				
+				let audienciaId = id.substring(22);
+				
+				console.log(audienciaId);
+				
+				document.getElementById("observacaoDeTestemunhas" + audienciaId).style.display = "none";
 				
 				let clienteId = document.getElementById("clienteId").value;
 				
 				let processoId = document.getElementById("processoId").value;
 				
-				if(id.includes("flagInicial")) {
+				document.getElementById("flagInicial" + audienciaId).checked = true;
+				
+				document.getElementById("audienciaId" + audienciaId).value = audienciaId;
+				
+				document.getElementById("clienteId" + audienciaId).value = clienteId;
+				
+				document.getElementById("processoId" + audienciaId).value = processoId;
+			}
+		
+			function formarNotificacaoDaPericia(id) {
+				
+				let periciaId = id.substring(20);
+				
+				console.log('Id da pericia:' + periciaId);
+				
+				let clienteId = document.getElementById("clienteId").value;
+				
+				let processoId = document.getElementById("processoId").value;
+				
+				console.log('Id do cliente:' + clienteId);
+				
+				console.log('Id do processo:' + processoId);
+				
+				console.log(document.getElementById("periciaId" + periciaId));
+				
+				console.log(document.getElementById("clienteId" + periciaId));
+				
+				console.log(document.getElementById("processoId" + periciaId));
+				
+				document.getElementById("periciaId" + periciaId).value = periciaId;
+				
+				document.getElementById("clienteId" + periciaId).value = clienteId;
+				
+				document.getElementById("processoId" + periciaId).value = processoId;
+				
+				/*if(id.includes("flagInicial")) {
 								
 					periciaId = id.substring(11);
 					
@@ -252,19 +366,17 @@
 					tipoDeNotificacao = document.getElementById("flagInstrucao" + periciaId).value;
 					
 					document.getElementById("flagInicial" + periciaId).checked = false;
-				}
+				}*/
 				
-				console.log(id);
+				//console.log(periciaId);
 				
-				console.log(periciaId);
+				//console.log(tipoDeNotificacao);
 				
-				console.log(tipoDeNotificacao);
-				
-				let url = "/enviar-email-de-notificacao?clienteId=" + clienteId + "&processoId=" + processoId + "&periciaId=" + periciaId + "&tipoDeNotificacao=" + tipoDeNotificacao;
+				/*let url = "/enviar-email-de-notificacao?clienteId=" + clienteId + "&processoId=" + processoId + "&periciaId=" + periciaId + "&tipoDeNotificacao=" + tipoDeNotificacao;
 				
 				console.log(url);
 				
-				document.getElementById("enviarNotificacao" + periciaId).href = url;
+				document.getElementById("enviarNotificacao" + periciaId).href = url;*/
 			}
 		</script>
 	</body>

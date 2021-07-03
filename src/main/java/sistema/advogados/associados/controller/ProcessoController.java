@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import sistema.advogados.associados.model.Cliente;
+import sistema.advogados.associados.model.NotificacaoDeAudienciaPorEmail;
+import sistema.advogados.associados.model.NotificacaoDePericiaPorEmail;
 import sistema.advogados.associados.model.Processo;
 import sistema.advogados.associados.service.AudienciaService;
 import sistema.advogados.associados.service.ClienteService;
@@ -150,6 +152,10 @@ public class ProcessoController {
 			model.addObject("audiencias", audienciaService.obterAudienciasPorProcessoId(processo.getId()));
 			
 			model.addObject("pericias", periciaService.obterPericiasPorProcessoId(processo.getId()));
+			
+			model.addObject("notificacaoDeAudiencia", new NotificacaoDeAudienciaPorEmail());
+			
+			model.addObject("notificacaoDePericia", new NotificacaoDePericiaPorEmail());
 			
 			model.setViewName("processo/detalhar-processo");
 			

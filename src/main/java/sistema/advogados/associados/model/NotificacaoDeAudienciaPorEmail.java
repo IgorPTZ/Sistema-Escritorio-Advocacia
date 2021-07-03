@@ -2,7 +2,7 @@ package sistema.advogados.associados.model;
 
 import java.io.Serializable;
 
-public class NotificacaoDePericiaPorEmail implements Serializable{
+public class NotificacaoDeAudienciaPorEmail implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -12,7 +12,7 @@ public class NotificacaoDePericiaPorEmail implements Serializable{
 	
 	private Long processoId;
 	
-	private Long periciaId;
+	private Long audienciaId;
 	
 	private String observacao;
 
@@ -39,13 +39,13 @@ public class NotificacaoDePericiaPorEmail implements Serializable{
 	public void setProcessoId(Long processoId) {
 		this.processoId = processoId;
 	}
-
-	public Long getPericiaId() {
-		return periciaId;
+	
+	public Long getAudienciaId() {
+		return audienciaId;
 	}
 
-	public void setPericiaId(Long periciaId) {
-		this.periciaId = periciaId;
+	public void setAudienciaId(Long audienciaId) {
+		this.audienciaId = audienciaId;
 	}
 
 	public String getObservacao() {
