@@ -31,6 +31,18 @@ public class AudienciaService {
 	
 	public Audiencia editarAudiencia(Audiencia audiencia) {
 		
+		if(audiencia.getFlagPrecatoria() == false) {
+			
+			audiencia.setNumeroDoProcessoGerado(null);
+			
+			audiencia.setTestemunhas(null);
+		}
+		
 		return audienciaRepository.save(audiencia);
+	}
+	
+	public void excluirAudiencia(Long id) {
+		
+		audienciaRepository.deleteById(id);
 	}
 }

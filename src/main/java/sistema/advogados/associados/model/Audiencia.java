@@ -40,9 +40,15 @@ public class Audiencia implements Serializable{
 	@Column(name = "flag_precatoria", nullable = false)
 	private Boolean flagPrecatoria;
 	
+	@Column(name = "numero_processo_gerado")
+	private String numeroDoProcessoGerado;
+	
+	@Column(name = "testemunhas")
+	private String testemunhas;
+	
 	@Column(nullable = false)
 	private String observacao;
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -97,6 +103,22 @@ public class Audiencia implements Serializable{
 
 	public void setFlagPrecatoria(Boolean flagPrecatoria) {
 		this.flagPrecatoria = flagPrecatoria;
+	}
+
+	public String getNumeroDoProcessoGerado() {
+		return numeroDoProcessoGerado;
+	}
+
+	public void setNumeroDoProcessoGerado(String numeroDoProcessoGerado) {
+		this.numeroDoProcessoGerado = numeroDoProcessoGerado;
+	}
+
+	public String getTestemunhas() {
+		return testemunhas;
+	}
+
+	public void setTestemunhas(String testemunhas) {
+		this.testemunhas = testemunhas;
 	}
 
 	public String getObservacao() {
