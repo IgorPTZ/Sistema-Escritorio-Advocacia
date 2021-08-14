@@ -1,0 +1,204 @@
+
+.caixa-processo {
+    background: #fff;
+    border-radius: 10px;
+    padding: 12px 20px 2px 20px;
+    margin-bottom: 40px;
+}
+
+.caixa-processo2{
+    
+    background: white(0, 0, 0, .1);
+    border-radius: 10px;
+    padding: 12px 20px 2px 20px;
+    margin-bottom: 40px;
+}
+
+
+.add-processo{
+    border: 1px dashed #999;
+    border-radius: 10px;
+    text-align: center;
+    color: #999;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.add-processo2{
+    border: 1px solid rgba(255, 0, 0, 0);
+    border-radius: 10px;
+    text-align: center;
+    color: #999;
+    padding: 10px;
+    margin-top: 10px;  
+ 
+}
+
+
+
+.visu-dados{
+    padding-top: 5px;
+    line-height: 1.42857143;
+    color: #4C4C4C;
+    border-bottom: 1px solid #DADADA;
+    margin-bottom: 10px;
+    font-family: 'Open Sans', sans-serif;
+    }
+    
+
+
+.visu-cliente{
+    background: #fff;
+        padding: 3px 10px 3px 10px;
+        color: #E29930;
+        width: max-content;
+        border-radius: 5px;
+        font-size: 11px;
+        font-weight: 600;
+    }
+    
+    .cliente-label{
+       color: #888888;
+    }
+
+
+    .bt-add-novo-processo {
+        margin-top: 30px;
+    }
+
+    #nao_encontrado_audiencia{
+        margin-top: 30px;
+    }
+
+    .t1{
+        display: inline-block;
+        
+    }
+    
+    .t2{
+        margin-top: 40px;
+    }
+    
+    
+    .bloco-processos{
+        border-radius: 10px 0px 0px 10px;
+        border: 3px solid #fff;
+        padding: 20px;
+        margin-bottom: 20px;
+        height: 217px;
+        overflow-x: auto;
+    }
+    
+    .bloco-botao{
+        height: 217px;
+        background: #ffffff;
+        border-radius: 5px;
+        margin-left: -2px;
+    }
+    
+    
+    .incon-del{
+        display: inline;
+    
+    }
+    
+    .reu{
+    color: #4c4c4c;
+    font-weight: 700;
+    font-size: 23px;
+    }
+    
+    
+    
+    @media (min-width: 768px){
+    .col-md-1 {
+        flex: 0 0 auto;
+        width: 8.3333333333%;
+    }
+    
+    .config-col-view{
+        position: relative;
+        left: 5px;
+    }
+    
+    .incon-del{
+        position: relative;
+        top: 160px;
+        left: 5px;
+    }
+    
+    }
+    
+    @media (min-width: 1223px){
+        .col-md-1 {
+            flex: 0 0 auto;
+            width: 8.3333333333%;
+        }
+        
+        .config-col-view{
+            position: relative;
+            top: 5px;
+            left: 10px;
+        }
+        
+        .incon-del{
+            position: relative;
+            top: 180px;
+            left: -10px;
+        }
+        
+        }
+    
+    
+    @media (max-width: 767px){
+        .col-md-1 {
+           height: 30px;
+           width: 15%;
+        }
+    
+        .bloco-botao{
+            position: relative;
+            top: -44px;
+            left: 10px;
+        }
+        .incon-del{
+            position: relative;
+            left: 20px;
+        }
+    }
+    
+    @media (max-width: 570px){
+        .col-md-1 {
+           height: 70px;
+           width: 12%;
+        }
+    
+        .bloco-botao{
+            position: relative;
+            top: -44px;
+            left: 10px;
+        }
+        .incon-del{
+            position: relative;
+            margin-top: 20px;
+            left: -6px;
+        }
+    
+        .config-col-view{
+            position: relative;
+            left: -6px;
+        }
+       
+    }
+    
+    .hora{
+        width: 10%;
+    }
+    
+    
+    
+    
+    
+    
+    
+    

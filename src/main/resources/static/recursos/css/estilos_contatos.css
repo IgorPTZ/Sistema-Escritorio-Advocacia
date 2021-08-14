@@ -1,0 +1,228 @@
+.form-control{
+    padding: 0;
+    font-size: 14px;
+    height: 40px;
+    color: #4C4C4C;
+    background-color: transparent;
+    border-bottom: 1px solid #DADADA !important;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    width: 100%;
+    font-family: 'Open Sans', sans-serif;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.form-control:focus{
+    display: block;
+    width: 90%;
+    height: 40px;
+    padding: 6px 12px;
+    font-size: 20px;
+    line-height: 1.42857143;
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 100;
+
+}
+
+#cliente-tel1{
+    position: relative;
+    width: 100px;
+    display: inline;
+}
+
+#cliente-tel2{
+    position: relative;
+    width: 100px;
+    display: inline;
+    left: 60px;
+}
+
+#cliente-tel3{
+    position: relative;
+    width: 100px;
+    display: inline;
+}
+
+#cliente-tel4{
+    position: relative;
+    width: 100px;
+    display: inline;
+    left: 60px;
+}
+
+label{
+color: #888888;
+text-transform: uppercase;
+font-size: 10px;
+font-family: 'Open Sans', sans-serif;
+font-weight: 400;
+}
+
+#contato_cliente_2{
+    position: relative;
+    margin-top: -20px;
+}
+
+#tipo-contato{
+    position: relative;
+    width: 100px;
+    padding: 0;
+    font-size: 14px;
+    height: 40px;
+    line-height: 1.42857143;
+    color: #4C4C4C;
+    background-color: transparent;
+    border-bottom: 1px solid #DADADA !important;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    font-family: 'Open Sans', sans-serif;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    display: inline;
+    left: 10px;
+}
+
+#tipo-contato2{
+    position: relative;
+    width: 100px;
+    padding: 0;
+    font-size: 14px;
+    height: 40px;
+    line-height: 1.42857143;
+    color: #4C4C4C;
+    background-color: transparent;
+    border-bottom: 1px solid #DADADA !important;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    font-family: 'Open Sans', sans-serif;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    display: inline;
+    left: 70px;
+}
+
+
+#tipo-contato3{
+    position: relative;
+    width: 100px;
+    padding: 0;
+    font-size: 14px;
+    height: 40px;
+    line-height: 1.42857143;
+    color: #4C4C4C;
+    background-color: transparent;
+    border-bottom: 1px solid #DADADA !important;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    font-family: 'Open Sans', sans-serif;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    display: inline;
+    left: 10px;
+}
+
+#tipo-contato4{
+    position: relative;
+    width: 100px;
+    padding: 0;
+    font-size: 14px;
+    height: 40px;
+    line-height: 1.42857143;
+    color: #4C4C4C;
+    background-color: transparent;
+    border-bottom: 1px solid #DADADA !important;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    font-family: 'Open Sans', sans-serif;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    display: inline;
+    left: 70px;
+}
+
+.form_cliente{
+    position: relative;
+    width: 100px;
+    padding: 0;
+    font-size: 14px;
+    height: 40px;
+    line-height: 1.42857143;
+    color: #4C4C4C;
+    background-color: transparent;
+    border-bottom: 1px solid #DADADA !important;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    font-family: 'Open Sans', sans-serif;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+#cnpj_cliente{
+    position: relative;
+    top:20px
+}
+
+#contatos{
+    position: relative;
+    top: 50px;
+}
+
+#contato_cliente_label{
+  position: relative;
+  display: block;  
+}
+
+#contato_cliente_2{
+    position: relative;
+    
+    top:100px;
+}
+
+#email_cliente{
+    position: relative;
+    margin-top: 120px;
+}
+
+#email_cliente label{
+    position: relative;
+    display: block;
+}
+
+
+#endereco_cliente{
+    position: relative;
+    margin-top: 40px;
+}
+
+#endereco_cliente label{
+    position: relative;
+    display: block;
+}
+
+
+
+.box{
+    display: flex;
+    flex-direction: row;
+    height: 200px;
+}
+
+
+.items{
+    margin: 5px;
+    margin-top: 50px;
+    width: 100%;
+}
+
+.item-1{
+    margin-top: 20px;
+}
+
+
+#meu_teste{
+   display: block;
+}

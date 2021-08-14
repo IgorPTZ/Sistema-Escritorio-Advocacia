@@ -1,0 +1,166 @@
+/*  Estrutura */
+
+#coluna-esquerda{
+    background-color: #3C3C3B;
+    min-height: 820px;
+}
+#coluna-direita{
+    background-color: #efefef;
+    min-height: 820px;
+}
+
+html,body{
+    width: 100%;
+    height: 100%;
+}
+
+#container_base{
+    height: 100%;
+    width: 100%;
+}
+
+#coluna {
+    background-color: #fff;
+}
+
+select {
+    color: blue;
+    font-size: 20px;
+}
+
+/*  configurações coluna esqueda*/
+/*  Menu de usuários */
+#power-icon {
+    position: relative;
+    opacity: 1; 
+    top: -10px;
+}
+
+#key-icon {
+    position: relative;
+    opacity: 1;
+    top: 5px;
+}
+
+#user-icon {
+    position: relative;
+    opacity: 1;
+    top: 20px;
+}
+
+.icones-menu a:hover{
+    filter: brightness(5) 
+}
+
+.navbar-dark .navbar-toggler{
+    color: #E29930;
+}
+
+.bg-dark{
+    background-color: #3C3C3B !important;
+}
+
+/* Logo marca */
+#logo-legenda{
+    margin-top: 40px;
+ }
+
+#separacao {
+    position: relative;
+    height: 1px;
+    background: transparent linear-gradient(45deg, #fffcf5 0%, #e2d6c3 99%) 0% 0% no-repeat padding-box;
+    top:50px;
+    width: 70%;
+}
+
+
+/* menu topo responsivo*/
+.mynav .navbar-toggler-icon{
+    filter:invert(1);
+}
+
+.mynav .navbar-toggler{
+    border-color: black;
+} 
+
+#restrito P{
+    position: relative;
+    font: normal normal 800 12px/17px Open Sans;
+    letter-spacing: 4.04px;
+    color: #FFFFFF;
+    opacity: 1;
+    text-align: center;
+}
+
+textarea:focus, input:focus, select:focus {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+} 
+
+
+
+/* Config Menu Principal */
+.icones-menu{
+    position: relative;
+    right: 11px;
+} 
+
+#menu-lateral{
+    text-align:left;
+    color: #E29930 ;
+    font: normal normal 300 24px/20px Gotham;
+    flex: 1 0 200;
+    margin-top: 100px;
+}
+
+ul.nav li {
+    margin-top: 20px;
+}
+
+ul.nav a { 
+    color:#E29930;  
+}
+
+ul.nav  a:focus-within { 
+    color:rgb(252, 252, 252); 
+    background-color: #E29930;
+}
+
+ul.nav  li:focus-within::before { 
+    border-right: 10px solid #eee;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    content: "";
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    margin-top: 5.5%;
+}
+
+li:focus-within img {
+    filter: brightness(5) 
+}
+
+li:hover img {
+    filter: brightness(5) 
+}
+
+ul.nav a:hover { 
+    color:rgb(252, 252, 252) ; 
+    background-color: #E29930;
+}
+
+#clientes-icon{
+    border-radius: 4px;
+}
+
+#audiencia-icon{
+    border-radius: 4px;
+}
+
+#noticias-icon{
+    border-radius: 4px;
+}
+
+

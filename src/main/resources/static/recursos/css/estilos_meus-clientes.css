@@ -1,0 +1,114 @@
+
+/*Área de busca cliente*/
+#zone_client_search{
+    position: relative;
+    top: 200px;
+}
+
+.campo-pesquisa{
+    display: block;
+    width: 90%;
+    height: 90px;
+    padding: 5px ;
+    font-size: 55px;
+    line-height: 1.42857143;
+    color: #e29930 !important;
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+}
+
+.area-pesquisa {
+    border-bottom: 2px solid #e29930;
+    margin-top: 40px;
+}
+
+.button_lupa {
+    width: 35px;
+    height: 35px;
+    float: right;
+    margin-top: -6%;
+    z-index: 100;
+    left: 60px;
+    background: url(../icones/botao-pesquisa.svg);
+    border: none;
+    margin-bottom: 45px;
+}
+
+/* Title meus clientes*/
+.titulo_clientes {
+    margin-top: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 43px;
+    color: #4C4C4C;
+    font-weight: bold;
+}
+
+/* Botão adicionar clientes*/
+#image_botao_edit{
+    margin-top: 30px;
+}
+
+/* icones table resul busca de clientes
+    .config-col-view{
+        border: 1px solid rgba(0, 0, 0, .2);
+        border-top: none;
+        border-bottom: none;
+    }
+    */
+
+
+/* Table Result Search clients*/
+#row-conteudo {
+    background: #fff;
+    padding: 5px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    width: 100%;
+
+}
+
+
+.config-col-view{
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-top: none;
+    border-bottom: none;
+    margin-top: -10px;
+}
+
+#image_icon_view{
+    margin-right: 10px;
+}
+
+
+              /* criar uma barra de rolagem para a table */  
+.table-overflow {
+    max-height:400px;
+    overflow-y:auto;
+    width: auto;
+    padding: 20px; 
+}
+
+table{
+    position: relative;
+    width: 100%;
+}
+
+
+.config-col-edit{
+    color: red;
+}
+
+
+/* Processos */
+
+
+    
+
+
+
+
+    

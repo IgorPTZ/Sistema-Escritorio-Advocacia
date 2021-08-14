@@ -1,0 +1,195 @@
+
+
+
+
+.t1{
+    display: inline-block;
+    
+}
+
+.t2{
+    margin-top: 40px;
+}
+
+
+.bloco-processos{
+    border-radius: 10px 0px 0px 10px;
+    border: 3px solid #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    height: 217px;
+    overflow-x: auto;
+}
+
+.bloco-botao{
+    height: 217px;
+    background: #ffffff;
+    border-radius: 5px;
+    margin-left: -2px;
+}
+
+
+.incon-del{
+    display: inline;
+
+}
+
+.reu{
+color: #4c4c4c;
+font-weight: 700;
+font-size: 23px;
+}
+
+
+.visu-dados{
+padding-top: 5px;
+line-height: 1.42857143;
+color: #4C4C4C;
+border-bottom: 1px solid #DADADA;
+margin-bottom: 10px;
+font-family: 'Open Sans', sans-serif;
+}
+
+
+@media (min-width: 768px){
+.col-md-1 {
+    flex: 0 0 auto;
+    width: 8.3333333333%;
+}
+
+.config-col-view{
+    position: relative;
+    left: 5px;
+}
+
+.incon-del{
+    position: relative;
+    top: 160px;
+    left: 5px;
+}
+
+}
+
+@media (min-width: 1223px){
+    .col-md-1 {
+        flex: 0 0 auto;
+        width: 8.3333333333%;
+    }
+    
+    .config-col-view{
+        position: relative;
+        top: 5px;
+        left: 10px;
+    }
+    
+    .incon-del{
+        position: relative;
+        top: 180px;
+        left: -10px;
+    }
+    
+    }
+
+
+@media (max-width: 767px){
+    .col-md-1 {
+       height: 30px;
+       width: 15%;
+    }
+
+    .bloco-botao{
+        position: relative;
+        top: -44px;
+        left: 10px;
+    }
+    .incon-del{
+        position: relative;
+        left: 20px;
+    }
+}
+
+@media (max-width: 570px){
+    .col-md-1 {
+       height: 70px;
+       width: 12%;
+    }
+
+    .bloco-botao{
+        position: relative;
+        top: -44px;
+        left: 10px;
+    }
+    .incon-del{
+        position: relative;
+        margin-top: 20px;
+        left: -6px;
+    }
+
+    .config-col-view{
+        position: relative;
+        left: -6px;
+    }
+   
+}
+
+
+
+.card-evento {
+    background: #fff;
+    padding: 20px 0px 20px 20px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+#obs_pericia{
+    top: 5px;
+    margin-top: 10px;
+}
+
+.visu-data-pericia{
+    color: #C18B5C;
+    font-size: 17px;
+}
+
+.visu-hora-pericia{
+    color: #C18B5C;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.visu-vara-pericia{
+    color: #C18B5C;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.visu-local-pericia{
+    color: #888888;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    border-bottom: 1px solid #DADADA;
+}
+
+.relativa{
+    position: relative;
+    height: 200px;
+    width: 100%;
+    background-color: red;
+}
+
+.absoluta{
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    bottom: 50px;
+    right: 20px;
+    top: 40px;
+    background-color: yellow;
+}   
+
+
+#lb_outra_parte{
+    color: #333;
+}

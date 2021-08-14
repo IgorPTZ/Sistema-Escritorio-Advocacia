@@ -1,0 +1,163 @@
+
+
+@media screen and (min-width: 768px){
+/*Configuração Geral*/
+    .pos-f-t{
+        display: none;
+    }
+
+}
+  
+@media screen and (min-width: 360px){
+
+   /*Pg cliente pesquisa*/ 
+    #image_botao_edit{
+        margin-top: -20px;
+    }
+
+    #image_client_top{
+        width: 90%;
+    }
+
+    .titulo_clientes{
+        font-size: 22px;
+    }
+
+    .titulo_clientes2{
+       margin-top: 40px;
+       margin-left: -20px;
+       font-size: 22px;
+    }
+
+    .button_lupa {
+        margin-top: -40px;
+    }
+
+    .campo-pesquisa{
+        font-size: 32px;
+        margin-bottom: -25px;
+    }
+
+
+}
+
+
+@media screen and (min-width: 576px){
+  /*Pg cliente pesquisa*/  
+    #image_botao_edit{
+        margin-top: -20px;
+    }
+
+    #image_client_top{
+        width: 80%;
+    }
+
+    .titulo_clientes{
+        font-size: 24px;
+    }
+
+    .titulo_clientes2{
+       margin-top: 40px;
+       margin-left: -30px;
+       font-size: 32px;
+    }
+
+}
+
+
+@media screen and (min-width: 581px){
+  /*Pg cliente pesquisa*/  
+    #image_client_top{
+        width: 90%;
+    }
+
+    .titulo_clientes{
+        font-size: 32px;
+    }
+
+    .titulo_clientes2{
+        margin-top: 40px;
+        margin-left: -70px;
+     }
+
+     #image_botao_edit{
+        margin-top: 40px;
+        margin-left: 80px;
+    }
+
+}
+
+@media screen and (min-width: 768px){
+
+    /*Pg cliente pesquisa*/
+    .titulo_clientes {
+        margin-top: 20px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 43px;
+        color: #4C4C4C;
+        margin-left: 20px;
+    }
+
+    .titulo_clientes2{
+        margin-top: 20px;
+        margin-left: -30px;
+        font-size: 40px;
+     }
+
+     #image_botao_edit{
+        margin-top: 20px;
+        margin-left: 130px;
+    }
+
+    .campo-pesquisa{
+        font-size: 52px;
+        margin-bottom: -20px;
+    }
+
+     /*adicionar processos */
+     .titulo_clientes_processos{
+        position: absolute;
+        left: 20px;
+    }
+    .titulo_clientes_processos2{
+        position: absolute;
+        left: 20px;
+        
+    }
+
+}
+
+
+/*processos*/
+@media (max-width: 570px){
+    .col-md-1 {
+       height: 70px;
+       width: 12%;
+    }
+
+    .bloco-botao{
+        position: relative;
+        top: -44px;
+        left: 10px;
+    }
+    .incon-del{
+        position: relative;
+        margin-top: 20px;
+        left: -6px;
+    }
+
+    .config-col-view{
+        position: relative;
+        left: -6px;
+    }
+   
+   
+
+
+}
+
+
+  
+
+
+
