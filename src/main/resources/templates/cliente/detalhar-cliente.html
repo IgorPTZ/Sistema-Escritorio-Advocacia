@@ -1,4 +1,239 @@
-<!DOCTYPE html>
+<!doctype html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/recursos/css/estilos_base.css">
+    <link rel="stylesheet" href="/static/recursos/css/estilos_meus-clientes_adicionar.css">
+    <link rel="stylesheet" href="/static/recursos/css/responsividade.css">
+    <link rel="stylesheet" href="/static/recursos/css/meus-testes.css">
+    <link rel="stylesheet" href="/static/recursos/css/estilos_processos.css">
+    
+<title>ADV PRO!</title>
+</head>
+<body>
+
+<!-- Menu responsividade-->
+<div class="container-fluid">
+    <div class="row">
+        <div id="coluna" class="col-12">  
+            <div class="pos-f-t">
+            <div class="collapse" id="navbarToggleExternalContent">
+            <div class="bg-dark2 p-4">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="#">Meus CLientes</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Pauta de Audiência</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link " href="#">Pauta de Perícias</a>
+                    </li>
+                    <br>
+                    <li class="nav-item active">
+                      <a class="nav-link" href="#">Usuários</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Alterar Senha</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link " href="#">Sair</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+      <nav class="navbar navbar-dark bg-dark2 mynav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon">
+          </span>
+        </button>
+      </nav>
+    </div>
+  </div>
+</div>
+</div>
+
+<div id="container_base" class="container-fluid h-100">
+  <div class="row h-100">  
+    <div id="coluna-esquerda" class="col-md-3 d-none d-md-block">
+        
+<!--Menu de usuários --> 
+<div class="nav_user">
+  <div class="collapse" id="navbarToggleExternalContent">
+      <div class="bg-dark p-4">
+            <div class="icones-menu">
+              <a  class="nav-user-link" href="#"><img id="power-icon" src="/static/recursos/icones/power.svg" alt="Bootstrap" width="22" height="22"></a><br>
+              <a  class="nav-user-link" href="#"><img id="key-icon" src="/static/recursos/icones/key.svg" alt="Bootstrap" width="22" height="22"></a><br>
+              <a  class="nav-user-link" href="#"><img id="user-icon" src="/static/recursos/icones/person.svg" alt="Bootstrap" width="22" height="22"></a><br>
+      </div>
+  </div>
+</div>     
+</a> 
+<nav class="navbar navbar-dark bg-dark">
+ <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Alterna navegação">
+    <span class="navbar-toggler-icon"></span>
+      </button>
+  </nav>
+</div>
+
+<!--Logo Marca-->   
+<div id="logo-legenda" class="container-fluid"> 
+  <img class=" img-fluid rounded mx-auto d-block" id="logo-icon" src="/static/recursos/logo2.svg" alt="Bootstrap" width="200" height="200">
+</div>           
+<div id="separacao" class="container-fluid">
+  <div id="restrito"><p>ÁREA RESTRITA</p></div>
+</div>
+
+<!--Menu Principal-->
+<div id="menu-lateral" class="d-flex flex-column">
+  <ul class="nav d-flex flex-column">                    
+      <li  class="nav-item1 ">
+          <a  class="nav-link active" href="#">  <img id="clientes-icon" src="/static/recursos/icones/clientes.svg" alt="Bootstrap" width="32" height="32"> &nbsp; Meus clientes</a>
+      </li> 
+      <li class="nav-item2">
+        <a class="nav-link" href="#"> <img id="audiencia-icon" src="/static/recursos/icones/calendario.svg" alt="Bootstrap" width="32" height="32"> &nbsp;Pauta de audiencias</a>
+      </li>
+      <li class="nav-item3 ">
+          <a class="nav-link" href="#"> <img id="noticias-icon" src="/static/recursos/icones/pericia.svg" alt="Bootstrap" width="32" height="32"> &nbsp;Perícias</a>
+      </li>
+      <li  id="teste"  class="nav-item4">
+        <a class="nav-link" href="#"> <img id="noticias-icon" src="/static/recursos/icones/noticias.svg" alt="Bootstrap" width="32" height="32"> &nbsp;Noticias</a>   
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!--COLUNA DIREITA-->
+<div id="coluna-direita" class="col-md-9 d-flex col-sm-12">
+<div class="container-fluid">
+
+<!--Área do topo da página de clientes-->
+	<input type="hidden" id="size" name="size" th:value="${page}"/>
+	
+	<input type="hidden" id="size" name="size" th:value="${size}"/>
+
+	
+	 <div class=" row  mt-5">
+	   <div class="col-2 ">
+	     <img class="t_itens" id="image_client_top" src="/static/recursos/icones/topo-clientes.svg" alt="Bootstrap" width="92" height="92">
+	   </div>
+	   <div class="col-5">
+	     <h1 class="titulo_clientes ">MEUS CLIENTES</h1>
+	   </div>
+	   <div class="col-2">
+	     <h1 class="titulo_clientes2"><span class="espaco_titulo"></h1>
+	   </div>
+	   <div class="col-2 ">
+	     <a href=""><img class="t_itens"  id="image_botao_edit" src="/static/recursos/icones/editar_2.svg" alt="Bootstrap" width="42" height="42"></a>
+	   </div>
+	 </div>
+	
+	<form>	
+		  <!--Formulario Clientes-->
+		  <div class="row  mt-5"> 
+		    <div class="container-fluid ">
+		    	<input id="id" type="hidden" th:value="${cliente.id}" class="form-control" readonly="readonly">
+		    
+		        <div class="items"> 
+		        	<input th:field="${cliente.nome}" disabled="disabled" type="text" id="cliente-nome" class="form-control formulario cliente" name="" placeholder="Cliente" aria-required="true" aria-invalid="true">
+		        </div>
+		        
+		        <div class="items"> 
+		        	<label class="lb-contatos mt-5">CPF</label> 
+		        	<input th:field="${cliente.cpf}" disabled="disabled" type="text" id="cliente-cpf" class="form-control formulario cliente" name="" placeholder="CPF" aria-required="true" aria-invalid="true">
+		        </div>
+		        
+		        <div class="items"> 
+		        	<label class="lb-contatos mt-5">CNPJ</label> 
+	        		<input th:field="${cliente.cnpj}" disabled="disabled" type="text" id="cliente-cnpj"  class="form-control formulario cliente" name="" placeholder="CNPJ" aria-required="true" aria-invalid="true">
+	        	</div>
+		      </div>
+		  </div>
+		
+		
+		   <!--Formulario Contatos-->
+		   <label class="lb-contatos mt-5">Contatos</label>
+		   <div class="row">
+		 
+		  <div class="row">
+		
+		  <div class="col-md-3 t2 ">
+		    <input th:field="${cliente.contatos[0].numero}" disabled="disabled" type="text" id="cliente-telefone1" class="form-control formulario teste4 " name="" placeholder="(00) 0000-0000">    
+		  </div>
+		  
+		
+		  <div class="col-md-3 t2 ">
+		    <input th:field="${cliente.contatos[1].numero}" disabled="disabled" type="text" id="cliente-telefone2" class="form-control formulario teste4 " name="" placeholder="(00) 0000-0000">
+		  </div>
+		
+		  <div class="col-md-3  caixa-processo2 mb-4 align-self-start ">
+		   <!--tive que fazer uma gambiarra teve jeito não-->
+		  </div>
+		
+		  <div class="col-md-3  caixa-processo mb-4  align-self-start">
+		    <h2>Bradesco-sa</h2>
+		    <p>00229988.99.2.-2</p>
+		  </div>
+		
+		 </div>
+		
+		 <div class="row"> 
+		    <div class="col-md-3 teste1">
+		      <input th:field="${cliente.contatos[2].numero}" disabled="disabled" type="text" id="cliente-telefone3" class="form-control formulario teste4 " name="" placeholder="(00) 0000-0000" >
+		        
+		    </div>
+		  
+		    <div class="col-md-3 teste1 ">
+		      <input th:field="${cliente.contatos[3].numero}" disabled="disabled" type="text" id="cliente-telefone4" class="form-control formulario teste4 " name="" placeholder="(00) 0000-0000" >
+		        
+		    </div>
+		    <div class="col-md-3 add-processo2 mb-4 align-self-start">
+		       <!--gambiarra feia da zorra mas depois eu resolvo-->
+		    </div>
+		    <div class="col-md-3 add-processo mb-4 align-self-start">
+		      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+		        <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
+		      </svg>&nbsp;Adicionar Processo
+		    </div>
+		
+		 </div>
+		</div> 
+	   <div class="row bg-row mt-5"> 
+	    <div class="container-fluid box-1">
+	        <div class="items"> 
+	        	<label class="lb-contatos mt-5">E-MAIL</label>
+	        	<input th:field="${cliente.email}" disabled="disabled" type="text" id="cliente-email" class="form-control formulario cliente" name="" placeholder="Email" >
+	        </div>
+	        <div class="items">
+	        	<label class="lb-contatos mt-5">ENDEREÇO</label> 
+	        	<input th:field="${cliente.endereco.descricao}" disabled="disabled" type="text" id="cliente-endereco" class="form-control formulario cliente" name="" placeholder="Endereço">
+	        </div>
+	      </div>
+	  </div>
+	</form>
+</div>
+
+</div>
+</div>
+</div>
+
+
+    <!-- JavaScript (Opcional) -->
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+<!--<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8">
@@ -93,4 +328,4 @@
 			<a class="btn btn-primary" id="adicionarProcesso" th:href="@{/carregar-novo-processo(clienteId=${cliente.id}, page=${page}, size=${size})}">Adicionar processo</a>
 		</div>
 	</body>
-</html>
+</html>    -->

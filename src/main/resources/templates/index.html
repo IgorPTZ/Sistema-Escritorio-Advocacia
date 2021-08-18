@@ -1,7 +1,5 @@
 <!doctype html>
-<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
->
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -10,9 +8,9 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/static/recursos/css/estilos_base.css" th:href="@{/static/recursos/css/estilos_base.css}">
-    <link rel="stylesheet" href="../static/recursos/css/estilos_meus-clientes.css">
-    <link rel="stylesheet" href="../static/recursos/css/responsividade.css">
+    <link rel="stylesheet" href="/static/recursos/css/estilos_base.css">
+    <link rel="stylesheet" href="/static/recursos/css/estilos_meus-clientes.css">
+    <link rel="stylesheet" href="/static/recursos/css/responsividade.css">
   
     
 <title>ADV PRO!</title>
@@ -71,9 +69,9 @@
   <div class="collapse" id="navbarToggleExternalContent">
       <div class="bg-dark p-4">
             <div class="icones-menu">
-              <a  class="nav-user-link" id="btnSair" href="/logout"><img id="power-icon" src="../static/recursos/icones/power.svg" alt="Bootstrap" width="22" height="22"></a><br>
-              <a  class="nav-user-link" id="btnEditarUsuario"><img id="key-icon" src="../static/recursos/icones/key.svg" alt="Bootstrap" width="22" height="22"></a><br>
-              <a  class="nav-user-link" id="btnListarUsuarios" href="/obter-usuarios"><img id="user-icon" src="../static/recursos/icones/person.svg" alt="Bootstrap" width="22" height="22"></a><br>
+              <a  class="nav-user-link" id="btnSair" href="/logout"><img id="power-icon" src="/static/recursos/icones/power.svg" alt="Bootstrap" width="22" height="22"></a><br>
+              <a  class="nav-user-link" id="btnEditarUsuario"><img id="key-icon" src="/static/recursos/icones/key.svg" alt="Bootstrap" width="22" height="22"></a><br>
+              <a  class="nav-user-link" id="btnListarUsuarios" href="/obter-usuarios"><img id="user-icon" src="/static/recursos/icones/person.svg" alt="Bootstrap" width="22" height="22"></a><br>
       </div>
   </div>
 </div>     
@@ -87,7 +85,7 @@
 
 <!--Logo Marca-->   
 <div id="logo-legenda" class="container-fluid"> 
-  <img class=" img-fluid rounded mx-auto d-block" id="logo-icon" src="../static/recursos/logo2.svg" alt="Bootstrap" width="200" height="200">
+  <img class=" img-fluid rounded mx-auto d-block" id="logo-icon" src="/static/recursos/logo2.svg" alt="Bootstrap" width="200" height="200">
 </div>           
 <div id="separacao" class="container-fluid">
   <div id="restrito"><p>ÁREA RESTRITA</p></div>
@@ -97,16 +95,16 @@
 <div id="menu-lateral" class="d-flex flex-column">
   <ul class="nav d-flex flex-column">                    
       <li  class="nav-item1 ">
-          <a  class="nav-link active" href="/obter-clientes"><img id="clientes-icon" src="../static/recursos/icones/clientes.svg" alt="Bootstrap" width="32" height="32"> &nbsp; Meus clientes  </a>
+          <a  class="nav-link active" href="/obter-clientes"><img id="clientes-icon" src="/static/recursos/icones/clientes.svg" alt="Bootstrap" width="32" height="32"> &nbsp; Meus clientes  </a>
       </li> 
       <li class="nav-item2">
-        <a class="nav-link" href="#"> <img id="audiencia-icon" src="../static/recursos/icones/calendario.svg" alt="Bootstrap" width="32" height="32"> &nbsp;Pauta de audiencias</a>
+        <a class="nav-link" href="#"> <img id="audiencia-icon" src="/static/recursos/icones/calendario.svg" alt="Bootstrap" width="32" height="32"> &nbsp;Pauta de audiencias</a>
       </li>
       <li class="nav-item3 ">
-          <a class="nav-link" href="#"> <img id="noticias-icon" src="../static/recursos/icones/pericia.svg" alt="Bootstrap" width="32" height="32"> &nbsp;Perícias</a>
+          <a class="nav-link" href="#"> <img id="noticias-icon" src="/static/recursos/icones/pericia.svg" alt="Bootstrap" width="32" height="32"> &nbsp;Perícias</a>
       </li>
       <li  id="teste"  class="nav-item4">
-        <a class="nav-link" href="#"> <img id="noticias-icon" src="../static/recursos/icones/noticias.svg" alt="Bootstrap" width="32" height="32"> &nbsp;Noticias</a>   
+        <a class="nav-link" href="#"> <img id="noticias-icon" src="/static/recursos/icones/noticias.svg" alt="Bootstrap" width="32" height="32"> &nbsp;Noticias</a>   
       </li>
     </ul>
   </div>
@@ -119,24 +117,25 @@
 <!--Área do topo da página de clientes-->
   <div class=" row bg-row mt-5">
     <div class="col-3 bg-col d-flex justify-content-end">
-      <img  id="image_client_top" src="../static/recursos/icones/topo-clientes.svg" alt="Bootstrap" width="92" height="92">
+      <img  id="image_client_top" src="/static/recursos/icones/topo-clientes.svg" alt="Bootstrap" width="92" height="92">
     </div>
     <div class="col-5 bg-col">
       <h1 class="titulo_clientes ">MEUS CLIENTES</h1>
     </div>
     <div class="col-4 bg-col d-flex justify-content-end">
-      <a href=""><img  id="image_botao_add" src="../static/recursos/icones/botao-adicionar.svg" alt="Bootstrap" width="42" height="42"></a>
+      <a href=""><img  id="image_botao_add" src="/static/recursos/icones/botao-adicionar.svg" alt="Bootstrap" width="42" height="42"></a>
     </div>
   </div>
 
 <!--Área de busca de clientes-->
   <div id="area_busca" class=" row bg-row mt-5 ">
     <div class="col-12 bg-col">
-      <div class="form-group area-pesquisa">
-        <form class="form-group area-pesquisa"> 
-          <input type="text" name="search" class="campo-pesquisa" placeholder="Pesquisar" > 
-          <button class="button_lupa "></button>
-        </form>
+      <div class="form-group area-pesquisa">  
+        <form class="form-group area-pesquisa" action="obter-clientes-filtrados" id="pesquisaDeClientes" method="post" th:object="${pesquisaDeClientes}">
+			<input type="text" id="pesquisaDeClientes" name="pesquisaDeClientes" class="campo-pesquisa" placeholder="Pesquisar" th:field="*{textoDePesquisa}">
+		
+			<input type="submit" id="pesquisarClientes" class="button_lupa">
+		</form>
       </div>
       <label for="">
         Não foram encontrados resultados.</label>

@@ -4,6 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import sistema.advogados.associados.util.PesquisaDeClientes;
 
 @Controller
 public class IndexController {
@@ -15,8 +18,12 @@ public class IndexController {
 	}
 	
 	@RequestMapping(value="/index", method=RequestMethod.GET)
-	public String getIndex(Model model) {
+	public ModelAndView getIndex(ModelAndView model) {
 		
-		return "index";
+		model.addObject("pesquisaDeClientes", new PesquisaDeClientes()); 
+		
+		model.setViewName("index");
+		
+		return model;
 	}
 }
