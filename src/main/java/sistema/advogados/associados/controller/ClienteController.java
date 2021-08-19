@@ -177,6 +177,21 @@ public class ClienteController {
 		
 		try {
 			
+			boolean cpfECnpjNaoPreenchidos = (cliente.getCpf() == null && cliente.getCnpj() == null) || (cliente.getCpf().isEmpty() && cliente.getCnpj().isEmpty());
+			
+			if(cpfECnpjNaoPreenchidos) {
+				
+				model.addAttribute("page", 0L);
+				
+				model.addAttribute("size", 20L);
+				
+				model.addAttribute("cliente", cliente);
+				
+				model.addAttribute("mensagem", "CPF ou CNPJ devem ser preenchidos");
+								
+				return new ModelAndView("cliente/inserir-cliente", model);
+			}
+			
 			if(cliente.getCpf().isEmpty()) {
 				
 				cliente.setCpf(null);
@@ -213,6 +228,21 @@ public class ClienteController {
 	public ModelAndView editarCliente(ModelMap model, @ModelAttribute Cliente cliente) {
 		
 		try {
+			boolean cpfECnpjNaoPreenchidos = (cliente.getCpf() == null && cliente.getCnpj() == null) || (cliente.getCpf().isEmpty() && cliente.getCnpj().isEmpty());
+			
+			if(cpfECnpjNaoPreenchidos) {
+				
+				model.addAttribute("page", 0L);
+				
+				model.addAttribute("size", 20L);
+				
+				model.addAttribute("cliente", cliente);
+				
+				model.addAttribute("mensagem", "CPF ou CNPJ devem ser preenchidos");
+								
+				return new ModelAndView("cliente/editar-cliente", model);
+			}
+			
 			
 			if(cliente.getCpf().isEmpty()) {
 				

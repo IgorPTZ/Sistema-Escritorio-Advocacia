@@ -20,6 +20,10 @@ public class IndexController {
 	@RequestMapping(value="/index", method=RequestMethod.GET)
 	public ModelAndView getIndex(ModelAndView model) {
 		
+		model.addObject("page", 0L);
+		
+		model.addObject("size", 20L);
+		
 		model.addObject("pesquisaDeClientes", new PesquisaDeClientes()); 
 		
 		model.setViewName("index");

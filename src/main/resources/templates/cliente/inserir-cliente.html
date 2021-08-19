@@ -23,30 +23,30 @@
         <div id="coluna" class="col-12">  
             <div class="pos-f-t">
             <div class="collapse" id="navbarToggleExternalContent">
-            <div class="bg-dark2 p-4">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav-item active">
-                      <a class="nav-link" href="#">Meus CLientes</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Pauta de Audiência</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link " href="#">Pauta de Perícias</a>
-                    </li>
-                    <br>
-                    <li class="nav-item active">
-                      <a class="nav-link" href="#">Usuários</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Alterar Senha</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link " href="#">Sair</a>
-                    </li>
-                </ul>
+	            <div class="bg-dark2 p-4">
+	                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+	                    <li class="nav-item active">
+	                      <a class="nav-link" id="btnListarClientesResponsivo" href="/obter-clientes">Meus CLientes</a>
+	                    </li>
+	                    <li class="nav-item">
+	                      <a class="nav-link" href="#">Pauta de Audiência</a>
+	                    </li>
+	                    <li class="nav-item">
+	                      <a class="nav-link " href="#">Pauta de Perícias</a>
+	                    </li>
+	                    <br>
+	                    <li class="nav-item active">
+	                      <a class="nav-link" id="btnListarUsuariosResponsivo" href="/obter-usuarios">Usuários</a>
+	                    </li>
+	                    <li class="nav-item">
+	                      <a class="nav-link" id="btnEditarUsuarioResponsivo">Alterar Senha</a>
+	                    </li>
+	                    <li class="nav-item">
+	                      <a class="nav-link " id="btnSairResponsivo" href="/logout">Sair</a>
+	                    </li>
+	                </ul>
+	            </div>
             </div>
-        </div>
       <nav class="navbar navbar-dark bg-dark2 mynav">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon">
@@ -64,15 +64,15 @@
         
 <!--Menu de usuários --> 
 <div class="nav_user">
-  <div class="collapse" id="navbarToggleExternalContent">
+   <div class="collapse" id="navbarToggleExternalContent">
       <div class="bg-dark p-4">
-            <div class="icones-menu">
-              <a  class="nav-user-link" href="#"><img id="power-icon" src="/static/recursos/icones/power.svg" alt="Bootstrap" width="22" height="22"></a><br>
-              <a  class="nav-user-link" href="#"><img id="key-icon" src="/static/recursos/icones/key.svg" alt="Bootstrap" width="22" height="22"></a><br>
-              <a  class="nav-user-link" href="#"><img id="user-icon" src="/static/recursos/icones/person.svg" alt="Bootstrap" width="22" height="22"></a><br>
+	      <div class="icones-menu">
+	              <a  class="nav-user-link" id="btnSair" href="/logout"><img id="power-icon" src="/static/recursos/icones/power.svg" alt="Bootstrap" width="22" height="22"></a><br>
+	              <a  class="nav-user-link" id="btnEditarUsuario"><img id="key-icon" src="/static/recursos/icones/key.svg" alt="Bootstrap" width="22" height="22"></a><br>
+	              <a  class="nav-user-link" id="btnListarUsuarios" href="/obter-usuarios"><img id="user-icon" src="/static/recursos/icones/person.svg" alt="Bootstrap" width="22" height="22"></a><br>
+	      </div>
       </div>
-  </div>
-</div>     
+  </div>      
 </a> 
 <nav class="navbar navbar-dark bg-dark">
  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Alterna navegação">
@@ -83,7 +83,9 @@
 
 <!--Logo Marca-->   
 <div id="logo-legenda" class="container-fluid"> 
-  <img class=" img-fluid rounded mx-auto d-block" id="logo-icon" src="/static/recursos/logo2.svg" alt="Bootstrap" width="200" height="200">
+  <a href="/index">
+  	<img class=" img-fluid rounded mx-auto d-block" id="logo-icon" src="/static/recursos/logo2.svg" alt="Bootstrap" width="200" height="200">
+  </a>
 </div>           
 <div id="separacao" class="container-fluid">
   <div id="restrito"><p>ÁREA RESTRITA</p></div>
@@ -93,7 +95,7 @@
 <div id="menu-lateral" class="d-flex flex-column">
   <ul class="nav d-flex flex-column">                    
       <li  class="nav-item1 ">
-          <a  class="nav-link active" href="#">  <img id="clientes-icon" src="/static/recursos/icones/clientes.svg" alt="Bootstrap" width="32" height="32"> &nbsp; Meus clientes  </a>
+          <a  class="nav-link active" href="/obter-clientes"><img id="clientes-icon" src="/static/recursos/icones/clientes.svg" alt="Bootstrap" width="32" height="32"> &nbsp; Meus clientes</a>
       </li> 
       <li class="nav-item2">
         <a class="nav-link" href="#"> <img id="audiencia-icon" src="/static/recursos/icones/calendario.svg" alt="Bootstrap" width="32" height="32"> &nbsp;Pauta de audiencias</a>
@@ -133,18 +135,18 @@
 	      <button type="submit">
 	      	<img class="t_itens"  id="image_botao_edit" src="/static/recursos/icones/salvar.svg" alt="Bootstrap" width="42" height="42">
 	      </button>
-	    </div>
-	    
-	    
+	    </div>    
 	  </div>
   
   	  <input type="hidden" id="id" placeholder="Id" th:field="*{id}" class="form-control" readonly="readonly">
+  	  
+  	  <h5 style="color: red;" th:text="${mensagem}"></h5>
   	  
       <!--Formulario Clientes-->
 	  <div class="row  mt-5"> 
 	    <div class="container-fluid ">
 	        <div class="items"> 
-	        	<input id="cliente-nome" th:field="*{nome}" type="text" class="form-control formulario cliente" name="" placeholder="Cliente" aria-required="true" aria-invalid="true">
+	        	<input id="cliente-nome" th:field="*{nome}" type="text" class="form-control formulario cliente" name="" required="required" placeholder="Cliente" aria-required="true" aria-invalid="true">
 	        </div>
 	        
 	        <div class="items"> 
@@ -222,12 +224,12 @@
 	    <div class="container-fluid box-1">
 	        <div class="items"> 
 	        	<label class="lb-contatos mt-5">E-MAIL</label>
-	        	<input th:field="*{email}" type="text" id="cliente-email" class="form-control formulario cliente" name="" placeholder="cliente@email.com" >
+	        	<input th:field="*{email}" type="text" id="cliente-email" class="form-control formulario cliente" required="required" name="" placeholder="cliente@email.com">
 	        </div>
 	        
 	        <div class="items"> 
 	        	<label class="lb-contatos mt-5">ENDEREÇO</label>
-	        	<input th:field="*{endereco.descricao}" type="text" id="cliente-endereco" class="form-control formulario cliente" name="" placeholder="Endereço Tal, nº 123 - Bairro - Cidade - Estado">
+	        	<input th:field="*{endereco.descricao}" type="text" id="cliente-endereco" class="form-control formulario cliente" required="required" name="" placeholder="Endereço Tal, nº 123 - Bairro - Cidade - Estado">
 	        </div>
 	      </div>
 	  </div>
@@ -304,5 +306,23 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  	  	<script type="text/javascript">
+		$(document).ready(function(){
+		   
+			login = localStorage.getItem("login");
+			
+			$('#loginDoUsuario').val(login);
+			
+			$("#btnEditarUsuario").attr("href", "/obter-usuario-por-login?login=" + login);
+			
+			$("#btnEditarUsuarioResponsivo").attr("href", "/obter-usuario-por-login?login=" + login);
+			
+			$("#btnListarUsuarios").attr("href", "/obter-usuarios?login=" + login);
+			
+			$("#btnListarUsuariosResponsivo").attr("href", "/obter-usuarios?login=" + login);
+		   
+		    console.log('Login apos acesso -> ' + login);
+		});	
+	</script>
   </body>
 </html>

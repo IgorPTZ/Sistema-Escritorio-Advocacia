@@ -17,6 +17,10 @@
 </head>
 <body>
 
+<input type="hidden" id="page" name="page" th:value="${page}"/>
+
+<input type="hidden" id="page" name="page" th:value="${size}"/>
+
 <input type="hidden" id="loginDoUsuario" name="loginDoUsuario"/>
 
 <!-- Menu responsividade-->
@@ -74,7 +78,7 @@
               <a  class="nav-user-link" id="btnListarUsuarios" href="/obter-usuarios"><img id="user-icon" src="/static/recursos/icones/person.svg" alt="Bootstrap" width="22" height="22"></a><br>
       </div>
   </div>
-</div>     
+ </div>     
 </a> 
 <nav class="navbar navbar-dark bg-dark">
  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Alterna navegação">
@@ -85,7 +89,9 @@
 
 <!--Logo Marca-->   
 <div id="logo-legenda" class="container-fluid"> 
-  <img class=" img-fluid rounded mx-auto d-block" id="logo-icon" src="/static/recursos/logo2.svg" alt="Bootstrap" width="200" height="200">
+  <a href="/index">
+  	<img class=" img-fluid rounded mx-auto d-block" id="logo-icon" src="/static/recursos/logo2.svg" alt="Bootstrap" width="200" height="200">
+  </a>
 </div>           
 <div id="separacao" class="container-fluid">
   <div id="restrito"><p>ÁREA RESTRITA</p></div>
@@ -95,7 +101,7 @@
 <div id="menu-lateral" class="d-flex flex-column">
   <ul class="nav d-flex flex-column">                    
       <li  class="nav-item1 ">
-          <a  class="nav-link active" href="/obter-clientes"><img id="clientes-icon" src="/static/recursos/icones/clientes.svg" alt="Bootstrap" width="32" height="32"> &nbsp; Meus clientes  </a>
+          <a  class="nav-link active" href="/obter-clientes"><img id="clientes-icon" src="/static/recursos/icones/clientes.svg" alt="Bootstrap" width="32" height="32"> &nbsp; Meus clientes</a>
       </li> 
       <li class="nav-item2">
         <a class="nav-link" href="#"> <img id="audiencia-icon" src="/static/recursos/icones/calendario.svg" alt="Bootstrap" width="32" height="32"> &nbsp;Pauta de audiencias</a>
@@ -123,7 +129,7 @@
       <h1 class="titulo_clientes ">MEUS CLIENTES</h1>
     </div>
     <div class="col-4 bg-col d-flex justify-content-end">
-      <a href=""><img  id="image_botao_add" src="/static/recursos/icones/botao-adicionar.svg" alt="Bootstrap" width="42" height="42"></a>
+      <a id="btnAdicionarCliente" th:href="@{/carregar-novo-cliente(page=${page}, size=${size})}"><img id="image_botao_add" src="/static/recursos/icones/botao-adicionar.svg" alt="Bootstrap" width="42" height="42"></a>
     </div>
   </div>
 
