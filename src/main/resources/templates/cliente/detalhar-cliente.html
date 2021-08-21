@@ -175,14 +175,15 @@
 		    <input th:field="${cliente.contatos[1].numero}" disabled="disabled" type="text" id="cliente-telefone2" class="form-control formulario teste4 " name="" placeholder="(00) 0000-0000">
 		  </div>
 		
-		  <div class="col-md-3  caixa-processo2 mb-4 align-self-start ">
-		   <!--tive que fazer uma gambiarra teve jeito não-->
+		 <!--   <div class="col-md-3  caixa-processo2 mb-4 align-self-start ">
 		  </div>
 		
 		  <div class="col-md-3  caixa-processo mb-4  align-self-start">
-		    <h2>Bradesco-sa</h2>
-		    <p>00229988.99.2.-2</p>
-		  </div>
+		  	<div th:each = "processo : ${cliente.processos}" >
+		  		<h2 th:text="${processo.nomeDosReus}"></h2>
+		    	<p th:text="${processo.numero}" ></p>
+		  	</div>
+		  </div> -->
 		
 		 </div>
 		
@@ -196,16 +197,43 @@
 		      <input th:field="${cliente.contatos[3].numero}" disabled="disabled" type="text" id="cliente-telefone4" class="form-control formulario teste4 " name="" placeholder="(00) 0000-0000" >
 		        
 		    </div>
-		    <div class="col-md-3 add-processo2 mb-4 align-self-start">
-		       <!--gambiarra feia da zorra mas depois eu resolvo-->
+		    <!--  <div class="col-md-3 add-processo2 mb-4 align-self-start">
 		    </div>
 		    <div class="col-md-3 add-processo mb-4 align-self-start">
 		      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
 		        <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
 		      </svg>&nbsp;Adicionar Processo
-		    </div>
+		    </div> -->
 		
 		 </div>
+		 
+		  <div class="col-md-3  caixa-processo2 mb-4 align-self-start " >
+		  </div>
+		
+		  <div class="col-md-3 align-self-start" style="margin-left:650px;">
+		  	<div class="caixa-processo mb-4" th:each = "processo : ${cliente.processos}" >
+		  		<a th:href="@{/detalhar-processo-por-id(id=${processo.id}, clienteId=${cliente.id}, page=${page}, size=${size})}" style="color: inherit;text-decoration: none;">
+		  			<span>
+		  				<h4 th:text="${processo.nomeDosReus}"></h4>
+		    			<p th:text="${processo.numero}" ></p>
+		  			</span>
+		  		</a>
+
+		  	</div>
+		  </div> 
+		  
+	      <div class="col-md-3 add-processo2 mb-4 align-self-start">
+	       <!--gambiarra feia da zorra mas depois eu resolvo-->
+	      </div>
+	      
+		  <div class="col-md-3 add-processo mb-4 align-self-start" style="margin-left:650px;">
+		      <a th:href="@{/carregar-novo-processo(clienteId=${cliente.id}, page=${page}, size=${size})}" style="color: inherit;text-decoration: none;">
+		      	 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+		        <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
+		      </svg>&nbsp;Adicionar Processo
+		      </a>
+		  </div> 
+		 
 		</div> 
 	   <div class="row bg-row mt-5"> 
 	    <div class="container-fluid box-1">
