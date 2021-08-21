@@ -210,7 +210,7 @@
 		  <div class="col-md-3  caixa-processo2 mb-4 align-self-start " >
 		  </div>
 		
-		  <div class="col-md-3 align-self-start" style="margin-left:650px;">
+		  <div class="col-md-3 align-self-start" style="margin-left:650px;max-height: 265px;overflow: auto;">
 		  	<div class="caixa-processo mb-4" th:each = "processo : ${cliente.processos}" >
 		  		<a th:href="@{/detalhar-processo-por-id(id=${processo.id}, clienteId=${cliente.id}, page=${page}, size=${size})}" style="color: inherit;text-decoration: none;">
 		  			<span>
