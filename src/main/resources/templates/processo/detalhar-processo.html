@@ -1,4 +1,503 @@
-<!DOCTYPE html>
+<!doctype html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/recursos/css/estilos_base.css">
+    <link rel="stylesheet" href="/static/recursos/css/estilos_meus-clientes_adicionar.css">
+    <link rel="stylesheet" href="/static/recursos/css/estilos_processos.css">
+    <link rel="stylesheet" href="/static/recursos/css/responsividade.css">
+    <link rel="stylesheet" href="/static/recursos/css/meus-testes.css">
+    
+<title>ADV PRO!</title>
+
+</head>
+<body>
+
+<!-- Menu responsividade-->
+<div class="container-fluid">
+    <div class="row">
+        <div id="coluna" class="col-12">  
+            <div class="pos-f-t">
+            <div class="collapse" id="navbarToggleExternalContent">
+	            <div class="bg-dark2 p-4">
+	                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+	                    <li class="nav-item active">
+	                      <a class="nav-link" id="btnListarClientesResponsivo" href="/obter-clientes">Meus CLientes</a>
+	                    </li>
+	                    <li class="nav-item">
+	                      <a class="nav-link" href="#">Pauta de Audiência</a>
+	                    </li>
+	                    <li class="nav-item">
+	                      <a class="nav-link " href="#">Pauta de Perícias</a>
+	                    </li>
+	                    <br>
+	                    <li class="nav-item active">
+	                      <a class="nav-link" id="btnListarUsuariosResponsivo" href="/obter-usuarios">Usuários</a>
+	                    </li>
+	                    <li class="nav-item">
+	                      <a class="nav-link" id="btnEditarUsuarioResponsivo">Alterar Senha</a>
+	                    </li>
+	                    <li class="nav-item">
+	                      <a class="nav-link " id="btnSairResponsivo" href="/logout">Sair</a>
+	                    </li>
+	                </ul>
+	            </div>
+            </div>
+      <nav class="navbar navbar-dark bg-dark2 mynav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon">
+          </span>
+        </button>
+      </nav>
+    </div>
+  </div>
+</div>
+</div>
+
+<div id="container_base" class="container-fluid h-100">
+  <div class="row h-100">  
+    <div id="coluna-esquerda" class="col-md-3 d-none d-md-block">
+        
+<!--Menu de usuários --> 
+<div class="nav_user">
+    <div class="collapse" id="navbarToggleExternalContent">
+      <div class="bg-dark p-4">
+            <div class="icones-menu">
+              <a  class="nav-user-link" id="btnSair" href="/logout"><img id="power-icon" src="/static/recursos/icones/power.svg" alt="Bootstrap" width="22" height="22"></a><br>
+              <a  class="nav-user-link" id="btnEditarUsuario"><img id="key-icon" src="/static/recursos/icones/key.svg" alt="Bootstrap" width="22" height="22"></a><br>
+              <a  class="nav-user-link" id="btnListarUsuarios" href="/obter-usuarios"><img id="user-icon" src="/static/recursos/icones/person.svg" alt="Bootstrap" width="22" height="22"></a><br>
+      </div>
+  </div>
+ </div>     
+</a> 
+<nav class="navbar navbar-dark bg-dark">
+ <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Alterna navegação">
+    <span class="navbar-toggler-icon"></span>
+      </button>
+  </nav>
+</div>
+
+<!--Logo Marca-->   
+<div id="logo-legenda" class="container-fluid"> 
+    <a href="/index">
+	  	<img class=" img-fluid rounded mx-auto d-block" id="logo-icon" src="/static/recursos/logo2.svg" alt="Bootstrap" width="200" height="200">
+	</a>
+</div>           
+<div id="separacao" class="container-fluid">
+  <div id="restrito"><p>ÁREA RESTRITA</p></div>
+</div>
+
+<!--Menu Principal-->
+<div id="menu-lateral" class="d-flex flex-column">
+  <ul class="nav d-flex flex-column">                    
+      <li  class="nav-item1 ">
+          <a  class="nav-link active" href="#">  <img id="clientes-icon" src="/static/recursos/icones/clientes.svg" alt="Bootstrap" width="32" height="32"> &nbsp; Meus clientes  </a>
+      </li> 
+      <li class="nav-item2">
+        <a class="nav-link" href="#"> <img id="audiencia-icon" src="/static/recursos/icones/calendario.svg" alt="Bootstrap" width="32" height="32"> &nbsp;Pauta de audiencias</a>
+      </li>
+      <li class="nav-item3 ">
+          <a class="nav-link" href="#"> <img id="noticias-icon" src="/static/recursos/icones/pericia.svg" alt="Bootstrap" width="32" height="32"> &nbsp;Perícias</a>
+      </li>
+      <li  id="teste"  class="nav-item4">
+        <a class="nav-link" href="#"> <img id="noticias-icon" src="/static/recursos/icones/noticias.svg" alt="Bootstrap" width="32" height="32"> &nbsp;Noticias</a>   
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!--COLUNA DIREITA-->
+<div id="coluna-direita" class="col-md-9 d-flex col-sm-12">
+<div class="container-fluid">
+
+<!--Área do topo da página de clientes-->
+  <div class=" row  mt-5">
+    <div class="col-2">
+      <img class="t_itens" id="image_client_top" src="/static/recursos/icones/processos.svg" alt="Bootstrap" width="92" height="92">
+    </div>
+    <div class="col-5">
+      <h1 class="titulo_clientes "><b>Processos</b></h1>
+    </div>
+   
+  </div>
+
+<div class="row">
+  <form>
+  	  <input type="hidden" id="id" th:value="${processo.id}" class="form-control" readonly="readonly">
+  
+  	  <div class="col-md-11 col-xs-10 bloco-processos mt-4">
+    	<div class="col-md-12 visu-dados reu">
+    		<p th:text="${processo.nomeDosReus}"></p>
+    	</div>
+
+        <div class="col-md-6 visu-dados num-processo">
+        	<p th:text="${processo.numero}"></p>              
+        </div>
+
+        <div class=" col-md-5 col-md-offset-1 visu-dados status">
+            <p th:text="${processo.situacao.situacao}"></p>                
+        </div>
+
+        <div class="visu-dados">
+        	<p th:text="${processo.observacao}"></p> 
+        </div>                   
+  	 </div>
+  	 
+  	 <div class="col-md-1 col-xs-2 col-lg-1 bloco-botao mt-4">
+        <img id="image_icon_view" class="config-col-view" src="/static/recursos/icones/editar-icon.svg" alt="Bootstrap" width="22" height="22">
+
+        <img id="image_icon_view" class="incon-del" src="/static/recursos/icones/excluir.svg" alt="Bootstrap" width="22" height="22">
+	</div>
+  
+
+		<!-- voltar para o cliente -->
+		<label class="cliente-label">Cliente</label>
+        <div class="visu-dados">
+          <a th:each="cliente : ${processo.clientes}" th:href="@{/detalhar-cliente-por-id(id=${cliente.id}, page=${page}, size=${size})}"><p th:text="${cliente.nome}" class="visu-cliente mt-2"></p></a>
+        </div>
+</form>
+       
+        
+
+<!-- menu adicionar audiencia -->
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" href="page_clientes_processos_audiencia_com_resultado.html">Audiência</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link " href="page_clientes_processos_pericia_com_resultado.html">Perícia</a>
+  </li>
+</ul>
+  <div class="row d-flex bt-add-novo-processo">
+   <div class="col-6 d-flex justify-content-end"> 
+   <img data-bs-toggle="modal" data-bs-target="#modal_add_audiencia"  id="" class="" src="/static/recursos/icones/botao-adicionar.svg" alt="Bootstrap" width="22" height="22"> 
+  </div> 
+  <div class=" col-6 ">
+  Adicionar Audiência
+  </div>
+      <div class="card-evento">
+        <div class="row">
+          <div class=" col-md-3 visu-data-pericia">
+            data
+          </div>
+          <div class="col-md-3 visu-hora-pericia">
+            hora
+          </div>
+          <div class="col-md-4 visu-vara-pericia">
+            vara
+          </div>
+          <div class="col-md-2">
+           <a data-bs-toggle="modal" data-bs-target="#editar_audiencia"> <img  id="" class="" src="/static/recursos/icones/editar_2.svg" alt="Bootstrap" width="22" height="22"></a>
+            <svg data-bs-toggle="modal" data-bs-target="#email_audiencia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#5db263" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+              <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
+            </svg>
+            <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#5db263" class="bi bi-trash" viewBox="0 0 16 16">
+              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+              <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+            
+            </svg>
+          </div>
+          <div class="row">
+            <div class="col-md-12 mt-2 visu-local-pericia">
+              <label>Local:</label> <span>Simoes Filho</span><br>
+              <span id="obs_pericia">Obs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+<!--Modal adicionar audiencia-->
+<div class="modal fade" id="modal_add_audiencia" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Adicionar Audiência</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Processo:</label>
+            <input type="text" class="form-control" id="recipient-name" placeholder="N° do processo">
+          </div>    
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Data:</label>
+            <input type="date" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Hora:</label>
+            <input type="time" class="form-control">
+          </div>
+          <input type="checkbox" onclick="desabilitar1('sim')">  <label>Precatorio</label>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Número do processo gerado</label>
+            <input disabled id="number_processo" type="number" class="form-control" placeholder="Somente numeros">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Testemunha</label>
+            <input disabled id="testemunha" type="text" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Observação</label>
+            <input  type="text" class="form-control">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Modal editar audiencia-->
+<div class="modal fade" id="editar_audiencia" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Audiência</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Processo:</label>
+            <input type="text" class="form-control" id="recipient-name" placeholder="N° do processo">
+          </div>    
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Data:</label>
+            <input type="date" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Hora:</label>
+            <input type="time" class="form-control">
+          </div>
+         <label>Precatorio</label>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Número do processo gerado</label>
+            <input id="number_processo2" type="number" class="form-control" placeholder="Somente numeros">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Testemunha</label>
+            <input  id="testemunha2" type="text" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Observação</label>
+            <input  type="text" class="form-control">
+          </div>
+          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Modal email audiencia-->
+<div class="modal fade" id="email_audiencia" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Adicionar Audiência</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+         <span>Prezado(a),</span><br>
+         <span>segue os dados para a sua audiência:</span><br>
+         <span>Processo:</span><br>
+         <span>Data:</span><br>
+         <span>Horário:</span><br>
+         <span>Local:</span><br>
+         <div class="form-group">
+
+          <label>
+        <input type="checkbox"  onclick="desabilitar(this.checked)"/> Instrução/UNA: </label>
+          <div class="input-group">
+            <input type="text" disabled class="form-control" name="" id="numero" value="Favor comparecer acompanhado de 3 testemunhas" placeholder="Favor comparecer acompanhado de 3 testemunhas"/>
+          </div>
+        </div>
+   
+         <span>Qualquer dúvida entrar em contato conosco 71 3500-6167/68</span>
+       
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Observação</label>
+            <input  type="text" class="form-control">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Enviar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+</div>
+</div>
+</div>
+
+    <!-- JavaScript (Opcional) -->
+    <script>
+    
+      function desabilitar1(valor) {
+      	  var status = document.getElementById('number_processo').disabled;
+	
+	      if (valor == 'sim' && !status) {
+		      document.getElementById('number_processo').disabled = true;
+		      document.getElementById('testemunha').disabled = true;
+	      } else {
+		      document.getElementById('number_processo').disabled = false;
+		      document.getElementById('testemunha').disabled = false;
+	      }
+      }
+
+      function desabilitar(selecionado) {
+        if(selecionado == true){
+          document.getElementById('numero').disabled = false;
+        }else{
+          document.getElementById('numero').disabled = true; 
+          
+        }
+      }
+      
+	    function desativarFlagDeInstrucao(id) {
+			
+			let periciaId = id.substring(11);
+			
+			document.getElementById("observacaoDeTestemunhas" + periciaId).style.display = "none";
+		}
+	
+		function ativarFlagDeInstrucao(id) {
+			
+			let periciaId = id.substring(13);
+			
+			document.getElementById("observacaoDeTestemunhas" + periciaId).style.display = "block";
+		}
+		
+		function formarNotificacaoDaAudiencia(id) {
+			
+			console.log(id);
+			
+			let audienciaId = id.substring(22);
+			
+			console.log(audienciaId);
+			
+			document.getElementById("observacaoDeTestemunhas" + audienciaId).style.display = "none";
+			
+			let clienteId = document.getElementById("clienteId").value;
+			
+			let processoId = document.getElementById("processoId").value;
+			
+			document.getElementById("flagInicial" + audienciaId).checked = true;
+			
+			document.getElementById("audienciaId" + audienciaId).value = audienciaId;
+			
+			document.getElementById("clienteId" + audienciaId).value = clienteId;
+			
+			document.getElementById("processoId" + audienciaId).value = processoId;
+		}
+	
+		function formarNotificacaoDaPericia(id) {
+			
+			let periciaId = id.substring(20);
+			
+			console.log('Id da pericia:' + periciaId);
+			
+			let clienteId = document.getElementById("clienteId").value;
+			
+			let processoId = document.getElementById("processoId").value;
+			
+			console.log('Id do cliente:' + clienteId);
+			
+			console.log('Id do processo:' + processoId);
+			
+			console.log(document.getElementById("periciaId" + periciaId));
+			
+			console.log(document.getElementById("clienteId" + periciaId));
+			
+			console.log(document.getElementById("processoId" + periciaId));
+			
+			document.getElementById("periciaId" + periciaId).value = periciaId;
+			
+			document.getElementById("clienteId" + periciaId).value = clienteId;
+			
+			document.getElementById("processoId" + periciaId).value = processoId;
+			
+			//if(id.includes("flagInicial")) {
+							
+			//	periciaId = id.substring(11);
+				
+			//	tipoDeNotificacao = document.getElementById("flagInicial" + periciaId).value;
+			//	
+			//	document.getElementById("flagInstrucao" + periciaId).checked = false;
+			//}
+			//else if(id.includes("flagInstrucao")) {
+				
+			//	periciaId = id.substring(13);
+				
+			//	tipoDeNotificacao = document.getElementById("flagInstrucao" + periciaId).value;
+				
+			//	document.getElementById("flagInicial" + periciaId).checked = false;
+			//}
+			
+			//console.log(periciaId);
+			
+			//console.log(tipoDeNotificacao);
+			
+			//let url = "/enviar-email-de-notificacao?clienteId=" + clienteId + "&processoId=" + processoId + "&periciaId=" + periciaId + "&tipoDeNotificacao=" + tipoDeNotificacao;
+			
+			//console.log(url);
+			
+			//document.getElementById("enviarNotificacao" + periciaId).href = url;
+		}
+  </script>
+
+
+
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+   
+    <script>
+		$(document).ready(function(){
+			   
+			login = localStorage.getItem("login");
+			
+			$('#loginDoUsuario').val(login);
+			
+			$("#btnEditarUsuario").attr("href", "/obter-usuario-por-login?login=" + login);
+			
+			$("#btnEditarUsuarioResponsivo").attr("href", "/obter-usuario-por-login?login=" + login);
+			
+			$("#btnListarUsuarios").attr("href", "/obter-usuarios?login=" + login);
+			
+			$("#btnListarUsuariosResponsivo").attr("href", "/obter-usuarios?login=" + login);
+		   
+		    console.log('Login apos acesso -> ' + login);
+		});	
+   </script>
+  </body>
+</html>
+
+
+<!-- <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8">
@@ -6,9 +505,9 @@
 		
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 		
-	   <!--   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	    link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 	    
-	    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->  
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 
 	    
 	    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 		
@@ -107,10 +606,10 @@
 					    	<p th:text="${'Obs:' + audiencia.observacao}"></p>
 					    	
 					    	<a class="btn btn-primary" th:href="@{/excluir-audiencia-por-id(id=${audiencia.id}, clienteId=${cliente.id}, processoId=${processo.id}, page=${page}, size=${size})}">Excluir</a>
-					    </div>
+					    </div> -->
 					   	
 					   	<!-- INICIO DO MODAL -->
-				    	<div class="modal fade" th:id="'notificacaoDeAudiencia' + ${audiencia.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				    	<!--  <div class="modal fade" th:id="'notificacaoDeAudiencia' + ${audiencia.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							  <div class="modal-dialog" role="document">
 							    <div class="modal-content">
 							      <div class="modal-header">
@@ -177,10 +676,10 @@
 							      	</form>
 							    </div>
 							  </div>
-						</div> 
+						</div> -->
 						
 						<!-- FIM DO MODAL -->
-					</div> 
+				<!-- </div> 
 				</div> 
 				
 				<div th:case="false">
@@ -217,11 +716,11 @@
 					    	<p th:text="${'Endereço:' + pericia.endereco}"></p>
 					    	
 					    	<a class="btn btn-primary" th:href="@{/excluir-pericia-por-id(id=${pericia.id}, clienteId=${cliente.id}, processoId=${processo.id}, page=${page}, size=${size})}">Excluir</a>
-					    </div>
+					    </div>  -->
 					   	
 					   	<!-- INICIO DO MODAL -->
 					   	 
-				    	<div class="modal fade" th:id="'notificacaoDePericia' + ${pericia.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				    	<!--<div class="modal fade" th:id="'notificacaoDePericia' + ${pericia.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							  <div class="modal-dialog" role="document">
 							    <div class="modal-content">
 							      <div class="modal-header">
@@ -275,10 +774,10 @@
 							      	</form>
 							    </div>
 							  </div>
-						</div>
+						</div>   -->
 						
 						<!-- FIM DO MODAL -->
-					</div>
+				<!-- </div>
 				</div> 
 				
 				<div th:case="false">
@@ -351,33 +850,33 @@
 				
 				document.getElementById("processoId" + periciaId).value = processoId;
 				
-				/*if(id.includes("flagInicial")) {
+				//if(id.includes("flagInicial")) {
 								
-					periciaId = id.substring(11);
+				//	periciaId = id.substring(11);
 					
-					tipoDeNotificacao = document.getElementById("flagInicial" + periciaId).value;
+				//	tipoDeNotificacao = document.getElementById("flagInicial" + periciaId).value;
+				//	
+				//	document.getElementById("flagInstrucao" + periciaId).checked = false;
+				//}
+				//else if(id.includes("flagInstrucao")) {
 					
-					document.getElementById("flagInstrucao" + periciaId).checked = false;
-				}
-				else if(id.includes("flagInstrucao")) {
+				//	periciaId = id.substring(13);
 					
-					periciaId = id.substring(13);
+				//	tipoDeNotificacao = document.getElementById("flagInstrucao" + periciaId).value;
 					
-					tipoDeNotificacao = document.getElementById("flagInstrucao" + periciaId).value;
-					
-					document.getElementById("flagInicial" + periciaId).checked = false;
-				}*/
+				//	document.getElementById("flagInicial" + periciaId).checked = false;
+				//}
 				
 				//console.log(periciaId);
 				
 				//console.log(tipoDeNotificacao);
 				
-				/*let url = "/enviar-email-de-notificacao?clienteId=" + clienteId + "&processoId=" + processoId + "&periciaId=" + periciaId + "&tipoDeNotificacao=" + tipoDeNotificacao;
+				//let url = "/enviar-email-de-notificacao?clienteId=" + clienteId + "&processoId=" + processoId + "&periciaId=" + periciaId + "&tipoDeNotificacao=" + tipoDeNotificacao;
 				
-				console.log(url);
+				//console.log(url);
 				
-				document.getElementById("enviarNotificacao" + periciaId).href = url;*/
+				//document.getElementById("enviarNotificacao" + periciaId).href = url;
 			}
 		</script>
 	</body>
-</html>
+</html> -->
