@@ -19,6 +19,14 @@
 </head>
 <body>
 
+<input type="hidden" id="clienteId" name="clienteId" th:value="${cliente.id}"/>
+
+<input type="hidden" id="processoId" name="processoId" th:value="${processo.id}"/>
+
+<input type="hidden" id="size" name="size" th:value="${page}"/>
+
+<input type="hidden" id="size" name="size" th:value="${size}"/>
+
 <!-- Menu responsividade-->
 <div class="container-fluid">
     <div class="row">
@@ -149,10 +157,13 @@
         </div>                   
   	 </div>
   	 
+  
+		
+  	 
   	 <div class="col-md-1 col-xs-2 col-lg-1 bloco-botao mt-4">
-        <img id="image_icon_view" class="config-col-view" src="/static/recursos/icones/editar-icon.svg" alt="Bootstrap" width="22" height="22">
-
-        <img id="image_icon_view" class="incon-del" src="/static/recursos/icones/excluir.svg" alt="Bootstrap" width="22" height="22">
+        <a th:href="@{/editar-processo-por-id(id=${processo.id}, clienteId=${cliente.id}, page=${page}, size=${size})}"><img id="image_icon_view" class="config-col-view" src="/static/recursos/icones/editar-icon.svg" alt="Bootstrap" width="22" height="22"></a>
+		
+		<a th:href="@{/excluir-processo-por-id(id=${processo.id}, clienteId=${cliente.id}, page=${page}, size=${size})}" onclick="return confirm('Tem certeza que deseja excluir?')"><img id="image_icon_view" class="incon-del" src="/static/recursos/icones/excluir.svg" alt="Bootstrap" width="22" height="22"></a>  
 	</div>
   
 
@@ -166,184 +177,137 @@
         
 
 <!-- menu adicionar audiencia -->
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link active" href="page_clientes_processos_audiencia_com_resultado.html">Audiência</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link " href="page_clientes_processos_pericia_com_resultado.html">Perícia</a>
-  </li>
-</ul>
-  <div class="row d-flex bt-add-novo-processo">
-   <div class="col-6 d-flex justify-content-end"> 
-   <img data-bs-toggle="modal" data-bs-target="#modal_add_audiencia"  id="" class="" src="/static/recursos/icones/botao-adicionar.svg" alt="Bootstrap" width="22" height="22"> 
-  </div> 
-  <div class=" col-6 ">
-  Adicionar Audiência
-  </div>
-      <div class="card-evento">
-        <div class="row">
-          <div class=" col-md-3 visu-data-pericia">
-            data
-          </div>
-          <div class="col-md-3 visu-hora-pericia">
-            hora
-          </div>
-          <div class="col-md-4 visu-vara-pericia">
-            vara
-          </div>
-          <div class="col-md-2">
-           <a data-bs-toggle="modal" data-bs-target="#editar_audiencia"> <img  id="" class="" src="/static/recursos/icones/editar_2.svg" alt="Bootstrap" width="22" height="22"></a>
-            <svg data-bs-toggle="modal" data-bs-target="#email_audiencia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#5db263" class="bi bi-envelope-fill" viewBox="0 0 16 16">
-              <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
-            </svg>
-            <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#5db263" class="bi bi-trash" viewBox="0 0 16 16">
-              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-              <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-            
-            </svg>
-          </div>
-          <div class="row">
-            <div class="col-md-12 mt-2 visu-local-pericia">
-              <label>Local:</label> <span>Simoes Filho</span><br>
-              <span id="obs_pericia">Obs</span>
-            </div>
-          </div>
-        </div>
+	<ul class="nav nav-tabs">
+		<li class="nav-item"><a class="nav-link active"
+			href="page_clientes_processos_audiencia_com_resultado.html">Audiência</a>
+		</li>
+		<li class="nav-item"><a class="nav-link "
+			href="page_clientes_processos_pericia_com_resultado.html">Perícia</a>
+		</li>
+	</ul>
+ <div class="row d-flex bt-add-novo-processo">
+   <div class="col-6 d-flex justify-content-end">
+   	<a th:href="@{/carregar-nova-audiencia(clienteId=${cliente.id}, processoId=${processo.id}, page=${page}, size=${size})}"><img data-bs-toggle="modal" data-bs-target="#modal_add_audiencia"  id="" class="" src="/static/recursos/icones/botao-adicionar.svg" alt="Bootstrap" width="22" height="22"></a>
+   </div>
+    
+   <div class=" col-6 ">
+  	Adicionar Audiência
+   </div>
+  	  
+  	  <div th:switch="${audiencias != null && audiencias.size > 0}">
+	      <div th:case="true" >
+	      	<div th:each="audiencia: ${audiencias}" class="card-evento">
+	      		<div  class="row">
+		          
+		          <div class=" col-md-3 visu-data-pericia">
+		            Data <p th:text="${#temporals.format(audiencia.dataDaAudiencia, 'dd-MM-yyyy')}"></p>
+		          </div>
+		          <div class="col-md-3 visu-hora-pericia">
+		            Hora <p th:text="${audiencia.horario}"></p>
+		          </div>
+		          <div class="col-md-4 visu-vara-pericia">
+		            Vara <p th:text="${audiencia.vara + 'ª'}"></p>
+		          </div>
+		          
+		          
+		          <div class="col-md-2">
+		           <a th:href="@{/editar-audiencia-por-id(id=${audiencia.id}, clienteId=${cliente.id}, processoId=${processo.id}, page=${page}, size=${size})}" data-bs-target="#editar_audiencia"> <img  id="" class="" src="/static/recursos/icones/editar_2.svg" alt="Bootstrap" width="22" height="22"></a>
+		           
+		           <a onclick="formarNotificacaoDaAudiencia(this.id)" th:id="'notificacaoDaAudiencia' + ${audiencia.id}" data-toggle="modal" th:attr="data-target='#notificacaoDeAudiencia' + ${audiencia.id}">
+			           	  <svg data-bs-toggle="modal" data-bs-target="#email_audiencia" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#5db263" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+			              <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
+			            </svg>
+		            </a>
+		     
+		            <a th:href="@{/excluir-audiencia-por-id(id=${audiencia.id}, clienteId=${cliente.id}, processoId=${processo.id}, page=${page}, size=${size})}" onclick="return confirm('Voce realmente deseja excluir esta audiência ?');">
+			            <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#5db263" class="bi bi-trash" viewBox="0 0 16 16">
+			              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+			              <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+			            </svg>
+		            </a>
+		          </div>
+		          <div class="row">
+		            <div class="col-md-12 mt-2 visu-local-pericia">
+		              <label>Local:</label> <span th:text="${audiencia.endereco}"></span><br>
+		              <span id="obs_pericia" th:text="${'Obs:' + audiencia.observacao}"></span>
+		            </div>
+		          </div>
+		        </div>
+		        
+       	    	<div class="modal fade" th:id="'notificacaoDeAudiencia' + ${audiencia.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				     
+				        <h5 class="modal-title" id="exampleModalLabel">Aviso de Audiência</h5>
+				        
+				        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+				      </div>
+				      
+				     <form action="enviar-notificacao-de-audiencia" method="post" th:object="${notificacaoDeAudiencia}">
+					      <div class="modal-body">
+					    
+					      		<input type="hidden" th:id="'clienteId' + ${audiencia.id}" th:field="*{clienteId}"/>
+					      		
+					      		<input type="hidden" th:id="'audienciaId' + ${audiencia.id}" th:field="*{audienciaId}"/>
+					      		
+					      		<input type="hidden" th:id="'processoId' + ${audiencia.id}" th:field="*{processoId}"/>
+					      	
+					      		<div class="form-row">
+									<div class="form-group col-md-6">
+										<label for="flagInicial" >Inicial</label> 
+										<input type="radio" th:id="'flagInicial' + ${audiencia.id}" value="1" th:field="*{flagTipoDeNotificacao}" onclick="desativarFlagDeInstrucao(this.id)">
+										
+										<label for="flagInstrucao">Instrução/UNA</label>
+										<input type="radio" th:id="'flagInstrucao' + ${audiencia.id}" value="2" th:field="*{flagTipoDeNotificacao}" onclick="ativarFlagDeInstrucao(this.id)">	
+									</div>
+								</div>
+								
+								<p th:text="'Prezado(a), ' + ${cliente.nome} + ','"></p>
+					      	
+						      	<p>segue os dados para a sua perícia:</p>
+						      	
+						      	<p th:text="'Processo:' + ${processo.numero}"></p>
+						      	
+						      	<p th:text="'Data:' + ${#temporals.format(audiencia.dataDaAudiencia, 'dd-MM-yyyy')}"></p>
+						      	
+						      	<p th:text="'Horário:' + ${audiencia.horario}"></p>
+						      	
+						      	<p th:text="'Local:' + ${audiencia.endereco}"></p>
+						      	
+						      	<div th:id="'observacaoDeTestemunhas' + ${audiencia.id}">
+						      		<p>Favor comparecer acompanhado de 3 testemunhas</p>
+						      	</div>
+						      	
+						      	<p>Qualquer dúvida entrar em contato no número: 7199999999</p>
+						        	
+						      	<p>Atenciosamente,</p>
+						      	
+						      	<p>Costa Pinto & Martinelli - Advogados Associados.</p>
+								
+								<div class="mb-3">
+						            <label for="message-text" class="col-form-label">Observação</label>
+						            <input  type="text" class="form-control" th:id="'observacaoId' + ${audiencia.id}" th:field="*{observacao}">
+						        </div>
+								
+								<p th:text="'Email cadastrado:' + ${cliente.email}"></p>
+						    </div>
+						    
+						    <div class="modal-footer">
+						    	<input type="submit" id="adicaoNotificacaoAudiencia" class="btn" style="color:#fff; background-color:#17a2b8; margin-bottom: 10px;" value="Enviar" />
+						    </div>
+				      	</form>
+				    </div>
+				  </div>
+				</div>
+	      	</div>
+	      </div>
+	      
+	      <div th:case="false">
+			<span  id="nao_encontrado_audiencia">Nenhum resultado encontrado!</span>
+		  </div>
       </div>
   </div>
-
-<!--Modal adicionar audiencia-->
-<div class="modal fade" id="modal_add_audiencia" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Adicionar Audiência</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Processo:</label>
-            <input type="text" class="form-control" id="recipient-name" placeholder="N° do processo">
-          </div>    
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Data:</label>
-            <input type="date" class="form-control">
-          </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Hora:</label>
-            <input type="time" class="form-control">
-          </div>
-          <input type="checkbox" onclick="desabilitar1('sim')">  <label>Precatorio</label>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Número do processo gerado</label>
-            <input disabled id="number_processo" type="number" class="form-control" placeholder="Somente numeros">
-          </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Testemunha</label>
-            <input disabled id="testemunha" type="text" class="form-control">
-          </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Observação</label>
-            <input  type="text" class="form-control">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Salvar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!--Modal editar audiencia-->
-<div class="modal fade" id="editar_audiencia" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Editar Audiência</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Processo:</label>
-            <input type="text" class="form-control" id="recipient-name" placeholder="N° do processo">
-          </div>    
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Data:</label>
-            <input type="date" class="form-control">
-          </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Hora:</label>
-            <input type="time" class="form-control">
-          </div>
-         <label>Precatorio</label>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Número do processo gerado</label>
-            <input id="number_processo2" type="number" class="form-control" placeholder="Somente numeros">
-          </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Testemunha</label>
-            <input  id="testemunha2" type="text" class="form-control">
-          </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Observação</label>
-            <input  type="text" class="form-control">
-          </div>
-          
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Salvar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!--Modal email audiencia-->
-<div class="modal fade" id="email_audiencia" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Adicionar Audiência</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-         <span>Prezado(a),</span><br>
-         <span>segue os dados para a sua audiência:</span><br>
-         <span>Processo:</span><br>
-         <span>Data:</span><br>
-         <span>Horário:</span><br>
-         <span>Local:</span><br>
-         <div class="form-group">
-
-          <label>
-        <input type="checkbox"  onclick="desabilitar(this.checked)"/> Instrução/UNA: </label>
-          <div class="input-group">
-            <input type="text" disabled class="form-control" name="" id="numero" value="Favor comparecer acompanhado de 3 testemunhas" placeholder="Favor comparecer acompanhado de 3 testemunhas"/>
-          </div>
-        </div>
-   
-         <span>Qualquer dúvida entrar em contato conosco 71 3500-6167/68</span>
-       
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Observação</label>
-            <input  type="text" class="form-control">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Enviar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 
 
 </div>
@@ -374,7 +338,32 @@
           
         }
       }
-      
+   </script>
+
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+   
+    <script>
+		$(document).ready(function(){
+			   
+			login = localStorage.getItem("login");
+			
+			$('#loginDoUsuario').val(login);
+			
+			$("#btnEditarUsuario").attr("href", "/obter-usuario-por-login?login=" + login);
+			
+			$("#btnEditarUsuarioResponsivo").attr("href", "/obter-usuario-por-login?login=" + login);
+			
+			$("#btnListarUsuarios").attr("href", "/obter-usuarios?login=" + login);
+			
+			$("#btnListarUsuariosResponsivo").attr("href", "/obter-usuarios?login=" + login);
+		   
+		    console.log('Login apos acesso -> ' + login);
+		});	
+		
 	    function desativarFlagDeInstrucao(id) {
 			
 			let periciaId = id.substring(11);
@@ -399,9 +388,14 @@
 			
 			document.getElementById("observacaoDeTestemunhas" + audienciaId).style.display = "none";
 			
+			console.log(document.getElementById("clienteId").value);
+			
+			console.log(document.getElementById("processoId").value);
+			
 			let clienteId = document.getElementById("clienteId").value;
 			
 			let processoId = document.getElementById("processoId").value;
+			
 			
 			document.getElementById("flagInicial" + audienciaId).checked = true;
 			
@@ -465,33 +459,6 @@
 			
 			//document.getElementById("enviarNotificacao" + periciaId).href = url;
 		}
-  </script>
-
-
-
-    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-   
-    <script>
-		$(document).ready(function(){
-			   
-			login = localStorage.getItem("login");
-			
-			$('#loginDoUsuario').val(login);
-			
-			$("#btnEditarUsuario").attr("href", "/obter-usuario-por-login?login=" + login);
-			
-			$("#btnEditarUsuarioResponsivo").attr("href", "/obter-usuario-por-login?login=" + login);
-			
-			$("#btnListarUsuarios").attr("href", "/obter-usuarios?login=" + login);
-			
-			$("#btnListarUsuariosResponsivo").attr("href", "/obter-usuarios?login=" + login);
-		   
-		    console.log('Login apos acesso -> ' + login);
-		});	
    </script>
   </body>
 </html>
