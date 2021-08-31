@@ -72,9 +72,11 @@ public class EmailController {
 			
 			emailDeNotificacaoService.enviarEmailDeRecuperacaoDeAcesso("Aviso de Audiência", cliente.getEmail(), conteudo);
 				
-			model.addAttribute("id", notificacao.getProcessoId());
+			model.addAttribute("mensagem", "Email enviado com sucesso!");
 			
-			model.addAttribute("clienteId", notificacao.getClienteId());
+			model.addAttribute("id", processo.getId());
+			
+			model.addAttribute("clienteId", cliente.getId());
 			
 			model.addAttribute("page", 0L);
 			
@@ -85,15 +87,26 @@ public class EmailController {
 		catch(Exception e) {
 			
 			e.printStackTrace();
+			
+			model.addAttribute("mensagem", "Falha no envio do email de notificação da audiência. Entre em contato com o administrador do sistema");
+			
+			model.addAttribute("id", notificacao.getProcessoId());
+			
+			model.addAttribute("clienteId", notificacao.getClienteId());
+			
+			model.addAttribute("page", 0L);
+			
+			model.addAttribute("size", 20L);
+			
+			return new ModelAndView("redirect:/detalhar-processo-por-id", model);
 		}
-		
-		return null;
 	}
 
 	@RequestMapping(value="/enviar-notificacao-de-pericia", method=RequestMethod.POST) 
 	public ModelAndView enviarNotificacaoDePericia(ModelMap model, @ModelAttribute NotificacaoDePericiaPorEmail notificacao) { 
 		
 		try {
+			
 			Cliente cliente = clienteService.obterClientePorId(notificacao.getClienteId());
 			
 			Processo processo = processoService.obterProcessoPorId(notificacao.getProcessoId());
@@ -118,6 +131,8 @@ public class EmailController {
 			
 			emailDeNotificacaoService.enviarEmailDeRecuperacaoDeAcesso("Aviso de Perícia", cliente.getEmail(), conteudo);
 				
+			model.addAttribute("mensagem", "Email enviado com sucesso!");
+			
 			model.addAttribute("id", processo.getId());
 			
 			model.addAttribute("clienteId", cliente.getId());
@@ -131,8 +146,18 @@ public class EmailController {
 		catch(Exception e) {
 			
 			e.printStackTrace();
+			
+			model.addAttribute("mensagem", "Falha no envio do email de notificação da perícia. Entre em contato com o administrador do sistema");
+			
+			model.addAttribute("id", notificacao.getProcessoId());
+			
+			model.addAttribute("clienteId", notificacao.getClienteId());
+			
+			model.addAttribute("page", 0L);
+			
+			model.addAttribute("size", 20L);
+			
+			return new ModelAndView("redirect:/detalhar-processo-por-id", model);
 		}
-		
-		return null;
 	}
 }

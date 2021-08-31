@@ -129,11 +129,14 @@
     <div class="col-2">
       <img class="t_itens" id="image_client_top" src="/static/recursos/icones/processos.svg" alt="Bootstrap" width="92" height="92">
     </div>
+    
     <div class="col-5">
       <h1 class="titulo_clientes "><b>Processos</b></h1>
     </div>
    
   </div>
+
+ <h5 style="color: red;" th:text="${mensagem}"></h5>
 
 <div class="row">
   <form>
@@ -178,14 +181,16 @@
 
 <!-- menu adicionar audiencia -->
 	<ul class="nav nav-tabs">
-		<li class="nav-item"><a class="nav-link active"
-			href="page_clientes_processos_audiencia_com_resultado.html">Audiência</a>
+		<li class="nav-item">
+			<a class="nav-link active" id="aba-audiencia">Audiência</a>
 		</li>
-		<li class="nav-item"><a class="nav-link "
-			href="page_clientes_processos_pericia_com_resultado.html">Perícia</a>
+		
+		<li class="nav-item">
+			<a class="nav-link " id="aba-pericia">Perícia</a>
 		</li>
 	</ul>
- <div class="row d-flex bt-add-novo-processo">
+ <div id="audiencias-e-pericias" class="row d-flex bt-add-novo-processo">
+ 
    <div class="col-6 d-flex justify-content-end">
    	<a th:href="@{/carregar-nova-audiencia(clienteId=${cliente.id}, processoId=${processo.id}, page=${page}, size=${size})}"><img data-bs-toggle="modal" data-bs-target="#modal_add_audiencia"  id="" class="" src="/static/recursos/icones/botao-adicionar.svg" alt="Bootstrap" width="22" height="22"></a>
    </div>
@@ -193,7 +198,8 @@
    <div class=" col-6 ">
   	Adicionar Audiência
    </div>
-  	  
+   
+  
   	  <div th:switch="${audiencias != null && audiencias.size > 0}">
 	      <div th:case="true" >
 	      	<div th:each="audiencia: ${audiencias}" class="card-evento">
@@ -306,6 +312,8 @@
 	      <div th:case="false">
 			<span  id="nao_encontrado_audiencia">Nenhum resultado encontrado!</span>
 		  </div>
+      
+        </div>
       </div>
   </div>
 
@@ -342,7 +350,8 @@
 
     <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}" type="text/javascript" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
    
@@ -362,7 +371,30 @@
 			$("#btnListarUsuariosResponsivo").attr("href", "/obter-usuarios?login=" + login);
 		   
 		    console.log('Login apos acesso -> ' + login);
-		});	
+		});
+		
+		$('#aba-audiencia').click(function() {
+			
+			console.log('Clicou na aba de audiencia');
+			
+			$("#aba-audiencia").attr("class", "nav-link active");
+			
+			$("#aba-pericia").attr("class", "nav-link");
+			
+		    $("#audiencias-e-pericias").load("/carregar-aba-de-audiencia?processoId=" + $('#processoId').val() + "&clienteId=" + $('#clienteId').val());
+		});
+		
+		$('#aba-pericia').click(function() {
+
+			console.log('Clicou na aba de pericia');
+			
+			
+			$("#aba-audiencia").attr("class", "nav-link");
+			
+			$("#aba-pericia").attr("class", "nav-link active");
+			
+		    $("#audiencias-e-pericias").load("/carregar-aba-de-pericia?processoId=" + $('#processoId').val() + "&clienteId=" + $('#clienteId').val());
+		});
 		
 	    function desativarFlagDeInstrucao(id) {
 			

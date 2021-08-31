@@ -289,4 +289,56 @@ public class ProcessoController {
 		
 		return null;
 	}
+	
+	@RequestMapping(value="/carregar-aba-de-audiencia", method=RequestMethod.GET)
+  	public ModelAndView carregarAbaDeAudiencia(ModelAndView model, 
+  			                                   @RequestParam("processoId") Long processoId,
+  			                                   @RequestParam("clienteId") Long clienteId) {
+		
+		Processo processo = processoService.obterProcessoPorId(processoId); 
+		
+		Cliente cliente = clienteService.obterClientePorId(clienteId);
+		
+		model.addObject("page", 0L);
+		
+		model.addObject("size", 20L);
+		
+		model.addObject("cliente", cliente);
+		
+		model.addObject("processo", processo);
+		
+		model.addObject("notificacaoDeAudiencia", new NotificacaoDeAudienciaPorEmail());
+		
+		model.addObject("listaDeAudiencias", audienciaService.obterAudienciasPorProcessoId(processoId));
+ 		
+		model.setViewName("processo/fragmento-aba-audiencia :: aba-de-audiencias");
+		
+		return model;
+  	}
+	
+	@RequestMapping(value="/carregar-aba-de-pericia", method=RequestMethod.GET)
+  	public ModelAndView carregarAbaDePericia(ModelAndView model, 
+  			                                   @RequestParam("processoId") Long processoId,
+  			                                   @RequestParam("clienteId") Long clienteId) {
+		
+		Processo processo = processoService.obterProcessoPorId(processoId); 
+		
+		Cliente cliente = clienteService.obterClientePorId(clienteId);
+		
+		model.addObject("page", 0L);
+		
+		model.addObject("size", 20L);
+		
+		model.addObject("cliente", cliente);
+		
+		model.addObject("processo", processo);
+		
+		model.addObject("notificacaoDePericia", new NotificacaoDePericiaPorEmail());
+		
+		model.addObject("listaDePericias", periciaService.obterPericiasPorProcessoId(processo.getId()));
+ 		
+		model.setViewName("processo/fragmento-aba-pericia :: aba-de-pericias");
+		
+		return model;
+  	}
 }
