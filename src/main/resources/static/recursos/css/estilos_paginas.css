@@ -1,0 +1,586 @@
+/*formularios bases*/
+.cliente {
+    font-size: 33px;
+    color: #E29930;
+    border-bottom: 1px solid #DADADA !important;
+    margin-bottom: 10px;
+    font-family: 'Open Sans', sans-serif;
+    height: 45px;
+    padding-bottom: 5px;
+}
+
+.form-control {
+    padding: 0;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #4C4C4C;
+    background-color: transparent;
+    border-bottom: 1px solid #DADADA !important;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.form-control2 {
+    padding: 0;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #4C4C4C;
+    background-color: transparent;
+    border-bottom: 1px solid #DADADA !important;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.form-control:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 60%);
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 60%);
+    background-color: #efefef; 
+}
+
+
+
+
+
+/*Área de busca cliente*/
+#zone_client_search{
+    position: relative;
+    top: 200px;
+}
+
+.campo-pesquisa{
+    display: block;
+    width: 90%;
+    height: 90px;
+    padding: 5px ;
+    font-size: 55px;
+    line-height: 1.42857143;
+    color: #e29930 !important;
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+}
+
+.area-pesquisa {
+    border-bottom: 2px solid #e29930;
+    margin-top: 40px;
+}
+
+.button_lupa {
+    width: 35px;
+    height: 35px;
+    float: right;
+    margin-top: -6%;
+    z-index: 100;
+    left: 60px;
+    background: url(../icones/botao-pesquisa.svg);
+    border: none;
+    margin-bottom: 45px;
+}
+
+/* Title meus clientes*/
+.titulo_clientes{
+    margin-top: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 43px;
+    color: #4C4C4C;
+    font-weight: bold;
+}
+
+/* Botão adicionar clientes*/
+#image_botao_edit{
+    margin-top: 30px;
+}
+
+/* icones table resul busca de clientes
+    .config-col-view{
+        border: 1px solid rgba(0, 0, 0, .2);
+        border-top: none;
+        border-bottom: none;
+    }
+    */
+
+
+/* Table Result Search clients*/
+#row-conteudo {
+    background: #fff;
+    padding: 5px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    width: 100%;
+
+}
+
+
+.config-col-view{
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-top: none;
+    border-bottom: none;
+    margin-top: -10px;
+}
+
+#image_icon_view{
+    margin-right: 10px;
+}
+
+
+              /* criar uma barra de rolagem para a table */  
+.table-overflow {
+    max-height:400px;
+    overflow-y:auto;
+    width: auto;
+    padding: 20px; 
+}
+
+table{
+    position: relative;
+    width: 100%;
+}
+
+
+.config-col-edit{
+    color: red;
+}
+
+
+
+
+
+        /*pagina cliente adicionar audiência*/ 
+
+.alinhar{
+    position: relative;
+}
+
+.alinhar_form{
+    position: absolute;
+    top: 200px;
+}
+
+.config_text_area{
+    width: 450px;
+    background-color: #DADADA;
+}
+
+/*checkbox aparecendo que nem misteremi*/ /*pagina cliente adicionar audiência*/
+.checkshow input[type="text"] { opacity:0;transition:.5s;pointer-events:none }
+.checkshow input:checked ~ input[type="text"] { opacity:1;pointer-events:auto }
+.checkshow input:checked ~ input[type="text"] { opacity:1;pointer-events:auto }
+
+.posicao_linha_check{
+    position:relative;
+ 
+}
+
+.posicao_coluna_check1{
+    position: absolute;
+    left: 60px; 
+}
+
+.posicao_coluna_check2{
+    position: absolute;
+    top: 5px;
+}
+
+.aling_camp_check1{
+    width: 50%;
+
+    margin-left: 10px;
+}
+
+.aling_camp_check2{
+    width: 51%;
+  
+    margin-left: 10px;
+}
+    
+#area-texto{
+    width: 100%;
+}
+
+
+ 
+
+/*reponsividade das páginas*/
+ @media screen and (max-width: 375px){
+
+    /*pagina cliente adicionar audiência*/ 
+    #coluna-direita_audiencia{
+        background-color: #efefef;
+        min-height: 820px;
+    }
+    
+    .titulo_audiencias{
+        margin-top: 20px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 20px;
+        color: #4C4C4C;
+        font-weight: bold;
+    }
+    #btn_save_audiencia{
+        margin-top: 60px;
+    }
+
+
+/*pagina adicionar perícia*/
+
+.pos-rel-pericia{
+    position: relative;
+}
+
+  #image_pericia_add{
+    position: absolute;
+    width: 40px;
+    height:40px;
+    left: 20px;
+}
+
+.titulo_pericia_add2{
+    position: absolute;
+    left: 150px;
+}
+
+#image_botao_salvar_pericia{
+    position: absolute;
+    top:50px;
+    width: 40px;
+    height:40px;
+}
+
+
+ }
+
+ @media screen and (min-width: 376px){
+
+ /*pagina adicionar audiencias*/
+        #coluna-direita_audiencia{
+            background-color: #efefef;
+            min-height: 820px;
+        }
+        
+        .titulo_audiencias{
+            margin-top: 20px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 20px;
+            color: #4C4C4C;
+            font-weight: bold;
+        }
+        #btn_save_audiencia{
+            margin-top: 40px;
+        }
+
+/*pagina adicionar perícia*/
+
+        .pos-rel-pericia{
+            position: relative;
+        }
+        #image_pericia_add{
+            position: absolute;
+            width: 40px;
+            height:40px;
+            left: 20px;
+        }
+
+        .titulo_pericia_add2{
+            position: absolute;
+            left: 180px;
+        }
+
+        #image_botao_salvar_pericia{
+            position: absolute;
+            top:50px;
+            width: 40px;
+            height:40px;
+        }
+
+ }
+
+ @media screen and (min-width: 567px){
+      /*pagina adicionar audiencias*/
+            #coluna-direita_audiencia{
+                background-color: #efefef;
+                min-height: 820px;
+            }
+
+            #image_client_top{
+                width: 50px;
+                height: 40px;
+                position: absolute;
+                left: 80px;
+            }
+
+            .titulo_audiencias{
+                margin-top: 20px;
+                font-family: 'Open Sans', sans-serif;
+                font-size: 20px;
+                color: #4C4C4C;
+                font-weight: bold;
+            }
+
+            #audiencia_adicionar{
+                position: absolute;
+                left: 250px;
+            }
+
+            #btn_save_audiencia{
+                top: 20px;
+                position:absolute;
+            }
+
+
+    /*pagina adicionar perícia*/
+            .pos-rel-pericia{
+                position: relative;
+            }
+
+            #image_pericia_add{
+                position: absolute;
+                width: 40px;
+                height:40px;
+                left: 40px;
+            }
+
+            .titulo_pericia_add2{
+                position: absolute;
+                left: 200px;
+            }
+
+            #image_botao_salvar_pericia{
+                position: absolute;
+                top:5px;
+                width: 40px;
+                height:40px;
+            }
+            }
+
+
+ @media screen and (min-width: 769px){
+
+    /*pagina adicionar audiencias*/
+            #coluna-direita_audiencia{
+                background-color: #efefef;
+                min-height: 820px;
+            }
+
+            #image_client_top{
+                width: 50px;
+                height: 40px;
+                position: absolute;
+                left: 80px;
+            }
+
+            .titulo_audiencias{
+                margin-top: 20px;
+                font-family: 'Open Sans', sans-serif;
+                font-size: 20px;
+                color: #4C4C4C;
+                font-weight: bold;
+            }
+
+            #audiencia_adicionar{
+                position: absolute;
+                left: 280px;
+            }
+
+            #btn_save_audiencia{
+                top: 25px;
+                position:absolute;
+                width: 30px;
+                height: 30px;
+            }
+
+ }
+
+
+ @media screen and (min-width: 700px){
+  
+    /*pagina adicionar perícia*/
+        .pos-rel-pericia{
+            position: relative;
+        }
+
+        #image_pericia_add{
+            position: absolute;
+            width: 40px;
+            height:40px;
+            left: 40px;
+        }
+
+        .titulo_pericia_add2{
+            position: absolute;
+            left: 230px;
+        }
+
+        #image_botao_salvar_pericia{
+            position: absolute;
+            top:5px;
+            width: 40px;
+            height:40px;
+        }
+
+}
+
+
+ @media screen and (min-width: 900px){
+
+/*pagina adicionar perícia*/
+        #coluna-direita_audiencia{
+            background-color: #efefef;
+            min-height: 820px;
+        }
+
+        #image_client_top{
+            width: 60px;
+            height: 50px;
+            position: absolute;
+            left: 80px;
+        }
+
+        .titulo_audiencias{
+            margin-top: 20px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 30px;
+            color: #4C4C4C;
+            font-weight: bold;
+        }
+
+        #audiencia_adicionar{
+            position: absolute;
+            left: 400px;
+        }
+
+        #btn_save_audiencia{
+            top: 25px;
+            position:absolute;
+            width: 40px;
+            height: 40px;
+            right: 250px;
+        }
+
+/*pagina adicionar perícia*/
+        .pos-rel-pericia{
+            position: relative;
+        }
+
+        #image_pericia_add{
+            position: absolute;
+            width: 40px;
+            height:40px;
+            left: 40px;
+        }
+
+        .titulo_pericia_add2{
+            position: absolute;
+            left: 250px;
+        }
+
+        #image_botao_salvar_pericia{
+            position: absolute;
+            top:5px;
+            width: 40px;
+            height:40px;
+        }
+
+ }
+
+ @media screen and (min-width: 1100px){
+   /*pagina adicionar perícia*/
+        .pos-rel-pericia{
+            position: relative;
+        }
+
+        #image_pericia_add{
+            position: absolute;
+            width: 40px;
+            height:40px;
+            left: 40px;
+        }
+
+        .titulo_pericia_add2{
+            position: absolute;
+            left: 300px;
+        }
+
+        #image_botao_salvar_pericia{
+            position: absolute;
+            top:5px;
+            width: 40px;
+            height:40px;
+        }
+
+ }
+ @media screen and (min-width: 1320px){
+     /*pagina adicionar audiencia*/
+        #coluna-direita_audiencia{
+            background-color: #efefef;
+            min-height: 820px;
+        }
+
+        #image_client_top{
+            width: 50px;
+            height: 40px;
+            position: absolute;
+            left: 80px;
+        }
+
+        .titulo_audiencias{
+            margin-top: 20px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 20px;
+            color: #4C4C4C;
+            font-weight: bold;
+        }
+
+        #audiencia_adicionar{
+            position: absolute;
+            left: 500px;
+        }
+
+        #btn_save_audiencia{
+            top: 25px;
+            position:absolute;
+            width: 30px;
+            height: 30px;
+            right: 270px;
+        }
+
+
+       /*pagina adicionar perícia*/
+        .pos-rel-pericia{
+            position: relative;
+        }
+
+        #image_pericia_add{
+            position: absolute;
+            width: 40px;
+            height:40px;
+            left: 40px;
+        }
+
+        .titulo_pericia_add2{
+            position: absolute;
+            left: 320px;
+        }
+
+        #image_botao_salvar_pericia{
+            position: absolute;
+            top:5px;
+            width: 40px;
+            height:40px;
+        }
+
+
+ }
+ 
+
+
+ 
+
